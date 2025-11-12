@@ -430,7 +430,7 @@
 
         <div class="video-container">
             <div class="video-wrapper">
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/fdu9h5fOUwQ?si=5J4_PQsKHgnFVa35&amp;start=1195" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/fdu9h5fOUwQ?si=5J4_PQsKHgnFVa35&amp;start=1196" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
             </div>
             <div class="video-caption">yes, it was as chaotic as you'd think</div>
         </div>
@@ -500,13 +500,13 @@
                 and say <strong style="color: var(--terracotta);">"we should do this"</strong> 📨
             </p>
             <div class="share-buttons">
-                <a href="https://twitter.com/intent/tweet?text=Vibe%20coding%20tutorials%20-%20build%20dashboards%20in%20one%20flow.%20Data%20analysis%20to%20shipped%20code%2C%20all%20in%20your%20IDE.%20Zero%20tab%20switching.&url=https://galdulev.github.io/vibe-coding-tutorials/" target="_blank" class="share-btn twitter">
+                <a href="#" onclick="shareTwitter(); return false;" class="share-btn twitter">
                     🐦 twitter
                 </a>
-                <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://galdulev.github.io/vibe-coding-tutorials/" target="_blank" class="share-btn linkedin">
+                <a href="#" onclick="shareLinkedIn(); return false;" class="share-btn linkedin">
                     💼 linkedin
                 </a>
-                <a href="https://wa.me/?text=Check%20out%20these%20vibe%20coding%20tutorials%20-%20data%20to%20dashboards%20in%20one%20flow%20https://galdulev.github.io/vibe-coding-tutorials/" target="_blank" class="share-btn whatsapp">
+                <a href="#" onclick="shareWhatsApp(); return false;" class="share-btn whatsapp">
                     💬 whatsapp
                 </a>
                 <button onclick="copyLink()" class="share-btn" style="background: var(--terracotta); cursor: pointer; border: none;">
@@ -555,6 +555,49 @@
                 }
             });
         });
+
+        function isMobile() {
+            return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        }
+
+        function shareTwitter() {
+            const text = 'Vibe coding tutorials - build dashboards in one flow. Data analysis to shipped code, all in your IDE. Zero tab switching.';
+            const url = 'https://galdulev.github.io/vibe-coding-tutorials/';
+            
+            if (isMobile()) {
+                window.location.href = `twitter://post?message=${encodeURIComponent(text + ' ' + url)}`;
+                setTimeout(() => {
+                    window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`, '_blank');
+                }, 500);
+            } else {
+                window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`, '_blank');
+            }
+        }
+
+        function shareLinkedIn() {
+            const url = 'https://galdulev.github.io/vibe-coding-tutorials/';
+            
+            if (isMobile()) {
+                window.location.href = `linkedin://shareArticle?url=${encodeURIComponent(url)}`;
+                setTimeout(() => {
+                    window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`, '_blank');
+                }, 500);
+            } else {
+                window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`, '_blank');
+            }
+        }
+
+        function shareWhatsApp() {
+            const text = 'Check out these vibe coding tutorials - data to dashboards in one flow';
+            const url = 'https://galdulev.github.io/vibe-coding-tutorials/';
+            const message = `${text} ${url}`;
+            
+            if (isMobile()) {
+                window.location.href = `whatsapp://send?text=${encodeURIComponent(message)}`;
+            } else {
+                window.open(`https://wa.me/?text=${encodeURIComponent(message)}`, '_blank');
+            }
+        }
 
         function copyLink() {
             navigator.clipboard.writeText('https://galdulev.github.io/vibe-coding-tutorials/').then(() => {
