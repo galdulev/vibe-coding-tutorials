@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workshops | Gal Dulev</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Inter', sans-serif;
+            background: #ffffff;
+            color: #1d1d1f;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Hero */
+        .hero {
+            min-height: 90vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 120px 40px 80px;
+            background: linear-gradient(180deg, #f5f5f7 0%, #ffffff 100%);
+        }
+
+        .hero h1 {
+            font-size: 80px;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            line-height: 1.05;
+            margin-bottom: 24px;
+            background: linear-gradient(135deg, #1d1d1f 0%, #86868b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero .subtitle {
+            font-size: 28px;
+            font-weight: 400;
+            color: #86868b;
+            max-width: 800px;
+            margin: 0 auto 48px;
+            line-height: 1.4;
+        }
+
+        /* Section */
+        .section {
+            padding: 100px 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 56px;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+            color: #1d1d1f;
+        }
+
+        .section-subtitle {
+            font-size: 24px;
+            color: #86868b;
+            margin-bottom: 64px;
+            font-weight: 400;
+        }
+
+        /* Workshop Cards */
+        .workshops-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+            gap: 32px;
+            margin: 60px 0;
+        }
+
+        .workshop-card {
+            background: #fbfbfd;
+            border-radius: 24px;
+            padding: 48px 40px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 0, 0, 0.04);
+            cursor: pointer;
+        }
+
+        .workshop-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+            background: #ffffff;
+        }
+
+        .workshop-level {
+            font-size: 13px;
+            font-weight: 600;
+            color: #0071e3;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 16px;
+        }
+
+        .workshop-title {
+            font-size: 32px;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+            margin-bottom: 16px;
+            color: #1d1d1f;
+        }
+
+        .workshop-description {
+            font-size: 17px;
+            line-height: 1.6;
+            color: #86868b;
+            margin-bottom: 32px;
+        }
+
+        .workshop-details {
+            display: flex;
+            gap: 24px;
+            padding-top: 24px;
+            border-top: 1px solid rgba(0, 0, 0, 0.06);
+        }
+
+        .detail {
+            flex: 1;
+        }
+
+        .detail-label {
+            font-size: 12px;
+            color: #86868b;
+            margin-bottom: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+        }
+
+        .detail-value {
+            font-size: 17px;
+            font-weight: 600;
+            color: #1d1d1f;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, #0071e3 0%, #0077ed 100%);
+            color: white;
+            padding: 100px 40px;
+            text-align: center;
+            margin: 80px 0;
+        }
+
+        .cta-title {
+            font-size: 56px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            letter-spacing: -0.02em;
+        }
+
+        .cta-subtitle {
+            font-size: 24px;
+            margin-bottom: 48px;
+            opacity: 0.95;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: white;
+            color: #0071e3;
+            padding: 16px 48px;
+            border-radius: 100px;
+            font-size: 17px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+            margin: 0 8px;
+        }
+
+        .cta-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+        }
+
+        .cta-button.secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        /* Stats */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            max-width: 900px;
+            margin: 80px auto;
+            padding: 0 40px;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 64px;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, #0071e3, #0077ed);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .stat-label {
+            font-size: 17px;
+            color: #86868b;
+            font-weight: 500;
+        }
+
+        /* Footer */
+        footer {
+            background: #f5f5f7;
+            padding: 48px 40px;
+            text-align: center;
+            color: #86868b;
+        }
+
+        footer a {
+            color: #0071e3;
+            text-decoration: none;
+            margin: 0 16px;
+            font-weight: 500;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 48px;
+            }
+            .hero .subtitle {
+                font-size: 21px;
+            }
+            .section-title {
+                font-size: 40px;
+            }
+            .section-subtitle {
+                font-size: 21px;
+            }
+            .workshops-grid {
+                grid-template-columns: 1fr;
+            }
+            .workshop-title {
+                font-size: 28px;
+            }
+            .cta-title {
+                font-size: 40px;
+            }
+            .stat-value {
+                font-size: 48px;
+            }
+        }
+
+        /* Smooth Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero -->
+    <section class="hero">
+        <h1>Learn to build<br>with AI.</h1>
+        <p class="subtitle">
+            Hands-on workshops for product managers, designers, and teams.<br>
+            Real projects. Real code. Real results.
+        </p>
+    </section>
+
+    <!-- Stats -->
+    <div class="stats">
+        <div class="stat">
+            <div class="stat-value">100+</div>
+            <div class="stat-label">Participants</div>
+        </div>
+        <div class="stat">
+            <div class="stat-value">50+</div>
+            <div class="stat-label">Features Shipped</div>
+        </div>
+        <div class="stat">
+            <div class="stat-value">∞</div>
+            <div class="stat-label">Context Switches Avoided</div>
+        </div>
+    </div>
+
+    <!-- Workshops Section -->
+    <section class="section">
+        <h2 class="section-title">Choose your workshop.</h2>
+        <p class="section-subtitle">From first prompt to shipped code.</p>
+
+        <div class="workshops-grid">
+            <!-- AI Assistants -->
+            <div class="workshop-card">
+                <div class="workshop-level">BEGINNER</div>
+                <h3 class="workshop-title">AI Assistants</h3>
+                <p class="workshop-description">
+                    Master AI workflows in your IDE. Stop fighting with ChatGPT. Build custom assistants that actually work.
+                </p>
+                <div class="workshop-details">
+                    <div class="detail">
+                        <div class="detail-label">Duration</div>
+                        <div class="detail-value">Half Day</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Experience</div>
+                        <div class="detail-value">None needed</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Vibe Coding PMs Beginner -->
+            <div class="workshop-card">
+                <div class="workshop-level">BEGINNER</div>
+                <h3 class="workshop-title">Vibe Coding for PMs</h3>
+                <p class="workshop-description">
+                    Build data dashboards. Create feature prototypes. Ship analytics pipelines. All in one day.
+                </p>
+                <div class="workshop-details">
+                    <div class="detail">
+                        <div class="detail-label">Duration</div>
+                        <div class="detail-value">Full Day</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Coding</div>
+                        <div class="detail-value">Not required</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Vibe Coding PMs Advanced -->
+            <div class="workshop-card">
+                <div class="workshop-level">ADVANCED</div>
+                <h3 class="workshop-title">Vibe Coding: Pro</h3>
+                <p class="workshop-description">
+                    Production dashboards. CI/CD pipelines. Real-time data. The complete product development flow.
+                </p>
+                <div class="workshop-details">
+                    <div class="detail">
+                        <div class="detail-label">Duration</div>
+                        <div class="detail-value">2 Days</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Level</div>
+                        <div class="detail-value">Intermediate+</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product Teams -->
+            <div class="workshop-card">
+                <div class="workshop-level">TEAM WORKSHOP</div>
+                <h3 class="workshop-title">Product Teams</h3>
+                <p class="workshop-description">
+                    PM, design, and dev coding together. One workspace. One flow. Ship a real feature as a team.
+                </p>
+                <div class="workshop-details">
+                    <div class="detail">
+                        <div class="detail-label">Duration</div>
+                        <div class="detail-value">2-3 Days</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Team Size</div>
+                        <div class="detail-value">3-6 people</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Designers Beginner -->
+            <div class="workshop-card">
+                <div class="workshop-level">BEGINNER</div>
+                <h3 class="workshop-title">Design + Code</h3>
+                <p class="workshop-description">
+                    Turn designs into working prototypes. Interactive components. Real data visualizations. Ship it.
+                </p>
+                <div class="workshop-details">
+                    <div class="detail">
+                        <div class="detail-label">Duration</div>
+                        <div class="detail-value">Full Day</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Tools</div>
+                        <div class="detail-value">IDE + Figma</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Designers Advanced -->
+            <div class="workshop-card">
+                <div class="workshop-level">ADVANCED</div>
+                <h3 class="workshop-title">Design Systems</h3>
+                <p class="workshop-description">
+                    Full-stack design capabilities. Production systems. APIs. Animations. Data-driven designs.
+                </p>
+                <div class="workshop-details">
+                    <div class="detail">
+                        <div class="detail-label">Duration</div>
+                        <div class="detail-value">2 Days</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Level</div>
+                        <div class="detail-value">Intermediate+</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Design Sprint -->
+            <div class="workshop-card">
+                <div class="workshop-level">INTENSIVE</div>
+                <h3 class="workshop-title">AI Design Sprint</h3>
+                <p class="workshop-description">
+                    Five days. One big problem. Your team. AI superpowers. Ship validated solution by Friday.
+                </p>
+                <div class="workshop-details">
+                    <div class="detail">
+                        <div class="detail-label">Duration</div>
+                        <div class="detail-value">5 Days</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Format</div>
+                        <div class="detail-value">Immersive</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- What You'll Get -->
+    <section class="section" style="background: #f5f5f7; margin: 0; padding: 100px 40px; max-width: 100%;">
+        <div style="max-width: 1200px; margin: 0 auto;">
+            <h2 class="section-title">What you'll walk away with.</h2>
+            <p class="section-subtitle">Not just knowledge. Actual working code.</p>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 48px; margin-top: 60px;">
+                <div>
+                    <div style="font-size: 48px; margin-bottom: 16px;">💻</div>
+                    <h3 style="font-size: 21px; font-weight: 600; margin-bottom: 12px; color: #1d1d1f;">Working Code</h3>
+                    <p style="color: #86868b; font-size: 17px; line-height: 1.5;">
+                        Real projects you built yourself. Running in production. Not tutorials.
+                    </p>
+                </div>
+                <div>
+                    <div style="font-size: 48px; margin-bottom: 16px;">🎯</div>
+                    <h3 style="font-size: 21px; font-weight: 600; margin-bottom: 12px; color: #1d1d1f;">Repeatable Process</h3>
+                    <p style="color: #86868b; font-size: 17px; line-height: 1.5;">
+                        Templates, prompts, and workflows you can use tomorrow.
+                    </p>
+                </div>
+                <div>
+                    <div style="font-size: 48px; margin-bottom: 16px;">🚀</div>
+                    <h3 style="font-size: 21px; font-weight: 600; margin-bottom: 12px; color: #1d1d1f;">Speed</h3>
+                    <p style="color: #86868b; font-size: 17px; line-height: 1.5;">
+                        Go from idea to deployed feature in one afternoon.
+                    </p>
+                </div>
+                <div>
+                    <div style="font-size: 48px; margin-bottom: 16px;">👥</div>
+                    <h3 style="font-size: 21px; font-weight: 600; margin-bottom: 12px; color: #1d1d1f;">Community</h3>
+                    <p style="color: #86868b; font-size: 17px; line-height: 1.5;">
+                        Slack channel for questions. Keep learning together.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <h2 class="cta-title">Ready to build?</h2>
+        <p class="cta-subtitle">Pick your workshop. Show up. Ship something real.</p>
+        <a href="https://www.linkedin.com/in/galdulev/" target="_blank" class="cta-button">Book a Workshop</a>
+        <a href="https://www.linkedin.com/in/galdulev/" target="_blank" class="cta-button secondary">Get in Touch</a>
+    </section>
+
+    <!-- About -->
+    <section class="section">
+        <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+            <div style="width: 120px; height: 120px; border-radius: 50%; background: linear-gradient(135deg, #0071e3, #0077ed); margin: 0 auto 32px;"></div>
+            <h3 style="font-size: 32px; font-weight: 600; margin-bottom: 16px; color: #1d1d1f;">Gal Dulev</h3>
+            <p style="font-size: 21px; color: #86868b; margin-bottom: 24px;">
+                Product Manager @ ZoomInfo
+            </p>
+            <p style="font-size: 17px; color: #86868b; line-height: 1.6;">
+                Building with AI in production. Teaching product teams to ship features faster.
+                No slides, no theory—just hands-on coding with real problems.
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p style="margin-bottom: 16px;">
+            <a href="index.html">Tutorials</a>
+            <a href="cursor-playbook-viral.html">Playbook</a>
+            <a href="https://www.linkedin.com/in/galdulev/" target="_blank">LinkedIn</a>
+        </p>
+        <p style="font-size: 15px;">
+            © 2025 Gal Dulev • Made with ☕ and curiosity
+        </p>
+    </footer>
+
+    <script>
+        // Fade in animations on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.workshop-card').forEach(card => {
+            card.classList.add('fade-in');
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>

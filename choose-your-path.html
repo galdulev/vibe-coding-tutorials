@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choose Your Path | Vibe Coding Quest</title>
+    <link href="https://fonts.googleapis.com/css2?family=VT323&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'VT323', monospace;
+            background: #0a0a0a;
+            color: #00FF41;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* CRT Effect */
+        .crt {
+            animation: flicker 0.15s infinite;
+        }
+
+        @keyframes flicker {
+            0% { opacity: 0.98; }
+            50% { opacity: 1; }
+            100% { opacity: 0.98; }
+        }
+
+        /* Scanlines */
+        .screen::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                0deg,
+                rgba(0, 0, 0, 0.15),
+                rgba(0, 0, 0, 0.15) 1px,
+                transparent 1px,
+                transparent 2px
+            );
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        .screen {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 60px 40px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .terminal {
+            background: #000;
+            border: 3px solid #00FF41;
+            border-radius: 8px;
+            padding: 40px;
+            box-shadow: 
+                0 0 30px rgba(0, 255, 65, 0.3),
+                inset 0 0 100px rgba(0, 255, 65, 0.03);
+            position: relative;
+        }
+
+        .terminal::after {
+            content: '█';
+            position: absolute;
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 49% { opacity: 1; }
+            50%, 100% { opacity: 0; }
+        }
+
+        .text {
+            font-size: 24px;
+            line-height: 1.8;
+            margin-bottom: 24px;
+            opacity: 0;
+        }
+
+        .text.visible {
+            animation: fadeIn 0.5s forwards;
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        .prompt {
+            color: #FF10F0;
+            margin: 32px 0 24px;
+            font-size: 28px;
+            opacity: 0;
+        }
+
+        .prompt.visible {
+            animation: fadeIn 0.5s forwards;
+        }
+
+        .choices {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            opacity: 0;
+        }
+
+        .choices.visible {
+            animation: fadeIn 0.5s forwards;
+        }
+
+        .choice {
+            background: rgba(0, 255, 65, 0.1);
+            border: 2px solid #00FF41;
+            padding: 20px 32px;
+            font-size: 22px;
+            font-family: 'VT323', monospace;
+            color: #00FF41;
+            cursor: pointer;
+            transition: all 0.2s;
+            border-radius: 4px;
+            text-align: left;
+        }
+
+        .choice:hover {
+            background: rgba(0, 255, 65, 0.2);
+            transform: translateX(10px);
+            box-shadow: 0 0 20px rgba(0, 255, 65, 0.5);
+        }
+
+        .choice::before {
+            content: '▸ ';
+            color: #FF10F0;
+        }
+
+        /* Health Bar */
+        .health-bar {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #000;
+            border: 2px solid #00FF41;
+            padding: 12px 20px;
+            border-radius: 4px;
+            font-size: 18px;
+            z-index: 100;
+        }
+
+        .health-label {
+            color: #00FF41;
+            margin-bottom: 8px;
+        }
+
+        .health {
+            background: #1a1a1a;
+            height: 20px;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid #00FF41;
+        }
+
+        .health-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #00FF41, #00D4FF);
+            transition: width 0.5s ease;
+            box-shadow: 0 0 10px #00FF41;
+        }
+
+        /* Achievement Popup */
+        .achievement {
+            position: fixed;
+            top: -200px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #000;
+            border: 3px solid #FFD700;
+            padding: 24px 40px;
+            border-radius: 8px;
+            box-shadow: 0 0 40px rgba(255, 215, 0, 0.6);
+            z-index: 1001;
+            transition: top 0.5s ease;
+            text-align: center;
+        }
+
+        .achievement.show {
+            top: 100px;
+        }
+
+        .achievement-title {
+            color: #FFD700;
+            font-size: 20px;
+            margin-bottom: 8px;
+        }
+
+        .achievement-text {
+            color: #00FF41;
+            font-size: 24px;
+        }
+
+        /* Game Over Screen */
+        .game-over {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+        }
+
+        .game-over.active {
+            display: flex;
+        }
+
+        .game-over-content {
+            text-align: center;
+            padding: 60px 40px;
+            background: #000;
+            border: 3px solid #FF10F0;
+            border-radius: 12px;
+            max-width: 600px;
+            box-shadow: 0 0 50px rgba(255, 16, 240, 0.5);
+        }
+
+        .game-over-title {
+            font-size: 48px;
+            color: #FF10F0;
+            margin-bottom: 24px;
+            animation: glitch 1s infinite;
+        }
+
+        @keyframes glitch {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-3px); }
+            75% { transform: translateX(3px); }
+        }
+
+        .restart-btn {
+            background: #00FF41;
+            color: #000;
+            border: none;
+            padding: 16px 48px;
+            font-size: 22px;
+            font-family: 'VT323', monospace;
+            cursor: pointer;
+            border-radius: 4px;
+            margin: 24px 8px 0;
+            transition: all 0.2s;
+        }
+
+        .restart-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(0, 255, 65, 0.6);
+        }
+
+        .workshop-btn {
+            background: #FF10F0;
+            color: #000;
+        }
+
+        .workshop-btn:hover {
+            box-shadow: 0 0 30px rgba(255, 16, 240, 0.6);
+        }
+
+        /* Stats Display */
+        .stats {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #000;
+            border: 2px solid #00D4FF;
+            padding: 16px 24px;
+            border-radius: 4px;
+            font-size: 18px;
+            z-index: 100;
+            color: #00D4FF;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .text { font-size: 20px; }
+            .prompt { font-size: 24px; }
+            .choice { font-size: 20px; padding: 16px 24px; }
+            .game-over-title { font-size: 36px; }
+            .health-bar { top: 10px; right: 10px; font-size: 16px; }
+            .stats { bottom: 10px; right: 10px; font-size: 16px; }
+        }
+    </style>
+</head>
+<body class="crt">
+    <!-- Health Bar -->
+    <div class="health-bar">
+        <div class="health-label">SANITY: <span id="sanityPercent">100</span>%</div>
+        <div class="health">
+            <div class="health-fill" id="healthFill" style="width: 100%"></div>
+        </div>
+    </div>
+
+    <!-- Stats -->
+    <div class="stats">
+        DECISIONS: <span id="decisions">0</span>
+    </div>
+
+    <!-- Achievement Popup -->
+    <div class="achievement" id="achievement">
+        <div class="achievement-title">🏆 ACHIEVEMENT UNLOCKED</div>
+        <div class="achievement-text" id="achievementText"></div>
+    </div>
+
+    <!-- Main Screen -->
+    <div class="screen">
+        <div class="terminal" id="terminal">
+            <div id="story"></div>
+        </div>
+    </div>
+
+    <!-- Game Over Screen -->
+    <div class="game-over" id="gameOver">
+        <div class="game-over-content">
+            <div class="game-over-title" id="endingTitle">GAME OVER</div>
+            <div style="color: #00FF41; font-size: 24px; margin: 24px 0;" id="endingMessage"></div>
+            <div style="color: #00D4FF; font-size: 20px; margin-bottom: 32px;" id="recommendation"></div>
+            <button class="restart-btn" onclick="restartGame()">TRY AGAIN</button>
+            <button class="restart-btn workshop-btn" onclick="window.location.href='workshops.html'">VIEW WORKSHOPS</button>
+        </div>
+    </div>
+
+    <script>
+        let sanity = 100;
+        let decisions = 0;
+        let currentScene = 'start';
+
+        const story = {
+            start: {
+                text: [
+                    "> It's Monday morning.",
+                    "> Your boss wants 'insights from the data'",
+                    "> You have a CSV file with 50,000 rows.",
+                    "> Deadline: Friday.",
+                    ""
+                ],
+                prompt: "What do you do?",
+                choices: [
+                    { text: "Open Excel and start clicking", next: 'excel_hell', sanity: -20 },
+                    { text: "Create Jira ticket for engineering", next: 'engineering_wait', sanity: -15 },
+                    { text: "Open your IDE and vibe code it", next: 'vibe_start', sanity: +10 }
+                ]
+            },
+
+            excel_hell: {
+                text: [
+                    "> You open Excel...",
+                    "> The file loads... eventually.",
+                    "> You create a pivot table.",
+                    "> It crashes.",
+                    "> You create another pivot table.",
+                    "> Boss: 'Can you also show it by region?'",
+                    "> You contemplate your life choices.",
+                    ""
+                ],
+                prompt: "It's Wednesday. Still no insights.",
+                choices: [
+                    { text: "Keep trying (you're so close!)", next: 'excel_death', sanity: -30 },
+                    { text: "Admit defeat, learn vibe coding", next: 'redemption', sanity: +20 },
+                    { text: "Fake the data (just kidding)", next: 'excel_death', sanity: -50 }
+                ]
+            },
+
+            engineering_wait: {
+                text: [
+                    "> Ticket created: HIGH PRIORITY",
+                    "> Engineering: 'We'll look at it next sprint'",
+                    "> Next sprint: 'Requirements unclear'",
+                    "> You clarify requirements.",
+                    "> Engineering: 'This needs backend work'",
+                    "> Backend team: 'Talk to data team'",
+                    "> Data team: 'Can you just use Excel?'",
+                    "> You scream internally.",
+                    ""
+                ],
+                prompt: "It's now NEXT Friday.",
+                choices: [
+                    { text: "Escalate to VP", next: 'political_death', sanity: -40 },
+                    { text: "Learn to do it yourself", next: 'redemption', sanity: +30 },
+                    { text: "Update resume", next: 'career_death', sanity: -60 }
+                ]
+            },
+
+            vibe_start: {
+                text: [
+                    "> You open VS Code.",
+                    "> Install Roo Cline.",
+                    "> Load your CSV.",
+                    "> You: 'Analyze this data for churn patterns'",
+                    "> AI: *analyzes 50K rows in 30 seconds*",
+                    "> AI: 'Found 3 key insights. Building dashboard...'",
+                    "> Two hours later: Working dashboard ✨",
+                    "> Boss: 'How did you do this so fast?'",
+                    ""
+                ],
+                prompt: "You just saved 3 days. What's next?",
+                choices: [
+                    { text: "Keep this power secret (gatekeep)", next: 'selfish_win', sanity: +10 },
+                    { text: "Teach your team", next: 'team_hero', sanity: +30 },
+                    { text: "Build the actual feature too", next: 'overachiever', sanity: +50 }
+                ]
+            },
+
+            redemption: {
+                text: [
+                    "> You find Gal's vibe coding tutorials.",
+                    "> You watch the 2-minute video.",
+                    "> 'Wait, I can actually do this?'",
+                    "> You set up your IDE.",
+                    "> You create a context file.",
+                    "> You ask AI to analyze your data.",
+                    "> IT WORKS.",
+                    "> You ship the dashboard by Thursday.",
+                    "> Boss is confused but impressed.",
+                    ""
+                ],
+                prompt: "You've discovered the way. Level up?",
+                choices: [
+                    { text: "Take beginner workshop", next: 'beginner_win' },
+                    { text: "Go pro mode immediately", next: 'advanced_win' },
+                    { text: "Bring my whole team", next: 'team_win' }
+                ]
+            },
+
+            excel_death: {
+                ending: true,
+                title: "EXCEL.EXE HAS STOPPED RESPONDING",
+                message: "You spent 3 days in spreadsheet hell.\nThe insights were wrong anyway.\nYour sanity: 0%",
+                recommendation: "💡 Recommended: AI Assistants Workshop (Beginner)",
+                workshopLink: "workshops.html#ai-assistants"
+            },
+
+            political_death: {
+                ending: true,
+                title: "CAREER.EXE CORRUPTED",
+                message: "You're now in 15 Slack threads\nexplaining why the data isn't ready.\nThe VP thinks you're 'not technical enough.'",
+                recommendation: "💡 Recommended: Vibe Coding for PMs (Beginner)",
+                workshopLink: "workshops.html#vibe-pms"
+            },
+
+            career_death: {
+                ending: true,
+                title: "404: MOTIVATION NOT FOUND",
+                message: "You updated your LinkedIn to 'Open to Work'\nwhile crying into your cold brew.\nThere's a better way.",
+                recommendation: "💡 Recommended: Vibe Coding for PMs (Beginner)",
+                workshopLink: "workshops.html#vibe-pms"
+            },
+
+            selfish_win: {
+                ending: true,
+                title: "SOLO VICTORY",
+                message: "You're the only one who can build stuff now.\nYou're also the only one who gets paged at 3am.\nWith great power...",
+                recommendation: "🎯 You're ready for: Vibe Coding Pro Workshop",
+                workshopLink: "workshops.html#vibe-pro",
+                victory: true
+            },
+
+            team_hero: {
+                ending: true,
+                title: "TEAM ACHIEVEMENT UNLOCKED",
+                message: "You taught your team vibe coding.\nNow everyone ships fast.\nYou're a legend.",
+                recommendation: "👑 Perfect for you: Product Teams Workshop",
+                workshopLink: "workshops.html#product-teams",
+                victory: true
+            },
+
+            overachiever: {
+                ending: true,
+                title: "LEGENDARY MODE UNLOCKED",
+                message: "Dashboard by Tuesday.\nFeature shipped by Thursday.\nBoss thinks you hired a team.\nYou did it solo with AI.",
+                recommendation: "🚀 Level up: Design Sprint with AI",
+                workshopLink: "workshops.html#design-sprint",
+                victory: true
+            },
+
+            beginner_win: {
+                ending: true,
+                title: "WISE CHOICE",
+                message: "You chose to learn properly.\nSmart move.\nReady to build real stuff?",
+                recommendation: "✅ Start here: Vibe Coding for PMs (Beginner)",
+                workshopLink: "workshops.html#vibe-pms-beginner",
+                victory: true
+            },
+
+            advanced_win: {
+                ending: true,
+                title: "BOLD MOVE",
+                message: "Jumping to pro mode?\nRespect.\nLet's build production-grade stuff.",
+                recommendation: "🔥 For brave souls: Vibe Coding Pro Workshop",
+                workshopLink: "workshops.html#vibe-pro",
+                victory: true
+            },
+
+            team_win: {
+                ending: true,
+                title: "MULTIPLAYER MODE ACTIVATED",
+                message: "Bringing your whole team?\nNow we're talking.\nLet's revolutionize how you all work.",
+                recommendation: "👥 Perfect fit: Product Teams Workshop",
+                workshopLink: "workshops.html#product-teams",
+                victory: true
+            }
+        };
+
+        let storyDiv = document.getElementById('story');
+
+        function typeText(text, element, delay = 30) {
+            return new Promise(resolve => {
+                let i = 0;
+                const interval = setInterval(() => {
+                    if (i < text.length) {
+                        element.textContent += text[i];
+                        i++;
+                    } else {
+                        clearInterval(interval);
+                        resolve();
+                    }
+                }, delay);
+            });
+        }
+
+        async function showScene(sceneKey) {
+            const scene = story[sceneKey];
+            storyDiv.innerHTML = '';
+
+            if (scene.ending) {
+                showEnding(scene);
+                return;
+            }
+
+            // Type out each line
+            for (let line of scene.text) {
+                const p = document.createElement('div');
+                p.className = 'text';
+                storyDiv.appendChild(p);
+                await typeText(line, p, 20);
+                p.classList.add('visible');
+                await new Promise(resolve => setTimeout(resolve, 100));
+            }
+
+            // Show prompt
+            const prompt = document.createElement('div');
+            prompt.className = 'prompt';
+            prompt.textContent = scene.prompt;
+            storyDiv.appendChild(prompt);
+            await new Promise(resolve => setTimeout(resolve, 200));
+            prompt.classList.add('visible');
+
+            // Show choices
+            const choicesDiv = document.createElement('div');
+            choicesDiv.className = 'choices';
+            
+            scene.choices.forEach((choice, index) => {
+                const btn = document.createElement('button');
+                btn.className = 'choice';
+                btn.textContent = choice.text;
+                btn.onclick = () => makeChoice(choice);
+                btn.style.animationDelay = `${index * 0.1}s`;
+                choicesDiv.appendChild(btn);
+            });
+
+            storyDiv.appendChild(choicesDiv);
+            await new Promise(resolve => setTimeout(resolve, 300));
+            choicesDiv.classList.add('visible');
+        }
+
+        function makeChoice(choice) {
+            decisions++;
+            document.getElementById('decisions').textContent = decisions;
+
+            if (choice.sanity) {
+                sanity = Math.max(0, Math.min(100, sanity + choice.sanity));
+                updateSanity();
+            }
+
+            // Show achievement for good choices
+            if (choice.sanity > 0) {
+                showAchievement(choice.sanity > 20 ? 'GREAT DECISION!' : 'Good choice!');
+            }
+
+            currentScene = choice.next;
+            showScene(choice.next);
+        }
+
+        function updateSanity() {
+            document.getElementById('sanityPercent').textContent = sanity;
+            document.getElementById('healthFill').style.width = sanity + '%';
+            
+            if (sanity < 30) {
+                document.getElementById('healthFill').style.background = 'linear-gradient(90deg, #FF1010, #FF6B6B)';
+            } else if (sanity < 60) {
+                document.getElementById('healthFill').style.background = 'linear-gradient(90deg, #FFD700, #FFA500)';
+            }
+        }
+
+        function showAchievement(text) {
+            const achievement = document.getElementById('achievement');
+            document.getElementById('achievementText').textContent = text;
+            achievement.classList.add('show');
+            setTimeout(() => {
+                achievement.classList.remove('show');
+            }, 2000);
+        }
+
+        function showEnding(scene) {
+            document.getElementById('endingTitle').textContent = scene.title;
+            document.getElementById('endingMessage').textContent = scene.message;
+            document.getElementById('recommendation').textContent = scene.recommendation;
+            
+            if (scene.victory) {
+                document.getElementById('endingTitle').style.color = '#00FF41';
+            }
+            
+            document.getElementById('gameOver').classList.add('active');
+        }
+
+        function restartGame() {
+            sanity = 100;
+            decisions = 0;
+            document.getElementById('decisions').textContent = 0;
+            updateSanity();
+            document.getElementById('gameOver').classList.remove('active');
+            document.getElementById('healthFill').style.background = 'linear-gradient(90deg, #00FF41, #00D4FF)';
+            showScene('start');
+        }
+
+        // Start game
+        window.onload = () => {
+            setTimeout(() => {
+                showScene('start');
+            }, 500);
+        };
+    </script>
+</body>
+</html>
