@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>live coding is a vibe – and your IDE is the only tool you need</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <meta property="og:title" content="Vibe Coding Tutorials - Build in One Flow">
+    <meta property="og:description" content="Data → insights → code → ship. All in one place. No tab switching, just pure flow.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --cream: #F5F1E8;
+            --terracotta: #E07856;
+            --olive: #8B9556;
+            --orange: #C85A3E;
+            --beige: #D4C5B0;
+            --dark: #2D2D2D;
+            --gray: #8E8E8E;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--cream);
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .author-banner {
+            background: linear-gradient(135deg, var(--terracotta) 0%, var(--orange) 100%);
+            color: white;
+            padding: 16px 40px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .author-banner a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            border-bottom: 2px solid white;
+        }
+
+        .section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 80px 40px;
+        }
+
+        h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 64px;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            text-transform: lowercase;
+            text-align: center;
+        }
+
+        h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 48px;
+            font-weight: 600;
+            line-height: 1.2;
+            margin-bottom: 32px;
+            text-transform: lowercase;
+            text-align: center;
+        }
+
+        p {
+            font-size: 20px;
+            line-height: 1.6;
+            max-width: 700px;
+            margin: 0 auto 24px;
+            text-align: center;
+        }
+
+        .big-text {
+            font-size: 24px;
+            font-weight: 500;
+            line-height: 1.5;
+        }
+
+        .highlight {
+            background: linear-gradient(180deg, transparent 50%, #FFE066 50%);
+            padding: 2px 6px;
+        }
+
+        .tag {
+            display: inline-block;
+            background: var(--terracotta);
+            color: white;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            margin: 4px;
+        }
+
+        .video-container {
+            width: 100%;
+            max-width: 800px;
+            margin: 40px auto;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+            transform: rotate(-1deg);
+            background: white;
+            padding: 20px;
+        }
+
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 8px;
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .video-caption {
+            margin-top: 16px;
+            font-size: 16px;
+            color: var(--gray);
+            font-style: italic;
+            text-align: center;
+        }
+
+        .note {
+            background: linear-gradient(180deg, #FFFEF9 0%, #FFF8E7 100%);
+            border: 2px solid var(--terracotta);
+            padding: 32px;
+            box-shadow: 4px 4px 0 rgba(224, 120, 86, 0.2);
+            max-width: 700px;
+            margin: 32px auto;
+            transform: rotate(1deg);
+            position: relative;
+        }
+
+        .note::before {
+            content: '💡';
+            position: absolute;
+            top: -15px;
+            right: 40px;
+            font-size: 32px;
+        }
+
+        .polaroid {
+            background: white;
+            padding: 20px 20px 60px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+            transform: rotate(-2deg);
+            margin: 40px auto;
+            max-width: 700px;
+        }
+
+        .polaroid-content {
+            background: var(--beige);
+            padding: 32px;
+            font-size: 18px;
+            line-height: 1.8;
+            text-align: left;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .polaroid-caption {
+            margin-top: 20px;
+            font-size: 16px;
+            color: var(--gray);
+            font-style: italic;
+            text-align: center;
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, var(--olive) 0%, #7a8a4a 100%);
+            color: white;
+            padding: 60px 40px;
+            border-radius: 8px;
+            text-align: center;
+            margin: 40px auto;
+            max-width: 700px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        }
+
+        .cta-box h2 {
+            color: white;
+            margin-bottom: 24px;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            background: white;
+            color: var(--olive);
+            padding: 16px 40px;
+            font-size: 18px;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.1);
+        }
+
+        .cta-btn:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.15);
+        }
+
+        .share-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            margin-top: 32px;
+            flex-wrap: wrap;
+        }
+
+        .share-btn {
+            padding: 12px 24px;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s;
+            color: white;
+        }
+
+        .share-btn.twitter {
+            background: #1DA1F2;
+        }
+
+        .share-btn.linkedin {
+            background: #0077B5;
+        }
+
+        .share-btn.whatsapp {
+            background: #25D366;
+        }
+
+        .share-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 40px; }
+            h2 { font-size: 36px; }
+            .section { padding: 60px 20px; }
+        }
+
+        .section-1 { background: linear-gradient(135deg, var(--beige) 0%, var(--cream) 100%); }
+        .section-2 { background: var(--cream); }
+        .section-3 { background: white; }
+        .section-4 { background: var(--cream); }
+        .section-5 { background: linear-gradient(135deg, var(--beige) 0%, var(--cream) 100%); }
+    </style>
+</head>
+<body>
+    <div class="author-banner">
+        <p>made with ☕ by <a href="https://www.linkedin.com/in/galdulev/" target="_blank">gal dulev</a>, product manager</p>
+    </div>
+
+    <!-- Hero -->
+    <div class="section section-1">
+        <h1 style="color: var(--terracotta); font-size: 80px; margin-bottom: 16px; letter-spacing: -2px;">vibe coding<br>tutorials</h1>
+        
+        <p style="font-size: 18px; color: var(--gray); font-style: italic; margin-bottom: 48px; font-weight: 400;">
+            (where your IDE does all the heavy lifting)
+        </p>
+        
+        <div style="background: white; padding: 32px 48px; border-radius: 8px; box-shadow: 0 8px 24px rgba(0,0,0,0.1); margin-bottom: 48px; transform: rotate(-1deg);">
+            <p style="font-size: 28px; font-weight: 700; color: var(--dark); margin: 0; font-family: 'Space Grotesk', sans-serif;">
+                data analysis → aha moment → build it → ship it
+            </p>
+        </div>
+        
+        <div style="margin-bottom: 48px;">
+            <div class="tag">zero tab switching</div>
+            <div class="tag">pure flow state</div>
+            <div class="tag">actually fun</div>
+        </div>
+        
+        <div style="background: linear-gradient(180deg, #FFFEF9 0%, #FFF8E7 100%); border: 3px solid var(--terracotta); padding: 24px 32px; border-radius: 0; max-width: 600px; transform: rotate(1deg); box-shadow: 6px 6px 0 rgba(224, 120, 86, 0.2);">
+            <p style="font-size: 20px; color: var(--dark); margin: 0; line-height: 1.6; text-align: center;">
+                stop jumping between <strong style="color: var(--terracotta);">47 tools</strong><br>
+                like some kind of circus act 🎪
+            </p>
+        </div>
+    </div>
+
+    <!-- Watch Me Work -->
+    <div class="section section-2">
+        <h2>🎬 2 minutes on vibe coding a whole feature</h2>
+        <p class="big-text">discovery - dashboard - insights - PR (in one flow)</p>
+        
+        <div class="video-container">
+            <div class="video-wrapper">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/vt7kpU4Ba90" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            </div>
+            <div class="video-caption">the whole flow, uncut</div>
+        </div>
+
+        <div class="note">
+            <strong>the 2-minute journey:</strong><br><br>
+            
+            - started discovery on churn (following last episode's breadcrumbs)<br>
+            - ran analysis + built dashboard to see business health<br>
+            - dashboard showed me exactly where to focus<br>
+            - defined segment of users who churned in that area<br>
+            - asked AI: "did they complain to support?" (they did)<br>
+            - AI synthesized everything into HTML insights<br>
+            - which personas leave? why? top 3 challenges?<br>
+            - took biggest problem to design + dev<br>
+            - brainstormed + designed + coded simultaneously<br>
+            - used guardrails<br>
+            - shipped: PR, design, events, docs, Jira tickets, test plan<br><br>
+            
+            <strong>vibe:</strong> passion, fun, insights, speed.<br><br>
+            
+            <em>there's way more I didn't cover - risks, solutions, deep stuff.<br>
+            comment if you want the unfiltered version next week.</em>
+        </div>
+    </div>
+
+    <!-- Behind the Scenes -->
+    <div class="section section-3">
+        <h2>⚙️ how we convinced everyone this wasn't crazy</h2>
+        <p class="big-text">spoiler: we changed culture, not just slack channels</p>
+
+        <div class="video-container" style="padding: 20px; max-width: 550px;">
+            <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7388835772520632320" height="550" width="100%" frameborder="0" allowfullscreen="" title="Embedded post"></iframe>
+            <div class="video-caption" style="margin-top: 12px;">yes, it was as chaotic as you'd think</div>
+        </div>
+
+        <div class="polaroid">
+            <div class="polaroid-content">
+                <strong style="font-size: 20px;">real talk:<br>tools are easy. people are hard.</strong><br><br>
+                
+                we didn't just install cursor and call it a day.<br>
+                we had to convince:<br><br>
+                
+                - 📊 data folks: "yes you can code now"<br>
+                - 💻 devs: "yes they're allowed in the IDE"<br>
+                - 🎨 designers: "yes this affects you too"<br>
+                - 👔 managers: "no this isn't anarchy"<br><br>
+                
+                then we made one rule:<br>
+                <strong>everyone sees the same truth, live.</strong><br><br>
+                
+                no "let me check the dashboard"<br>
+                no "send me the data"<br>
+                no "i'll get back to you"<br><br>
+                
+                <em>just open the IDE and we're all looking at the same thing.</em>
+            </div>
+            <div class="polaroid-caption">plot twist: it actually worked</div>
+        </div>
+    </div>
+
+    <!-- Data Guide -->
+    <div class="section section-4">
+        <h2>📊 your IDE wants to be friends with your data</h2>
+        <p class="big-text">(and honestly, they make a cute couple)</p>
+
+        <div class="video-container" style="padding: 20px; max-width: 550px;">
+            <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7394260742159585280" height="550" width="100%" frameborder="0" allowfullscreen="" title="Embedded post"></iframe>
+            <div class="video-caption" style="margin-top: 12px;">how to actually do this (not just talk about it)</div>
+        </div>
+
+        <div class="note">
+            yeah, I'm connected to Snowflake, Stripe & Salesforce.<br>
+            but I used CSV files in this tutorial<br>
+            so you can do this in 2 minutes from now.
+        </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="section section-5">
+        <div class="cta-box">
+            <h2>okay your turn 👇</h2>
+            <p>what chaos should I document next?</p>
+            <p style="font-size: 18px; opacity: 0.9;">
+                every week I film whatever interesting thing<br>
+                I'm building with AI, data & code in one flow.<br><br>
+                it's unscripted. it's messy. it's honest.<br>
+                (and occasionally I solve actual problems)<br><br>
+                drop a comment with what you want to see.
+            </p>
+            <a href="https://www.linkedin.com/in/galdulev/" target="_blank" class="cta-btn">
+                💬 slide into my DMs
+            </a>
+        </div>
+
+        <div style="background: white; padding: 40px; border-radius: 12px; margin-top: 60px; box-shadow: 0 8px 24px rgba(0,0,0,0.1); transform: rotate(-1deg);">
+            <p style="font-size: 20px; color: var(--dark); margin-bottom: 32px; font-weight: 500;">
+                or just send this to your manager<br>
+                and say <strong style="color: var(--terracotta);">"we should do this"</strong> 📨
+            </p>
+            <div class="share-buttons">
+                <a href="https://twitter.com/intent/tweet?text=Vibe%20coding%20tutorials%20-%20build%20dashboards%20in%20one%20flow.%20Data%20analysis%20to%20shipped%20code%2C%20all%20in%20your%20IDE.%20Zero%20tab%20switching.&url=https://vibecoding.tiny.site" target="_blank" class="share-btn twitter">
+                    🐦 twitter
+                </a>
+                <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://vibecoding.tiny.site" target="_blank" class="share-btn linkedin">
+                    💼 linkedin
+                </a>
+                <a href="https://wa.me/?text=Check%20out%20these%20vibe%20coding%20tutorials%20-%20data%20to%20dashboards%20in%20one%20flow%20https://vibecoding.tiny.site" target="_blank" class="share-btn whatsapp">
+                    💬 whatsapp
+                </a>
+                <button onclick="copyLink()" class="share-btn" style="background: var(--terracotta); cursor: pointer; border: none;">
+                    🔗 copy link
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div style="text-align: center; padding: 40px 20px; background: white;">
+        <p style="color: var(--gray);">
+            made with ☕ by <a href="https://www.linkedin.com/in/galdulev/" style="color: var(--terracotta); font-weight: 600; text-decoration: none;">gal dulev</a>
+        </p>
+        <p style="color: var(--gray); font-size: 16px; margin-top: 8px;">
+            product manager by day, mad scientist by night
+        </p>
+    </div>
+
+    <script>
+        let currentSection = 0;
+        const sections = document.querySelectorAll('.section');
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowDown' || e.key === 'PageDown') {
+                e.preventDefault();
+                if (currentSection < sections.length - 1) {
+                    currentSection++;
+                    sections[currentSection].scrollIntoView({ behavior: 'smooth' });
+                }
+            } else if (e.key === 'ArrowUp' || e.key === 'PageUp') {
+                e.preventDefault();
+                if (currentSection > 0) {
+                    currentSection--;
+                    sections[currentSection].scrollIntoView({ behavior: 'smooth' });
+                }
+            }
+        });
+
+        window.addEventListener('scroll', () => {
+            const scrollPosition = window.scrollY + window.innerHeight / 2;
+            sections.forEach((section, index) => {
+                const sectionTop = section.offsetTop;
+                const sectionBottom = sectionTop + section.offsetHeight;
+                if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+                    currentSection = index;
+                }
+            });
+        });
+
+        function copyLink() {
+            navigator.clipboard.writeText('https://vibecoding.tiny.site').then(() => {
+                const btn = event.target;
+                const originalText = btn.innerHTML;
+                btn.innerHTML = '✅ copied!';
+                btn.style.background = '#8B9556';
+                setTimeout(() => {
+                    btn.innerHTML = originalText;
+                    btn.style.background = '#E07856';
+                }, 2000);
+            });
+        }
+    </script>
+</body>
+</html>
