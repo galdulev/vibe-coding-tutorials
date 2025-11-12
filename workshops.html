@@ -415,6 +415,64 @@
             transform: scale(1.1);
         }
 
+        .price-slider {
+            margin: 32px 0;
+        }
+
+        .slider-container {
+            position: relative;
+            padding: 32px;
+            background: linear-gradient(135deg, rgba(0, 113, 227, 0.05), rgba(0, 119, 237, 0.05));
+            border-radius: 16px;
+            border: 2px solid rgba(0, 113, 227, 0.1);
+        }
+
+        .slider {
+            width: 100%;
+            height: 8px;
+            border-radius: 4px;
+            background: linear-gradient(90deg, #e8e8ed 0%, #0071e3 100%);
+            outline: none;
+            -webkit-appearance: none;
+        }
+
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: #0071e3;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(0, 113, 227, 0.3);
+        }
+
+        .slider::-moz-range-thumb {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: #0071e3;
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 2px 8px rgba(0, 113, 227, 0.3);
+        }
+
+        .slider-value {
+            text-align: center;
+            font-size: 56px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #0071e3, #0077ed);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin: 16px 0;
+        }
+
+        .slider-label {
+            text-align: center;
+            font-size: 15px;
+            color: #86868b;
+            margin-bottom: 16px;
+        }
+
         @media (max-width: 768px) {
             .hero h1 { font-size: 48px; }
             .hero .subtitle { font-size: 21px; }
@@ -463,9 +521,16 @@
                         </select>
                     </div>
 
-                    <div class="form-group">
-                        <label class="form-label">Number of Participants</label>
-                        <input type="number" class="form-control" id="participants" min="1" max="20" value="1" required onchange="calculatePrice()">
+                    <div class="price-slider">
+                        <div class="slider-container">
+                            <div class="slider-label">Number of Participants</div>
+                            <div class="slider-value" id="participantsDisplay">20</div>
+                            <input type="range" class="slider" id="participants" min="1" max="50" value="20" oninput="calculatePrice()">
+                            <div style="display: flex; justify-content: space-between; margin-top: 12px; font-size: 13px; color: #86868b;">
+                                <span>1 person</span>
+                                <span>50 people</span>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="form-group">
