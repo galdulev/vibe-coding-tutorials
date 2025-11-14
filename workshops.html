@@ -630,6 +630,64 @@
             opacity: 1;
             transform: translateY(0);
         }
+
+        /* Apple-Level Polish - Animations & Micro-interactions */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes checkmarkPop {
+            0% { transform: scale(0); opacity: 0; }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .hero h1 {
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .hero .subtitle {
+            animation: fadeInUp 0.8s ease-out 0.2s;
+            animation-fill-mode: both;
+        }
+
+        .confirmation-check {
+            animation: checkmarkPop 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+        }
+
+        /* Button Active States */
+        .btn:active,
+        .cta-button:active {
+            transform: scale(0.98);
+        }
+
+        /* Smooth Focus States */
+        *:focus-visible {
+            outline: 2px solid var(--blue-500);
+            outline-offset: 4px;
+        }
+
+        /* Workshop Card Enhanced */
+        .workshop-card {
+            will-change: transform;
+        }
+
+        .workshop-card:hover {
+            transform: translateY(-8px) scale(1.01);
+        }
+
+        /* Testimonial Card Hover */
+        .testimonial-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+        }
     </style>
 </head>
 <body>
@@ -678,8 +736,8 @@
                     <div class="form-group">
                         <label class="form-label">Format</label>
                         <select class="form-control" id="format" name="format" required onchange="calculatePrice()">
+                            <option value="in-person">In-Person</option>
                             <option value="remote">Remote (Zoom)</option>
-                            <option value="in-person">In-Person (Tel Aviv)</option>
                         </select>
                     </div>
 
@@ -743,7 +801,7 @@
                 <div style="text-align: center; padding: 40px 20px;">
                     <div style="font-size: 48px; margin-bottom: 24px;">📅</div>
                     <p style="font-size: 18px; color: #86868b; margin-bottom: 32px; line-height: 1.6;">
-                        Choose a convenient time for a 15-minute conversation about your goals and which workshop would be the best fit.
+                        Choose a convenient time for a 30-minute conversation about your goals and which workshop would be the best fit.
                     </p>
                     
                     <div style="background: #f5f5f7; border-radius: 16px; padding: 32px; margin-bottom: 32px;">
@@ -804,7 +862,7 @@
                 <button class="close-modal" onclick="closeConfirmationModal()">×</button>
             </div>
             <div class="modal-body" style="text-align: center; padding: 60px 40px;">
-                <div style="font-size: 72px; margin-bottom: 24px;">✅</div>
+                <div class="confirmation-check" style="font-size: 72px; margin-bottom: 24px;">✅</div>
                 <h2 style="font-size: 32px; font-weight: 700; margin-bottom: 16px; color: #1d1d1f;">Request Sent!</h2>
                 <p style="font-size: 18px; color: #86868b; line-height: 1.6; margin-bottom: 32px;">
                     Thanks for your interest! I'll review your request and get back to you within 24 hours on LinkedIn.
@@ -821,7 +879,7 @@
     </div>
 
     <section class="hero">
-        <h1>Stop asking.<br>Start building.</h1>
+        <h1>Build it<br>yourself.</h1>
         <p class="subtitle">
             Product managers who code aren't unicorns.<br>
             They're just two hours ahead of you.
@@ -898,7 +956,7 @@
 
         <div class="workshops-grid">
             <div class="workshop-card" onclick="openModalWithWorkshop('AI Assistants')">
-                <div class="workshop-level">BEGINNER</div>
+                <div class="workshop-level beginner">BEGINNER</div>
                 <h3 class="workshop-title">AI Assistants</h3>
                 <p class="workshop-description">
                     Stop copy-pasting to ChatGPT 50 times a day. Build AI workflows that understand your context, remember your preferences, and actually help you ship faster.
@@ -915,8 +973,8 @@
                 </div>
             </div>
 
-            <div class="workshop-card" onclick="openModalWithWorkshop('Vibe Coding for PMs')">
-                <div class="workshop-level">BEGINNER</div>
+            <div class="workshop-card recommended" onclick="openModalWithWorkshop('Vibe Coding for PMs')">
+                <div class="workshop-level beginner">BEGINNER</div>
                 <h3 class="workshop-title">The PM Accelerator</h3>
                 <p class="workshop-description">
                     Your CEO asks for a user retention dashboard. You have two choices:<br><br>
@@ -940,7 +998,7 @@
             </div>
 
             <div class="workshop-card" onclick="openModalWithWorkshop('Vibe Coding Pro')">
-                <div class="workshop-level">ADVANCED</div>
+                <div class="workshop-level advanced">ADVANCED</div>
                 <h3 class="workshop-title">Vibe Coding: Pro</h3>
                 <p class="workshop-description">
                     Ship production-grade dashboards with real-time data. Deploy automated reports. Build features that integrate with your actual product. The full PM tech stack.
@@ -958,7 +1016,7 @@
             </div>
 
             <div class="workshop-card" onclick="openModalWithWorkshop('Product Teams')">
-                <div class="workshop-level">TEAM WORKSHOP</div>
+                <div class="workshop-level team">TEAM WORKSHOP</div>
                 <h3 class="workshop-title">Product Teams</h3>
                 <p class="workshop-description">
                     PM, design, and dev coding together. One workspace. One flow. Ship a real feature as a team.
@@ -976,7 +1034,7 @@
             </div>
 
             <div class="workshop-card" onclick="openModalWithWorkshop('Design + Code')">
-                <div class="workshop-level">BEGINNER</div>
+                <div class="workshop-level beginner">BEGINNER</div>
                 <h3 class="workshop-title">Design + Code</h3>
                 <p class="workshop-description">
                     Stop sending static mockups. Turn your designs into interactive prototypes with real data. Ship working components your team can actually use.
@@ -994,7 +1052,7 @@
             </div>
 
             <div class="workshop-card" onclick="openModalWithWorkshop('Design Systems')">
-                <div class="workshop-level">ADVANCED</div>
+                <div class="workshop-level advanced">ADVANCED</div>
                 <h3 class="workshop-title">Design Systems</h3>
                 <p class="workshop-description">
                     Full-stack design capabilities. Production systems. APIs. Animations. Data-driven designs.
@@ -1012,7 +1070,7 @@
             </div>
 
             <div class="workshop-card" onclick="openModalWithWorkshop('AI Design Sprint')">
-                <div class="workshop-level">INTENSIVE</div>
+                <div class="workshop-level intensive">INTENSIVE</div>
                 <h3 class="workshop-title">AI Design Sprint</h3>
                 <p class="workshop-description">
                     Compress months of work into one week. Monday: define the problem. Friday: ship the solution. Your team learns AI-first product development by doing it.
@@ -1077,7 +1135,7 @@
             <a href="https://www.linkedin.com/in/galdulev/" target="_blank">LinkedIn</a>
         </p>
         <p style="font-size: 15px;">
-            © 2025 Gal Dulev • Made with ☕ and curiosity
+            © 2025 Gal Dulev
         </p>
     </footer>
 
@@ -1190,7 +1248,7 @@
                 const discount = participants >= 10 ? '25%' : '15%';
                 note += ` (${discount} team discount)`;
             }
-            if (format === 'in-person') note += ' • In-person in Tel Aviv';
+            if (format === 'in-person') note += ' • In-person workshop';
             document.getElementById('priceNote').textContent = note;
         }
 
