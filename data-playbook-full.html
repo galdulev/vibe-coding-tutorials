@@ -5,6 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>vibe coding playbook: the data edition (full guide)</title>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:wght@400;500;700&family=Courier+Prime&display=swap" rel="stylesheet">
+    
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-N5LQHQFPL3"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-N5LQHQFPL3');
+    </script>
+    
     <meta property="og:title" content="vibe coding playbook: the data edition (full guide)">
     <meta property="og:description" content="the complete playbook. from context setup to shipped dashboards. no BS, just step-by-step tutorials.">
     <style>
@@ -1194,7 +1204,151 @@ Add caching for performance using @st.cache_data.</pre>
     </a>
 
     <script>
-        // Back to top button
+        // ============================================
+        // EVENT TRACKING SYSTEM
+        // ============================================
+        
+        // Helper function to safely send events to GA4
+        function trackEvent(eventName, eventParams = {}) {
+            if (typeof gtag !== 'undefined') {
+                gtag('event', eventName, eventParams);
+                console.log('📊 Event tracked:', eventName, eventParams);
+            }
+        }
+
+        // ============================================
+        // 1. SCROLL DEPTH TRACKING
+        // ============================================
+        
+        const scrollMilestones = { 25: false, 50: false, 75: false, 100: false };
+        
+        function trackScrollDepth() {
+            const scrollPercent = Math.round(
+                (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100
+            );
+            
+            Object.keys(scrollMilestones).forEach(milestone => {
+                if (scrollPercent >= milestone && !scrollMilestones[milestone]) {
+                    scrollMilestones[milestone] = true;
+                    trackEvent('scroll_depth', {
+                        percent: milestone,
+                        page_location: window.location.pathname
+                    });
+                }
+            });
+        }
+
+        // ============================================
+        // 2. SECTION VISIBILITY TRACKING
+        // ============================================
+        
+        const sectionObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const sectionId = entry.target.id;
+                    if (sectionId) {
+                        trackEvent('section_view', {
+                            section_id: sectionId,
+                            section_name: entry.target.querySelector('h2')?.textContent || sectionId
+                        });
+                    }
+                }
+            });
+        }, { threshold: 0.5 });
+
+        // Observe all major sections
+        document.querySelectorAll('h2[id]').forEach(section => {
+            sectionObserver.observe(section);
+        });
+
+        // ============================================
+        // 3. TIME TRACKING
+        // ============================================
+        
+        let startTime = Date.now();
+        let activeTime = 0;
+        let isActive = true;
+        let lastActiveTime = Date.now();
+
+        // Track active vs idle time
+        function updateActiveTime() {
+            if (isActive) {
+                activeTime += Date.now() - lastActiveTime;
+            }
+            lastActiveTime = Date.now();
+        }
+
+        // User is active
+        ['mousedown', 'mousemove', 'keypress', 'scroll', 'touchstart'].forEach(event => {
+            document.addEventListener(event, () => {
+                if (!isActive) {
+                    isActive = true;
+                    lastActiveTime = Date.now();
+                }
+            }, { passive: true });
+        });
+
+        // Check for inactivity every 5 seconds
+        setInterval(() => {
+            if (Date.now() - lastActiveTime > 30000) { // 30 seconds idle
+                isActive = false;
+            }
+            updateActiveTime();
+        }, 5000);
+
+        // Send time data before page unload
+        window.addEventListener('beforeunload', () => {
+            updateActiveTime();
+            const totalTime = Math.round((Date.now() - startTime) / 1000);
+            const activeTimeSec = Math.round(activeTime / 1000);
+            
+            trackEvent('page_engagement', {
+                total_time_seconds: totalTime,
+                active_time_seconds: activeTimeSec,
+                engagement_rate: totalTime > 0 ? Math.round((activeTimeSec / totalTime) * 100) : 0
+            });
+        });
+
+        // ============================================
+        // 4. SHARE BUTTON TRACKING
+        // ============================================
+        
+        document.querySelectorAll('.share-btn').forEach(button => {
+            button.addEventListener('click', (e) => {
+                const platform = button.classList.contains('twitter') ? 'twitter' :
+                               button.classList.contains('linkedin') ? 'linkedin' : 'other';
+                
+                trackEvent('share_click', {
+                    platform: platform,
+                    content_type: 'playbook',
+                    content_name: 'data-playbook-full'
+                });
+            });
+        });
+
+        // ============================================
+        // 5. TOC NAVIGATION TRACKING
+        // ============================================
+        
+        document.querySelectorAll('.toc a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.querySelector(this.getAttribute('href'));
+                
+                trackEvent('toc_navigation', {
+                    section_id: targetId,
+                    section_name: this.textContent.trim()
+                });
+                
+                targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+
+        // ============================================
+        // 6. BACK TO TOP TRACKING
+        // ============================================
+        
         const backToTop = document.getElementById('backToTop');
         
         window.addEventListener('scroll', () => {
@@ -1203,21 +1357,88 @@ Add caching for performance using @st.cache_data.</pre>
             } else {
                 backToTop.classList.remove('visible');
             }
+            
+            // Track scroll depth
+            trackScrollDepth();
         });
 
         backToTop.addEventListener('click', (e) => {
             e.preventDefault();
+            
+            trackEvent('back_to_top_click', {
+                from_position: Math.round(window.scrollY)
+            });
+            
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
 
-        // Smooth scroll for TOC links
-        document.querySelectorAll('.toc a').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        // ============================================
+        // 7. EXTERNAL LINK TRACKING
+        // ============================================
+        
+        document.querySelectorAll('a[href^="http"]').forEach(link => {
+            link.addEventListener('click', (e) => {
+                const url = link.href;
+                const isLinkedIn = url.includes('linkedin.com');
+                const isTwitter = url.includes('twitter.com');
+                
+                // Don't double-track share buttons
+                if (!link.classList.contains('share-btn')) {
+                    trackEvent('external_link_click', {
+                        link_url: url,
+                        link_domain: new URL(url).hostname,
+                        link_type: isLinkedIn ? 'linkedin_profile' :
+                                  isTwitter ? 'twitter' : 'other',
+                        link_text: link.textContent.trim()
+                    });
+                }
             });
         });
+
+        // ============================================
+        // 8. PAGE LOAD TRACKING
+        // ============================================
+        
+        window.addEventListener('load', () => {
+            trackEvent('page_load_complete', {
+                page_title: document.title,
+                page_location: window.location.pathname,
+                load_time: Math.round(performance.now())
+            });
+        });
+
+        // ============================================
+        // 9. TUTORIAL BUTTON TRACKING
+        // ============================================
+        
+        document.querySelectorAll('a[href*="index.html"]').forEach(button => {
+            button.addEventListener('click', () => {
+                trackEvent('cta_click', {
+                    cta_type: 'watch_tutorials',
+                    cta_location: 'inline_note'
+                });
+            });
+        });
+
+        // ============================================
+        // 10. CHECKLIST INTERACTION TRACKING
+        // ============================================
+        
+        document.querySelectorAll('.checklist li').forEach((item, index) => {
+            item.addEventListener('click', () => {
+                trackEvent('checklist_interaction', {
+                    item_number: index + 1,
+                    item_text: item.textContent.trim().substring(0, 50)
+                });
+            });
+        });
+
+        // ============================================
+        // CONSOLE LOG FOR DEBUGGING
+        // ============================================
+        
+        console.log('✅ Event tracking initialized for data-playbook-full.html');
+        console.log('📊 Tracking: Scroll depth, Section views, Time on page, Clicks, Navigation');
     </script>
 </body>
 </html>

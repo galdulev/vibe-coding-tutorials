@@ -5,6 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>vibe coding playbook: the data edition</title>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-N5LQHQFPL3"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-N5LQHQFPL3');
+    </script>
+    
     <meta property="og:title" content="vibe coding playbook: the data edition">
     <meta property="og:description" content="build dashboards in one afternoon. 30 minutes of setup = AI that actually works. no BS, just vibes.">
     <style>
@@ -757,26 +767,112 @@ calculate monthly retention rate:
     </div>
 
     <script>
+        // ============================================
+        // EVENT TRACKING SYSTEM
+        // ============================================
+        
+        function trackEvent(eventName, eventParams = {}) {
+            if (typeof gtag !== 'undefined') {
+                gtag('event', eventName, eventParams);
+                console.log('📊 Event tracked:', eventName, eventParams);
+            }
+        }
+
         // Smooth scrolling
         let currentSlide = 0;
         const slides = document.querySelectorAll('.slide');
+
+        // Time tracking
+        let startTime = Date.now();
+        let activeTime = 0;
+        let isActive = true;
+        let lastActiveTime = Date.now();
+
+        function updateActiveTime() {
+            if (isActive) {
+                activeTime += Date.now() - lastActiveTime;
+            }
+            lastActiveTime = Date.now();
+        }
+
+        ['mousedown', 'mousemove', 'keypress', 'scroll', 'touchstart'].forEach(event => {
+            document.addEventListener(event, () => {
+                if (!isActive) {
+                    isActive = true;
+                    lastActiveTime = Date.now();
+                }
+            }, { passive: true });
+        });
+
+        setInterval(() => {
+            if (Date.now() - lastActiveTime > 30000) {
+                isActive = false;
+            }
+            updateActiveTime();
+        }, 5000);
+
+        window.addEventListener('beforeunload', () => {
+            updateActiveTime();
+            const totalTime = Math.round((Date.now() - startTime) / 1000);
+            const activeTimeSec = Math.round(activeTime / 1000);
+            
+            trackEvent('page_engagement', {
+                total_time_seconds: totalTime,
+                active_time_seconds: activeTimeSec,
+                engagement_rate: totalTime > 0 ? Math.round((activeTimeSec / totalTime) * 100) : 0,
+                slides_viewed: viewedSlides.size,
+                furthest_slide: Math.max(...Array.from(viewedSlides))
+            });
+        });
+
+        // Slide tracking
+        const viewedSlides = new Set([0]);
+        const scrollMilestones = { 25: false, 50: false, 75: false, 100: false };
+
+        function trackScrollDepth() {
+            const scrollPercent = Math.round(
+                (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100
+            );
+            
+            Object.keys(scrollMilestones).forEach(milestone => {
+                if (scrollPercent >= milestone && !scrollMilestones[milestone]) {
+                    scrollMilestones[milestone] = true;
+                    trackEvent('scroll_depth', {
+                        percent: milestone,
+                        page_location: window.location.pathname
+                    });
+                }
+            });
+        }
 
         document.addEventListener('keydown', (e) => {
             if (e.key === 'ArrowDown' || e.key === 'ArrowRight' || e.key === ' ') {
                 e.preventDefault();
                 if (currentSlide < slides.length - 1) {
                     currentSlide++;
+                    viewedSlides.add(currentSlide);
                     slides[currentSlide].scrollIntoView({ behavior: 'smooth' });
+                    
+                    trackEvent('slide_navigation', {
+                        slide_number: currentSlide + 1,
+                        navigation_method: 'keyboard_next',
+                        total_slides: slides.length
+                    });
                 }
             } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
                 e.preventDefault();
                 if (currentSlide > 0) {
                     currentSlide--;
                     slides[currentSlide].scrollIntoView({ behavior: 'smooth' });
+                    
+                    trackEvent('slide_navigation', {
+                        slide_number: currentSlide + 1,
+                        navigation_method: 'keyboard_prev',
+                        total_slides: slides.length
+                    });
                 }
             }
         });
-
 
         // Mobile detection and share functions
         function isMobile() {
@@ -784,6 +880,12 @@ calculate monthly retention rate:
         }
 
         function shareTwitter() {
+            trackEvent('share_click', {
+                platform: 'twitter',
+                content_type: 'playbook',
+                content_name: 'data-playbook'
+            });
+            
             const text = 'Vibe coding playbook - the complete data edition. Build dashboards in one afternoon.';
             const url = 'https://galdulev.github.io/vibe-coding-tutorials/data-playbook.html';
             
@@ -798,6 +900,12 @@ calculate monthly retention rate:
         }
 
         function shareLinkedIn() {
+            trackEvent('share_click', {
+                platform: 'linkedin',
+                content_type: 'playbook',
+                content_name: 'data-playbook'
+            });
+            
             const url = 'https://galdulev.github.io/vibe-coding-tutorials/data-playbook.html';
             
             if (isMobile()) {
@@ -811,6 +919,12 @@ calculate monthly retention rate:
         }
 
         function shareWhatsApp() {
+            trackEvent('share_click', {
+                platform: 'whatsapp',
+                content_type: 'playbook',
+                content_name: 'data-playbook'
+            });
+            
             const text = 'Check out this vibe coding playbook - build dashboards in one afternoon';
             const url = 'https://galdulev.github.io/vibe-coding-tutorials/data-playbook.html';
             const message = `${text} ${url}`;
@@ -823,6 +937,12 @@ calculate monthly retention rate:
         }
 
         function copyLink() {
+            trackEvent('share_click', {
+                platform: 'copy_link',
+                content_type: 'playbook',
+                content_name: 'data-playbook'
+            });
+            
             navigator.clipboard.writeText('https://galdulev.github.io/vibe-coding-tutorials/data-playbook.html').then(() => {
                 const toast = document.getElementById('toast');
                 toast.classList.add('show');
@@ -832,6 +952,7 @@ calculate monthly retention rate:
                 }, 3000);
             });
         }
+
         // Track scroll
         window.addEventListener('scroll', () => {
             const scrollPosition = window.scrollY + window.innerHeight / 2;
@@ -839,7 +960,49 @@ calculate monthly retention rate:
                 const slideTop = slide.offsetTop;
                 const slideBottom = slideTop + slide.offsetHeight;
                 if (scrollPosition >= slideTop && scrollPosition < slideBottom) {
+                    if (currentSlide !== index) {
+                        viewedSlides.add(index);
+                        trackEvent('slide_view', {
+                            slide_number: index + 1,
+                            total_slides: slides.length
+                        });
+                    }
                     currentSlide = index;
+                }
+            });
+            
+            trackScrollDepth();
+        });
+
+        // CTA tracking
+        document.querySelectorAll('a[href*="data-playbook-full.html"]').forEach(link => {
+            link.addEventListener('click', () => {
+                trackEvent('cta_click', {
+                    cta_type: 'read_full_playbook',
+                    cta_location: 'slide_' + (currentSlide + 1)
+                });
+            });
+        });
+
+        document.querySelectorAll('a[href*="index.html"]').forEach(link => {
+            link.addEventListener('click', () => {
+                trackEvent('cta_click', {
+                    cta_type: 'watch_tutorials',
+                    cta_location: 'slide_' + (currentSlide + 1)
+                });
+            });
+        });
+
+        // External links tracking
+        document.querySelectorAll('a[href^="http"]').forEach(link => {
+            link.addEventListener('click', () => {
+                const url = link.href;
+                if (!url.includes('twitter.com/intent') && !url.includes('linkedin.com/sharing') && !url.includes('wa.me')) {
+                    trackEvent('external_link_click', {
+                        link_url: url,
+                        link_domain: new URL(url).hostname,
+                        link_text: link.textContent.trim()
+                    });
                 }
             });
         });
@@ -855,8 +1018,23 @@ calculate monthly retention rate:
                 setTimeout(() => {
                     code.style.borderLeft = original;
                 }, 500);
+                
+                trackEvent('code_copy', {
+                    slide_number: currentSlide + 1
+                });
             });
         });
+
+        // Page load
+        window.addEventListener('load', () => {
+            trackEvent('page_load_complete', {
+                page_title: document.title,
+                page_location: window.location.pathname,
+                load_time: Math.round(performance.now())
+            });
+        });
+
+        console.log('✅ Event tracking initialized for data-playbook.html');
     </script>
 </body>
 </html>
