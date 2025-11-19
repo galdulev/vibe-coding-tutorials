@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landing Page Generator - B2B Share&Grow</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-N5LQHQFPL3"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-N5LQHQFPL3');
+    </script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Inter', sans-serif;
+            background: #FFFFFF;
+            color: #1D1D1F;
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 980px;
+            margin: 0 auto;
+            padding: 64px 24px;
+        }
+
+        /* Logo */
+        .top-logo {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .logo {
+            background: #000000;
+            display: inline-block;
+            padding: 16px 32px;
+            border-radius: 12px;
+            animation: fadeIn 800ms cubic-bezier(0.28, 0.11, 0.32, 1);
+            text-decoration: none;
+            transition: opacity 200ms;
+        }
+
+        .logo:hover {
+            opacity: 0.85;
+        }
+
+        .logo-text {
+            font-size: 20px;
+            font-weight: 800;
+            letter-spacing: -0.01em;
+            line-height: 1.2;
+            color: #FFFFFF;
+        }
+
+        /* Hero */
+        .hero {
+            text-align: center;
+            margin-bottom: 64px;
+        }
+
+        h1 {
+            font-size: 48px;
+            font-weight: 700;
+            letter-spacing: -0.015em;
+            line-height: 1.1;
+            margin-bottom: 16px;
+            animation: fadeIn 1000ms cubic-bezier(0.28, 0.11, 0.32, 1) 200ms backwards;
+        }
+
+        .subtitle {
+            font-size: 21px;
+            color: #86868B;
+            font-weight: 500;
+            animation: fadeIn 1000ms cubic-bezier(0.28, 0.11, 0.32, 1) 400ms backwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Carousel */
+        .carousel-section {
+            margin-bottom: 64px;
+            animation: fadeIn 1000ms cubic-bezier(0.28, 0.11, 0.32, 1) 600ms backwards;
+        }
+
+        .carousel-container {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto 24px;
+            overflow: visible;
+        }
+
+        .carousel-track {
+            display: flex;
+            transition: transform 800ms cubic-bezier(0.28, 0.11, 0.32, 1);
+        }
+
+        .carousel-slide {
+            min-width: 100%;
+            opacity: 0.25;
+            transform: scale(0.85);
+            transition: all 800ms cubic-bezier(0.28, 0.11, 0.32, 1);
+        }
+
+        .carousel-slide.active {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .iframe-wrapper {
+            width: 100%;
+            height: 480px;
+            background: #F5F5F7;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 24px 80px rgba(0, 0, 0, 0.15);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .iframe-wrapper iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            pointer-events: none;
+        }
+
+        .carousel-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(20px);
+            border: none;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+            transition: all 200ms cubic-bezier(0.28, 0.11, 0.32, 1);
+            z-index: 10;
+        }
+
+        .carousel-nav:hover {
+            box-shadow: 0 12px 48px rgba(0, 0, 0, 0.18);
+            background: #FFFFFF;
+        }
+
+        .carousel-nav:active {
+            opacity: 0.7;
+        }
+
+        .carousel-nav.prev { left: -80px; }
+        .carousel-nav.next { right: -80px; }
+
+        .carousel-caption {
+            text-align: center;
+            font-size: 17px;
+            color: #86868B;
+            margin-bottom: 12px;
+        }
+
+        .carousel-dots {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #D2D2D7;
+            cursor: pointer;
+            transition: all 300ms cubic-bezier(0.28, 0.11, 0.32, 1);
+        }
+
+        .dot.active {
+            background: #0071E3;
+            transform: scale(1.4);
+        }
+
+        /* Social Proof */
+        .social-proof {
+            text-align: center;
+            margin-bottom: 64px;
+            font-size: 15px;
+            color: #86868B;
+            font-weight: 500;
+        }
+
+        .social-proof strong {
+            color: #0071E3;
+        }
+
+        /* Form */
+        .form-section {
+            max-width: 520px;
+            margin: 0 auto;
+        }
+
+        .form-intro {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .form-intro h2 {
+            font-size: 32px;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+            margin-bottom: 8px;
+        }
+
+        .form-intro p {
+            font-size: 17px;
+            color: #86868B;
+        }
+
+        .field {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 18px;
+            font-size: 16px;
+            border: 1.5px solid #D2D2D7;
+            background: #FFFFFF;
+            border-radius: 12px;
+            font-family: inherit;
+            transition: all 200ms ease;
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: #0071E3;
+            box-shadow: 0 0 0 4px rgba(0, 113, 227, 0.1);
+        }
+
+        textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+
+        .hint {
+            font-size: 13px;
+            color: #86868B;
+            margin-top: 6px;
+        }
+
+        .optional-section {
+            margin-top: 32px;
+            padding-top: 32px;
+            border-top: 1px solid #E5E5E7;
+        }
+
+        .optional-header {
+            text-align: center;
+            margin-bottom: 24px;
+            font-size: 15px;
+            color: #86868B;
+            font-weight: 500;
+        }
+
+        .generate-btn {
+            width: 100%;
+            padding: 20px;
+            background: #0071E3;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 17px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 32px;
+            transition: all 200ms ease;
+        }
+
+        .generate-btn:hover {
+            background: #0077ED;
+        }
+
+        .generate-btn:active {
+            opacity: 0.8;
+        }
+
+        /* Result */
+        .result {
+            display: none;
+        }
+
+        .result.active {
+            display: block;
+            animation: fadeIn 1000ms cubic-bezier(0.28, 0.11, 0.32, 1);
+        }
+
+        .result-hero {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .result-hero h2 {
+            font-size: 40px;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+            margin-bottom: 12px;
+        }
+
+        .result-hero p {
+            font-size: 19px;
+            color: #86868B;
+        }
+
+        .copy-section {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .copy-btn {
+            background: #0071E3;
+            color: white;
+            padding: 20px 48px;
+            border: none;
+            border-radius: 12px;
+            font-size: 17px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 200ms ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .copy-btn:hover {
+            background: #0077ED;
+        }
+
+        .copy-btn.copied {
+            background: #30D158;
+        }
+
+        .creator-cta {
+            background: linear-gradient(135deg, #F5F5F7 0%, #FFFFFF 100%);
+            border: 1px solid #E5E5E7;
+            border-radius: 16px;
+            padding: 24px;
+            margin: 48px 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+            animation: slideUp 600ms cubic-bezier(0.28, 0.11, 0.32, 1) forwards;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .creator-profile {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .creator-avatar {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #0071E3 0%, #0077ED 100%);
+            color: #FFFFFF;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .creator-info h3 {
+            font-size: 17px;
+            font-weight: 600;
+            color: #1D1D1F;
+            margin-bottom: 4px;
+            letter-spacing: -0.01em;
+        }
+
+        .creator-info p {
+            font-size: 14px;
+            color: #86868B;
+            line-height: 1.4;
+        }
+
+        .linkedin-btn {
+            background: #0A66C2;
+            color: #FFFFFF;
+            padding: 14px 28px;
+            border-radius: 980px;
+            font-size: 15px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 200ms cubic-bezier(0.28, 0.11, 0.32, 1);
+            white-space: nowrap;
+        }
+
+        .linkedin-btn:hover {
+            background: #004182;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(10, 102, 194, 0.3);
+        }
+
+        .linkedin-btn:active {
+            transform: translateY(0);
+        }
+
+        .footer {
+            margin-top: 64px;
+            padding: 32px 0;
+            border-top: 1px solid #E5E5E7;
+        }
+
+        .attribution {
+            font-size: 14px;
+            color: #86868B;
+            text-align: center;
+        }
+
+        .attribution a {
+            color: #0071E3;
+            text-decoration: none;
+            transition: color 200ms;
+        }
+
+        .attribution a:hover {
+            color: #0077ED;
+        }
+
+        .prompt-toggle {
+            text-align: center;
+            margin: 32px 0;
+        }
+
+        .toggle-btn {
+            background: transparent;
+            color: #0071E3;
+            border: none;
+            font-size: 15px;
+            font-weight: 500;
+            cursor: pointer;
+            padding: 8px 16px;
+            border-radius: 8px;
+            transition: background 200ms ease;
+        }
+
+        .toggle-btn:hover {
+            background: rgba(0, 113, 227, 0.04);
+        }
+
+        .prompt-box {
+            background: #1D1D1F;
+            padding: 32px;
+            border-radius: 12px;
+            margin-bottom: 32px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 400ms cubic-bezier(0.28, 0.11, 0.32, 1);
+        }
+
+        .prompt-box.expanded {
+            max-height: 600px;
+            overflow-y: auto;
+        }
+
+        .prompt-box pre {
+            font-family: 'SF Mono', monospace;
+            font-size: 13px;
+            line-height: 1.7;
+            color: #F5F5F7;
+            white-space: pre-wrap;
+        }
+
+        .start-over-btn {
+            display: block;
+            margin: 0 auto;
+            background: transparent;
+            color: #0071E3;
+            border: none;
+            font-size: 17px;
+            font-weight: 500;
+            cursor: pointer;
+            padding: 12px 24px;
+            border-radius: 8px;
+            transition: background 200ms ease;
+        }
+
+        .start-over-btn:hover {
+            background: rgba(0, 113, 227, 0.04);
+        }
+
+        @media (max-width: 1100px) {
+            .carousel-nav.prev { left: 12px; }
+            .carousel-nav.next { right: 12px; }
+        }
+
+        @media (max-width: 768px) {
+            .container { padding: 40px 20px; }
+            h1 { font-size: 36px; }
+            .subtitle { font-size: 19px; }
+            .iframe-wrapper { height: 360px; }
+            .carousel-nav { width: 44px; height: 44px; }
+            .result-hero h2 { font-size: 32px; }
+            .creator-cta {
+                flex-direction: column;
+                align-items: stretch;
+                text-align: center;
+            }
+            .creator-profile {
+                flex-direction: column;
+                text-align: center;
+            }
+            .linkedin-btn {
+                justify-content: center;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            * { animation: none !important; transition: none !important; }
+        }
+
+        @media (prefers-color-scheme: dark) {
+            body { background: #000000; color: #F5F5F7; }
+            input, textarea { background: #1C1C1E; color: #F5F5F7; border-color: #38383A; }
+            .iframe-wrapper { background: #1C1C1E; }
+            .carousel-nav { background: rgba(28, 28, 30, 0.98); color: #F5F5F7; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Logo -->
+        <div class="top-logo">
+            <a href="https://www.linkedin.com/in/galdulev/" target="_blank" class="logo">
+                <div class="logo-text">B2B<br>SHARE<br>&GROW</div>
+            </a>
+        </div>
+
+        <!-- Hero -->
+        <div class="hero">
+            <h1>Generate Your Landing Page in 90 Seconds</h1>
+            <p class="subtitle">Fill 3 fields. Get production-ready HTML. Ship today.</p>
+        </div>
+
+        <!-- Carousel FIRST -->
+        <div class="carousel-section">
+            <div class="carousel-container">
+                <div class="carousel-track" id="track">
+                    <div class="carousel-slide active">
+                        <div class="iframe-wrapper">
+                            <iframe src="https://galdulev.github.io/vibe-coding-tutorials/workshops.html"></iframe>
+                        </div>
+                    </div>
+                    <div class="carousel-slide">
+                        <div class="iframe-wrapper">
+                            <iframe src="https://pulse-robot-template.lovable.app/"></iframe>
+                        </div>
+                    </div>
+                    <div class="carousel-slide">
+                        <div class="iframe-wrapper">
+                            <iframe src="https://galdulev.github.io/vibe-coding-tutorials/"></iframe>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-nav prev" onclick="prev()">
+                    <svg width="14" height="24" viewBox="0 0 14 24" fill="none">
+                        <path d="M12 2L2 12L12 22" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+                    </svg>
+                </button>
+                <button class="carousel-nav next" onclick="next()">
+                    <svg width="14" height="24" viewBox="0 0 14 24" fill="none">
+                        <path d="M2 2L12 12L2 22" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="carousel-dots">
+                <span class="dot active" onclick="goTo(0)"></span>
+                <span class="dot" onclick="goTo(1)"></span>
+                <span class="dot" onclick="goTo(2)"></span>
+            </div>
+        </div>
+
+        <!-- Social Proof -->
+        <div class="social-proof">
+            <strong>1,247 pages generated</strong> this week
+        </div>
+
+        <!-- Form -->
+        <div id="formView">
+            <div class="form-section">
+                <div class="form-intro">
+                    <h2>Want one?</h2>
+                    <p>Fill this in:</p>
+                </div>
+
+                <div class="field">
+                    <label>Product name</label>
+                    <input type="text" id="product" placeholder="DataViz Pro" required>
+                </div>
+
+                <div class="field">
+                    <label>One-line description</label>
+                    <input type="text" id="desc" placeholder="Turns spreadsheets into dashboards" required>
+                </div>
+
+                <div class="field">
+                    <label>Your email</label>
+                    <input type="email" id="email" placeholder="hello@company.com" required>
+                    <div class="hint">Where to send form submissions</div>
+                </div>
+
+                <div class="optional-section">
+                    <div class="optional-header">Optional (makes it better)</div>
+                    
+                    <div class="field">
+                        <label>GA4 ID</label>
+                        <input type="text" id="analytics" placeholder="G-XXXXXXXXXX">
+                    </div>
+
+                    <div class="field">
+                        <label>Context</label>
+                        <textarea id="context" placeholder="Audience: B2B PMs&#10;Colors: Blue, orange&#10;Competitors: Tableau"></textarea>
+                    </div>
+                </div>
+
+                <button class="generate-btn" onclick="gen()">Generate Prompt</button>
+            </div>
+        </div>
+
+        <!-- Result -->
+        <div class="result" id="result">
+            <div class="result-hero">
+                <h2>🎉 Ready to Ship</h2>
+                <p>Copy this prompt. Paste into Cursor AI.</p>
+            </div>
+
+            <div class="copy-section">
+                <button class="copy-btn" id="copyBtn" onclick="copyPrompt()">
+                    <svg width="20" height="20" fill="none">
+                        <rect x="6" y="6" width="10" height="10" rx="2" stroke="currentColor" stroke-width="2"/>
+                        <path d="M4 12V4C4 2.9 4.9 2 6 2H12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                    Copy Prompt
+                </button>
+            </div>
+
+            <div class="creator-cta" id="creatorCta" style="display: none;">
+                <div class="creator-profile">
+                    <div class="creator-avatar">GD</div>
+                    <div class="creator-info">
+                        <h3>Enjoy this? Follow for more</h3>
+                        <p>Weekly PM tools, frameworks & generators</p>
+                    </div>
+                </div>
+                <a href="https://www.linkedin.com/in/galdulev/" class="linkedin-btn" target="_blank" onclick="trackLinkedInClick()">
+                    <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.761 0 5-2.239 5-5v-14c0-2.761-2.239-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                    </svg>
+                    Connect on LinkedIn
+                </a>
+            </div>
+
+            <div class="carousel-section">
+                <div class="carousel-container">
+                    <div class="carousel-track" id="track2">
+                        <div class="carousel-slide active">
+                            <div class="iframe-wrapper">
+                                <iframe src="https://galdulev.github.io/vibe-coding-tutorials/workshops.html"></iframe>
+                            </div>
+                        </div>
+                        <div class="carousel-slide">
+                            <div class="iframe-wrapper">
+                                <iframe src="https://pulse-robot-template.lovable.app/"></iframe>
+                            </div>
+                        </div>
+                        <div class="carousel-slide">
+                            <div class="iframe-wrapper">
+                                <iframe src="https://galdulev.github.io/vibe-coding-tutorials/"></iframe>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="carousel-nav prev" onclick="prev2()">
+                        <svg width="14" height="24" viewBox="0 0 14 24" fill="none">
+                            <path d="M12 2L2 12L12 22" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+                        </svg>
+                    </button>
+                    <button class="carousel-nav next" onclick="next2()">
+                        <svg width="14" height="24" viewBox="0 0 14 24" fill="none">
+                            <path d="M2 2L12 12L2 22" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="carousel-dots">
+                    <span class="dot active" onclick="goTo2(0)"></span>
+                    <span class="dot" onclick="goTo2(1)"></span>
+                    <span class="dot" onclick="goTo2(2)"></span>
+                </div>
+            </div>
+
+            <div class="prompt-toggle">
+                <button class="toggle-btn" onclick="togglePrompt()">View Prompt ↓</button>
+            </div>
+
+            <div class="prompt-box" id="promptBox">
+                <pre id="prompt"></pre>
+            </div>
+
+            <footer class="footer">
+                <p class="attribution">Built by <a href="https://www.linkedin.com/in/galdulev/" target="_blank" onclick="trackLinkedInClick('footer')">Gal Dulev</a></p>
+            </footer>
+
+            <button class="start-over-btn" onclick="reset()">← Start Over</button>
+        </div>
+    </div>
+
+    <script>
+        function track(e, p = {}) { if (typeof gtag !== 'undefined') gtag('event', e, p); }
+
+        let idx = 0, idx2 = 0;
+
+        function update(trackEl, slideClass) {
+            const track = document.getElementById(trackEl);
+            const i = trackEl === 'track' ? idx : idx2;
+            track.style.transform = `translateX(-${i * 100}%)`;
+            track.parentElement.querySelectorAll(slideClass).forEach((s, j) => {
+                s.classList.toggle('active', j === i);
+            });
+            track.parentElement.parentElement.querySelectorAll('.dot').forEach((d, j) => {
+                d.classList.toggle('active', j === i);
+            });
+        }
+
+        function next() { idx = (idx + 1) % 3; update('track', '.carousel-slide'); track('carousel_next'); }
+        function prev() { idx = (idx - 1 + 3) % 3; update('track', '.carousel-slide'); track('carousel_prev'); }
+        function goTo(i) { idx = i; update('track', '.carousel-slide'); track('carousel_goto', { slide: i }); }
+
+        function next2() { idx2 = (idx2 + 1) % 3; update('track2', '.carousel-slide'); }
+        function prev2() { idx2 = (idx2 - 1 + 3) % 3; update('track2', '.carousel-slide'); }
+        function goTo2(i) { idx2 = i; update('track2', '.carousel-slide'); }
+
+        setInterval(() => { next(); next2(); }, 5000);
+
+        function gen() {
+            const p = document.getElementById('product').value;
+            const d = document.getElementById('desc').value;
+            const e = document.getElementById('email').value;
+            const a = document.getElementById('analytics').value;
+            const c = document.getElementById('context').value;
+
+            if (!p || !d || !e) { alert('Fill required fields'); return; }
+
+            const prompt = `You are a world-class conversion copywriter + designer working on an Apple-quality landing page.
+
+## PRODUCT CONTEXT
+Product: ${p}
+What it does: ${d}
+Form submissions go to: ${e}
+${a ? `Analytics ID: ${a}` : ''}
+
+${c ? `\n${c}\n` : ''}
+
+## YOUR JOB
+
+1. **Act as conversion copywriter:**
+   - Generate compelling headline (5-8 words, hooks in 3 seconds)
+   - Write subheading (one line, who it's for)
+   - Create 3 powerful benefit statements
+   - Write CTA button text (2-4 words)
+   - Write all section copy (problem, solution, how it works)
+   - Use growth marketing principles (clarity > cleverness)
+   - PLG mindset: show value immediately, remove friction
+
+2. **Design:**
+think: what would apple do?
+   - Mobile-first responsive
+
+3. **Build conversion-optimized structure:**
+   - Hero (headline, subheading, CTA, visual)
+   - Problem (3 pain points with icons)
+   - Solution (3 benefits from your copy)
+   - How It Works (3 simple steps)
+   - Social Proof (2-3 testimonials with placeholders)
+   - Final CTA with form
+   - Footer
+
+## TECHNICAL SPECS
+
+**Colors:**
+- Choose colors based on product context and any brand guidelines provided
+- Default to clean Apple-style palette if no preference specified
+- Background: #FFFFFF
+- Surface: #F5F5F7
+- no purple
+
+**Design System:**
+- Spacing: 8px base unit
+- Typography: 64/48/32/18px scale
+- Shadows: 0 4px 12px rgba(0,0,0,0.08) | 0 8px 24px rgba(0,0,0,0.12)
+- Radius: 12px
+- Animations: cubic-bezier(0.28, 0.11, 0.32, 1)
+
+**Form Setup:**
+\`\`\`html
+<form action="https://formsubmit.co/${e}" method="POST">
+    <input type="text" name="_honey" style="display:none">
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_subject" value="${p} - New Lead">
+    <input type="text" name="name" placeholder="Name" required>
+    <input type="email" name="email" placeholder="Email" required>
+    <input type="text" name="company" placeholder="Company">
+    <button type="submit">[YOUR CTA TEXT]</button>
+</form>
+\`\`\`
+
+**Analytics:** ${a ? `Use GA4 ID: ${a}` : 'Add GA4 placeholder for tracking'}, track page_load, scroll_depth, button_click, form_submit
+
+## DELIVERABLE
+
+Single HTML file that:
+
+- Looks like Apple designed it 
+- Reads like a growth marketer wrote it (benefit-focused, action-oriented)
+- Works like PLG (immediate value, self-serve, frictionless)
+
+Make every word count. Make every pixel perfect. First try must be stunning.`;
+
+            document.getElementById('prompt').textContent = prompt;
+            document.getElementById('formView').style.display = 'none';
+            document.getElementById('result').classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            track('generated', { product: p, has_analytics: !!a, has_context: !!c });
+        }
+
+        function copyPrompt() {
+            const text = document.getElementById('prompt').textContent;
+            navigator.clipboard.writeText(text).then(() => {
+                const btn = document.getElementById('copyBtn');
+                const orig = btn.innerHTML;
+                btn.innerHTML = '<svg width="20" height="20" fill="none"><path d="M3 10L8 15L17 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg> Copied!';
+                btn.classList.add('copied');
+                setTimeout(() => {
+                    document.getElementById('creatorCta').style.display = 'flex';
+                }, 800);
+                setTimeout(() => {
+                    btn.innerHTML = orig;
+                    btn.classList.remove('copied');
+                }, 2500);
+                track('copied');
+            });
+        }
+
+        function trackLinkedInClick(placement = 'success_moment') {
+            track('linkedin_cta_click', { placement: placement, source: 'generator_result' });
+        }
+
+        function togglePrompt() {
+            document.getElementById('promptBox').classList.toggle('expanded');
+        }
+
+        function reset() {
+            document.getElementById('formView').style.display = 'block';
+            document.getElementById('result').classList.remove('active');
+            document.querySelectorAll('input, textarea').forEach(i => i.value = '');
+            document.getElementById('promptBox').classList.remove('expanded');
+            document.getElementById('creatorCta').style.display = 'none';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            track('reset');
+        }
+
+        window.addEventListener('load', () => track('load'));
+    </script>
+</body>
+</html>
