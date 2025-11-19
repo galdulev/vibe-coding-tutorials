@@ -1,0 +1,1193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landing Page Generator - B2B Share&Grow</title>
+    
+    <!-- Social Media Meta Tags -->
+    <meta property="og:title" content="Landing Page Generator - Built in 90 seconds">
+    <meta property="og:description" content="Create Apple-quality landing pages with AI. 1,247 pages generated this week.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://galdulev.github.io/vibe-coding-tutorials/B2B-SHARE-GROW.html">
+    <meta property="og:image" content="https://galdulev.github.io/vibe-coding-tutorials/og-image.png">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Landing Page Generator - Built in 90 seconds">
+    <meta name="twitter:description" content="Create Apple-quality landing pages with AI. 1,247 pages generated this week.">
+    <meta name="twitter:image" content="https://galdulev.github.io/vibe-coding-tutorials/og-image.png">
+    
+    <meta name="description" content="Create Apple-quality landing pages with AI in 90 seconds. Generate conversion-optimized prompts for beautiful, effective landing pages.">
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-N5LQHQFPL3"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-N5LQHQFPL3');
+    </script>
+    
+    <!-- Inter Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* CSS Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        /* Design System - Colors (4 only) */
+        :root {
+            --text: #1D1D1F;
+            --gray: #86868B;
+            --blue: #0071E3;
+            --white: #FFFFFF;
+        }
+        
+        /* Base Styles */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Inter', sans-serif;
+            background: var(--white);
+            color: var(--text);
+            line-height: 1.47;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        /* Typography (6 sizes) */
+        h1 {
+            font-size: 48px;
+            font-weight: 600;
+            letter-spacing: -0.015em;
+            line-height: 1.0625;
+        }
+        
+        h2 {
+            font-size: 32px;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+            line-height: 1.1;
+        }
+        
+        .subtitle {
+            font-size: 21px;
+            font-weight: 400;
+            letter-spacing: -0.003em;
+            line-height: 1.4;
+        }
+        
+        .body {
+            font-size: 17px;
+            font-weight: 400;
+            letter-spacing: 0;
+            line-height: 1.47;
+        }
+        
+        .label {
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 0;
+            line-height: 1.4;
+        }
+        
+        .small {
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: 0;
+            line-height: 1.5;
+        }
+        
+        /* Nav Logo */
+        .top-nav {
+            position: fixed;
+            top: 20px;
+            left: 24px;
+            background: #000;
+            color: var(--white);
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            z-index: 100;
+        }
+        
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 120px 24px 64px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .hero h1 {
+            margin-bottom: 64px;
+            animation: fadeIn 800ms ease;
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Carousel */
+        .carousel-container {
+            position: relative;
+            margin-bottom: 24px;
+            animation: fadeIn 1000ms ease 200ms backwards;
+        }
+        
+        .carousel {
+            width: 100%;
+            max-width: 1200px;
+            height: 600px;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            position: relative;
+        }
+        
+        .carousel-track {
+            display: flex;
+            height: 100%;
+            transition: transform 1000ms cubic-bezier(0.28, 0.11, 0.32, 1);
+        }
+        
+        .carousel-slide {
+            min-width: 100%;
+            height: 100%;
+            opacity: 0.25;
+            transform: scale(0.9);
+            transition: all 1000ms cubic-bezier(0.28, 0.11, 0.32, 1);
+        }
+        
+        .carousel-slide.active {
+            opacity: 1;
+            transform: scale(1);
+        }
+        
+        .carousel-slide iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+        }
+        
+        /* Carousel Navigation */
+        .carousel-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(20px);
+            border: none;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+            transition: all 200ms;
+            z-index: 10;
+        }
+        
+        .carousel-nav:hover {
+            background: var(--white);
+            box-shadow: 0 12px 48px rgba(0, 0, 0, 0.18);
+        }
+        
+        .carousel-nav:active {
+            opacity: 0.7;
+        }
+        
+        .carousel-nav.prev {
+            left: -80px;
+        }
+        
+        .carousel-nav.next {
+            right: -80px;
+        }
+        
+        /* Carousel Dots */
+        .carousel-dots {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+        
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #D2D2D7;
+            cursor: pointer;
+            transition: all 300ms;
+        }
+        
+        .dot.active {
+            background: var(--blue);
+            transform: scale(1.4);
+        }
+        
+        /* Proof & Stats */
+        .proof {
+            font-size: 14px;
+            color: var(--gray);
+            margin-bottom: 8px;
+        }
+        
+        .stats {
+            font-size: 17px;
+            color: var(--gray);
+        }
+        
+        .stats strong {
+            color: #000;
+            font-weight: 700;
+        }
+        
+        /* Form Section */
+        .form-section {
+            background: var(--white);
+            padding: 96px 24px;
+            max-width: 640px;
+            margin: 0 auto;
+        }
+        
+        .form-section h2 {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+        
+        /* Form Grid */
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+        
+        /* Form Inputs */
+        input,
+        textarea {
+            width: 100%;
+            padding: 18px;
+            font-size: 17px;
+            font-family: inherit;
+            border: 1.5px solid #D2D2D7;
+            background: var(--white);
+            border-radius: 12px;
+            transition: all 200ms;
+        }
+        
+        input:focus,
+        textarea:focus {
+            outline: none;
+            border-color: var(--blue);
+            box-shadow: 0 0 0 4px rgba(0, 125, 250, 0.1);
+        }
+        
+        textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+        
+        /* Optional Details */
+        details {
+            margin: 24px 0;
+            padding: 20px;
+            background: #F5F5F7;
+            border-radius: 12px;
+        }
+        
+        summary {
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            list-style: none;
+            color: var(--blue);
+            padding: 12px 16px;
+            border-radius: 8px;
+            transition: background 200ms;
+            display: inline-block;
+        }
+        
+        summary:hover {
+            background: rgba(0, 113, 227, 0.04);
+        }
+        
+        summary::-webkit-details-marker {
+            display: none;
+        }
+        
+        summary::after {
+            content: ' ↓';
+            font-size: 12px;
+        }
+        
+        details[open] summary::after {
+            content: ' ↑';
+        }
+        
+        details[open] summary {
+            margin-bottom: 16px;
+        }
+        
+        /* Helper Text */
+        .helper-text {
+            font-size: 12px;
+            color: var(--gray);
+            margin-top: 6px;
+            margin-bottom: 16px;
+            line-height: 1.5;
+        }
+        
+        /* Field Label (Apple-style) */
+        .field-label {
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text);
+            margin-bottom: 8px;
+            display: block;
+        }
+        
+        .field-label .recommended {
+            color: var(--blue);
+            font-weight: 400;
+        }
+        
+        .field-group {
+            margin-bottom: 0;
+        }
+        
+        details input,
+        details textarea {
+            margin-bottom: 16px;
+        }
+        
+        details textarea {
+            margin-bottom: 0;
+        }
+        
+        /* Checkbox Styling */
+        .checkbox-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 16px;
+            margin-bottom: 0;
+            cursor: pointer;
+        }
+        
+        .checkbox-container:last-of-type {
+            margin-bottom: 0;
+        }
+        
+        .checkbox-container input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            margin: 0;
+            cursor: pointer;
+            accent-color: var(--blue);
+            flex-shrink: 0;
+        }
+        
+        .checkbox-container label {
+            font-size: 15px;
+            font-weight: 500;
+            cursor: pointer;
+            user-select: none;
+            line-height: 1.4;
+            margin: 0;
+            padding: 0;
+        }
+        
+        /* Website Analysis Fields */
+        .website-analysis {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 400ms ease, opacity 300ms ease;
+            opacity: 0;
+        }
+        
+        .website-analysis.visible {
+            max-height: 300px;
+            opacity: 1;
+        }
+        
+        .website-analysis input {
+            margin-bottom: 16px;
+        }
+        
+        .website-analysis input:last-child {
+            margin-bottom: 16px;
+        }
+        
+        /* CTA Button */
+        .cta {
+            width: 100%;
+            padding: 20px;
+            background: var(--blue);
+            color: var(--white);
+            border: none;
+            border-radius: 12px;
+            font-size: 17px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 40px;
+            transition: all 200ms;
+        }
+        
+        .cta:hover {
+            background: #0077ED;
+        }
+        
+        .cta:active {
+            opacity: 0.8;
+        }
+        
+        /* Result Section */
+        .result {
+            display: none;
+            padding: 96px 24px;
+            max-width: 980px;
+            margin: 0 auto;
+            text-align: center;
+            transform: translateY(40px);
+            opacity: 0;
+        }
+        
+        .result.active {
+            display: block;
+            transform: translateY(0);
+            opacity: 1;
+            animation: slideIn 600ms cubic-bezier(0.28, 0.11, 0.32, 1);
+        }
+        
+        @keyframes slideIn {
+            from {
+                transform: translateY(40px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        /* Copy Button */
+        .copy-btn {
+            background: var(--blue);
+            color: var(--white);
+            padding: 20px 48px;
+            border: none;
+            border-radius: 12px;
+            font-size: 17px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 200ms;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 48px;
+        }
+        
+        .copy-btn:hover {
+            background: #0077ED;
+        }
+        
+        .copy-btn:active {
+            opacity: 0.8;
+        }
+        
+        .copy-btn.copied {
+            background: #30D158;
+        }
+        
+        /* Prompt Box */
+        .prompt-toggle {
+            background: transparent;
+            color: var(--blue);
+            border: none;
+            font-size: 15px;
+            font-weight: 500;
+            cursor: pointer;
+            padding: 8px 16px;
+            border-radius: 8px;
+            margin: 24px 0;
+            transition: background 200ms;
+        }
+        
+        .prompt-toggle:hover {
+            background: rgba(0, 113, 227, 0.04);
+        }
+        
+        .prompt-box {
+            background: #1D1D1F;
+            padding: 32px;
+            border-radius: 12px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 400ms ease;
+        }
+        
+        .prompt-box.open {
+            max-height: 600px;
+            overflow-y: auto;
+        }
+        
+        .prompt-box pre {
+            font-family: 'SF Mono', 'Monaco', 'Courier New', monospace;
+            font-size: 13px;
+            line-height: 1.7;
+            color: #F5F5F7;
+            white-space: pre-wrap;
+            text-align: left;
+        }
+        
+        /* Footer Logo */
+        footer {
+            margin: 56px 0 32px;
+        }
+        
+        .logo-large {
+            display: inline-block;
+            background: var(--white);
+            border: 2px solid #000;
+            padding: 24px 48px;
+            border-radius: 16px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* Shimmer effect on logo - loops every 5 seconds */
+        .logo-large::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0,113,227,0.1), transparent);
+            animation: shimmer 5s ease-in-out infinite;
+        }
+        
+        @keyframes shimmer {
+            0% {
+                left: -100%;
+            }
+            20% {
+                left: 100%;
+            }
+            100% {
+                left: 100%;
+            }
+        }
+        
+        .brand-text {
+            font-size: 28px;
+            font-weight: 800;
+            letter-spacing: -0.01em;
+            line-height: 1.1;
+            color: #000;
+        }
+        
+        /* Logo line animation - loops every 5 seconds */
+        .brand-text .line {
+            display: block;
+        }
+        
+        .result.active .brand-text .line {
+            animation: lineRevealLoop 5s cubic-bezier(0.28, 0.11, 0.32, 1) infinite;
+        }
+        
+        .result.active .brand-text .line:nth-child(1) {
+            animation-delay: 0ms;
+        }
+        
+        .result.active .brand-text .line:nth-child(2) {
+            animation-delay: 150ms;
+        }
+        
+        .result.active .brand-text .line:nth-child(3) {
+            animation-delay: 300ms;
+        }
+        
+        @keyframes lineRevealLoop {
+            0% {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            10% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            90% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+        }
+        
+        /* Creator Credit */
+        .creator-credit {
+            margin-top: 48px;
+            padding-top: 32px;
+            border-top: 1px solid #E5E5E7;
+        }
+        
+        .creator-credit a {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: var(--text);
+            font-size: 15px;
+            font-weight: 500;
+            padding: 12px 20px;
+            border-radius: 12px;
+            transition: all 200ms;
+        }
+        
+        .creator-credit a:hover {
+            background: #F5F5F7;
+            transform: translateY(-2px);
+        }
+        
+        .creator-credit svg {
+            width: 20px;
+            height: 20px;
+            fill: #0A66C2;
+        }
+        
+        .creator-credit .name {
+            color: var(--text);
+        }
+        
+        .creator-credit .label {
+            color: var(--gray);
+            font-size: 13px;
+            font-weight: 400;
+        }
+        
+        /* Responsive - Tablet */
+        @media (max-width: 1023px) {
+            h1 {
+                font-size: 40px;
+            }
+            
+            .carousel-nav.prev {
+                left: 12px;
+            }
+            
+            .carousel-nav.next {
+                right: 12px;
+            }
+        }
+        
+        /* Responsive - Mobile */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 80px 20px 48px;
+            }
+            
+            h1 {
+                font-size: 32px;
+            }
+            
+            .carousel {
+                height: 400px;
+            }
+            
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .carousel-nav {
+                width: 44px;
+                height: 44px;
+                font-size: 20px;
+            }
+            
+            .top-nav {
+                font-size: 8px;
+                padding: 4px 8px;
+            }
+        }
+        
+        /* Reduced Motion */
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <div class="top-nav">B2B SHARE&GROW</div>
+    
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Landing Page Generator</h1>
+        
+        <div class="carousel-container">
+            <div class="carousel">
+                <div class="carousel-track" id="carousel-track">
+                    <div class="carousel-slide active">
+                        <iframe src="https://galdulev.github.io/vibe-coding-tutorials/workshops.html" loading="lazy"></iframe>
+                    </div>
+                    <div class="carousel-slide">
+                        <iframe src="https://pulse-robot-template.lovable.app/" loading="lazy"></iframe>
+                    </div>
+                    <div class="carousel-slide">
+                        <iframe src="https://galdulev.github.io/vibe-coding-tutorials/" loading="lazy"></iframe>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-nav prev" onclick="prevSlide()" aria-label="Previous slide">‹</button>
+            <button class="carousel-nav next" onclick="nextSlide()" aria-label="Next slide">›</button>
+        </div>
+        
+        <div class="carousel-dots">
+            <span class="dot active" onclick="goToSlide(0)"></span>
+            <span class="dot" onclick="goToSlide(1)"></span>
+            <span class="dot" onclick="goToSlide(2)"></span>
+        </div>
+        
+        <p class="proof">Built in 90 seconds</p>
+        <p class="stats"><strong>1,247</strong> pages generated this week</p>
+    </section>
+    
+    <!-- Form Section -->
+    <section class="form-section" id="form-section">
+        <h2>Create yours</h2>
+        
+        <div class="form-grid">
+            <input
+                type="text"
+                id="product"
+                placeholder="Product name"
+                required
+                onfocus="track('form_field_focus', {field: 'product'})"
+            >
+            <input
+                type="text"
+                id="what-it-does"
+                placeholder="What it does"
+                required
+                onfocus="track('form_field_focus', {field: 'what_it_does'})"
+            >
+        </div>
+        
+        <details>
+            <summary>More options</summary>
+            <div>
+                <label class="field-label" for="context">
+                    Context <span class="recommended">(Recommended)</span>
+                </label>
+                <textarea
+                    id="context"
+                    placeholder="Audience, tone, style preferences..."
+                    onfocus="track('form_field_focus', {field: 'context'})"
+                ></textarea>
+            </div>
+            <div class="checkbox-container">
+                <input
+                    type="checkbox"
+                    id="add-analytics"
+                    onchange="toggleAnalytics()"
+                >
+                <label for="add-analytics">Add events & implement my analytics</label>
+            </div>
+            <div class="website-analysis" id="analytics-field">
+                <input
+                    type="text"
+                    id="ga4"
+                    placeholder="GA4 ID (G-XXXXXXXXXX)"
+                    onfocus="track('form_field_focus', {field: 'ga4'})"
+                >
+            </div>
+            <div class="checkbox-container">
+                <input
+                    type="checkbox"
+                    id="add-form"
+                    onchange="toggleFormField()"
+                >
+                <label for="add-form">Add form to landing page</label>
+            </div>
+            <div class="website-analysis" id="form-email-field">
+                <input
+                    type="email"
+                    id="form-email"
+                    placeholder="Email for form submissions"
+                    onfocus="track('form_field_focus', {field: 'form_email'})"
+                >
+            </div>
+            <div class="checkbox-container">
+                <input
+                    type="checkbox"
+                    id="analyze-websites"
+                    onchange="toggleWebsiteAnalysis()"
+                >
+                <label for="analyze-websites">Analyze my site & competitors</label>
+            </div>
+            <div class="website-analysis" id="website-analysis">
+                <input
+                    type="url"
+                    id="my-website"
+                    placeholder="Your website URL"
+                    onfocus="track('form_field_focus', {field: 'my_website'})"
+                >
+                <input
+                    type="url"
+                    id="competitor-website"
+                    placeholder="Competitor website URL"
+                    onfocus="track('form_field_focus', {field: 'competitor_website'})"
+                >
+            </div>
+        </details>
+        
+        <button class="cta" onclick="generate()">Generate Prompt →</button>
+    </section>
+    
+    <!-- Result Section -->
+    <section class="result" id="result">
+        <button class="copy-btn" id="copy-btn" onclick="copyAndOpen()">
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                <rect x="6" y="6" width="10" height="10" rx="2"/>
+                <path d="M4 12V4a2 2 0 012-2h6"/>
+            </svg>
+            Copy & Open Google AI Studio Builder
+        </button>
+        
+        <button class="prompt-toggle" onclick="togglePrompt()">View Prompt ↓</button>
+        
+        <div class="prompt-box" id="prompt-box">
+            <pre id="prompt-content"></pre>
+        </div>
+        
+        <footer>
+            <div class="logo-large">
+                <div class="brand-text">
+                    <span class="line">B2B</span>
+                    <span class="line">SHARE</span>
+                    <span class="line">&GROW</span>
+                </div>
+            </div>
+            
+            <div class="creator-credit">
+                <a href="https://galdulev.github.io/vibe-coding-tutorials/" target="_blank" rel="noopener noreferrer">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                    </svg>
+                    <div>
+                        <div class="name">Made by Gal Dulev, Product Manager</div>
+                        <div class="label">For more tutorials and content →</div>
+                    </div>
+                </a>
+            </div>
+        </footer>
+    </section>
+    
+    <script>
+        // Analytics Tracking Helper
+        function track(eventName, params = {}) {
+            if (typeof gtag !== 'undefined') {
+                gtag('event', eventName, params);
+            }
+            console.log('Event:', eventName, params);
+        }
+        
+        // Track page load
+        window.addEventListener('load', () => {
+            track('page_load');
+        });
+        
+        // Carousel Logic
+        let currentSlide = 0;
+        const totalSlides = 3;
+        
+        function updateCarousel(index) {
+            const track = document.getElementById('carousel-track');
+            const slides = document.querySelectorAll('.carousel-slide');
+            const dots = document.querySelectorAll('.dot');
+            
+            // Update track position
+            track.style.transform = `translateX(-${index * 100}%)`;
+            
+            // Update slide states
+            slides.forEach((slide, i) => {
+                slide.classList.toggle('active', i === index);
+            });
+            
+            // Update dots
+            dots.forEach((dot, i) => {
+                dot.classList.toggle('active', i === index);
+            });
+        }
+        
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            updateCarousel(currentSlide);
+            track('carousel_manual_nav', {slide: currentSlide, direction: 'next'});
+        }
+        
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+            updateCarousel(currentSlide);
+            track('carousel_manual_nav', {slide: currentSlide, direction: 'prev'});
+        }
+        
+        function goToSlide(index) {
+            currentSlide = index;
+            updateCarousel(currentSlide);
+            track('carousel_manual_nav', {slide: currentSlide, direction: 'direct'});
+        }
+        
+        // Auto-play carousel every 5 seconds
+        setInterval(() => {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            updateCarousel(currentSlide);
+            track('carousel_auto_advance', {slide: currentSlide});
+        }, 5000);
+        
+        // Toggle Analytics Field
+        function toggleAnalytics() {
+            const checkbox = document.getElementById('add-analytics');
+            const analyticsField = document.getElementById('analytics-field');
+            
+            if (checkbox.checked) {
+                analyticsField.classList.add('visible');
+                track('checkbox_toggled', {field: 'add_analytics', checked: true});
+            } else {
+                analyticsField.classList.remove('visible');
+                track('checkbox_toggled', {field: 'add_analytics', checked: false});
+            }
+        }
+        
+        // Toggle Form Email Field
+        function toggleFormField() {
+            const checkbox = document.getElementById('add-form');
+            const formField = document.getElementById('form-email-field');
+            
+            if (checkbox.checked) {
+                formField.classList.add('visible');
+                track('checkbox_toggled', {field: 'add_form', checked: true});
+            } else {
+                formField.classList.remove('visible');
+                track('checkbox_toggled', {field: 'add_form', checked: false});
+            }
+        }
+        
+        // Toggle Website Analysis Fields
+        function toggleWebsiteAnalysis() {
+            const checkbox = document.getElementById('analyze-websites');
+            const analysisDiv = document.getElementById('website-analysis');
+            
+            if (checkbox.checked) {
+                analysisDiv.classList.add('visible');
+                track('checkbox_toggled', {field: 'website_analysis', checked: true});
+            } else {
+                analysisDiv.classList.remove('visible');
+                track('checkbox_toggled', {field: 'website_analysis', checked: false});
+            }
+        }
+        
+        // Generate Prompt Function
+        function generate() {
+            track('generate_clicked');
+            
+            const product = document.getElementById('product').value.trim();
+            const whatItDoes = document.getElementById('what-it-does').value.trim();
+            const ga4 = document.getElementById('ga4').value.trim();
+            const context = document.getElementById('context').value.trim();
+            const myWebsite = document.getElementById('my-website').value.trim();
+            const competitorWebsite = document.getElementById('competitor-website').value.trim();
+            const analyzeWebsites = document.getElementById('analyze-websites').checked;
+            const addForm = document.getElementById('add-form').checked;
+            const formEmail = document.getElementById('form-email').value.trim();
+            
+            // Validation
+            if (!product || !whatItDoes) {
+                alert('Please fill in Product name and What it does');
+                return;
+            }
+            
+            // Build website analysis section
+            let websiteAnalysis = '';
+            if (analyzeWebsites && (myWebsite || competitorWebsite)) {
+                websiteAnalysis = '\n## COMPETITIVE ANALYSIS\n\n';
+                if (myWebsite) {
+                    websiteAnalysis += `My Website: ${myWebsite}\n- Analyze their current messaging, design, and CTA approach\n- Identify what works and what can be improved\n\n`;
+                }
+                if (competitorWebsite) {
+                    websiteAnalysis += `Competitor Website: ${competitorWebsite}\n- Analyze their positioning and value proposition\n- Learn from their strengths, differentiate from their weaknesses\n- Find gaps in their offering that we can highlight\n\n`;
+                }
+                websiteAnalysis += 'Use insights from these analyses to create a more compelling, differentiated landing page.\n';
+            }
+            
+            // Build prompt
+            const prompt = `You are a world-class conversion copywriter + designer working on an Apple-quality landing page.
+
+## PRODUCT CONTEXT
+Product: ${product}
+What it does: ${whatItDoes}${addForm && formEmail ? `\nForm submissions go to: ${formEmail}` : ''}${ga4 ? `\nAnalytics ID: ${ga4}` : ''}
+
+${context ? `\n${context}\n` : ''}${websiteAnalysis}
+
+## YOUR JOB
+
+1. **Act as conversion copywriter:**
+   - Generate compelling headline (5-8 words, hooks in 3 seconds)
+   - Write subheading (one line, who it's for)
+   - Create 3 powerful benefit statements
+   - Write CTA button text (2-4 words)
+   - Write all section copy (problem, solution, how it works)
+   - Use growth marketing principles (clarity > cleverness)
+   - PLG mindset: show value immediately, remove friction
+
+2. **Design:**
+think: what would apple do?
+   - Mobile-first responsive
+
+3. **Build conversion-optimized structure:**
+   - Hero (headline, subheading, CTA, visual)
+   - Problem (3 pain points with icons)
+   - Solution (3 benefits from your copy)
+   - How It Works (3 simple steps)
+   - Social Proof (2-3 testimonials with placeholders)
+   - Final CTA with form
+   - Footer
+
+## TECHNICAL SPECS
+
+**Colors:**
+- Choose colors based on product context and any brand guidelines provided
+- Default to clean Apple-style palette if no preference specified
+- Background: #FFFFFF
+- Surface: #F5F5F7
+- no purple
+
+**Design System:**
+- Spacing: 8px base unit
+- Typography: 64/48/32/18px scale
+- Shadows: 0 4px 12px rgba(0,0,0,0.08) | 0 8px 24px rgba(0,0,0,0.12)
+- Radius: 12px
+- Animations: cubic-bezier(0.28, 0.11, 0.32, 1)
+
+${addForm && formEmail ? `**Form Setup:**
+\`\`\`html
+<form action="https://formsubmit.co/${formEmail}" method="POST">
+    <input type="text" name="_honey" style="display:none">
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_subject" value="${product} - New Lead">
+    <input type="text" name="name" placeholder="Name" required>
+    <input type="email" name="email" placeholder="Email" required>
+    <input type="text" name="company" placeholder="Company">
+    <button type="submit">[YOUR CTA TEXT]</button>
+</form>
+\`\`\`
+` : ''}
+
+**Analytics:** ${ga4 ? `Use GA4 ID: ${ga4}` : 'Add GA4 placeholder for tracking'}, track page_load, scroll_depth, button_click, form_submit
+
+## DELIVERABLE
+
+Create a web app that:
+
+- Looks like Apple designed it
+- Reads like a growth marketer wrote it (benefit-focused, action-oriented)
+- Works like PLG (immediate value, self-serve, frictionless)
+
+Make every word count. Make every pixel perfect. First try must be stunning.`;
+            
+            // Display prompt
+            document.getElementById('prompt-content').textContent = prompt;
+            
+            // Hide form, show result
+            document.getElementById('form-section').style.display = 'none';
+            document.getElementById('result').classList.add('active');
+            
+            // Scroll to top
+            window.scrollTo({top: 0, behavior: 'smooth'});
+            
+            // Track generation
+            track('prompt_generated', {
+                product: product,
+                has_what_it_does: !!whatItDoes,
+                has_form: addForm,
+                has_form_email: !!formEmail,
+                has_ga4: !!ga4,
+                has_context: !!context,
+                has_website_analysis: analyzeWebsites,
+                has_my_website: !!myWebsite,
+                has_competitor_website: !!competitorWebsite
+            });
+        }
+        
+        // Copy and Open Cursor Function
+        function copyAndOpen() {
+            const prompt = document.getElementById('prompt-content').textContent;
+            
+            navigator.clipboard.writeText(prompt).then(() => {
+                const btn = document.getElementById('copy-btn');
+                const originalHTML = btn.innerHTML;
+                
+                // Update button
+                btn.innerHTML = `
+                    <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+                        <path d="M3 10L9 16L19 6"/>
+                    </svg>
+                    Copied!
+                `;
+                btn.classList.add('copied');
+                
+                // Track copy
+                track('copy_clicked');
+                
+                // Try to open Google AI Studio Builder
+                try {
+                    window.open('https://aistudio.google.com/apps', '_blank');
+                    track('google_ai_studio_opened');
+                } catch (e) {
+                    console.log('Could not open Google AI Studio Builder');
+                }
+                
+                // Reset button after 2.5 seconds
+                setTimeout(() => {
+                    btn.innerHTML = originalHTML;
+                    btn.classList.remove('copied');
+                }, 2500);
+            }).catch(err => {
+                console.error('Failed to copy:', err);
+                alert('Failed to copy to clipboard');
+            });
+        }
+        
+        // Toggle Prompt Visibility
+        function togglePrompt() {
+            const promptBox = document.getElementById('prompt-box');
+            promptBox.classList.toggle('open');
+        }
+    </script>
+</body>
+</html>
