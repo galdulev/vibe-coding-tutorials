@@ -5,6 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>live coding is a vibe – and your IDE is the only tool you need</title>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-N5LQHQFPL3"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-N5LQHQFPL3');
+    </script>
+    
     <meta property="og:title" content="Vibe Coding Tutorials - Build in One Flow">
     <meta property="og:description" content="Data → insights → code → ship. All in one place. No tab switching, just pure flow.">
     <style>
@@ -398,7 +408,7 @@
         
         <div class="video-container" style="padding: 20px; max-width: 550px;">
             <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7388835772520632320?compact=1" height="399" width="504" frameborder="0" allowfullscreen title="Embedded post"></iframe>
-            <div class="video-caption" style="margin-top: 12px;">the whole flow, uncut</div>
+            <div class="video-caption" style="margin-top: 12px;">the whole flow</div>
         </div>
 
         <div class="note">
@@ -468,7 +478,21 @@
         <div class="note">
             yeah, I'm connected to Snowflake, Stripe & Salesforce.<br>
             but I used CSV files in this tutorial<br>
-            so you can do this in 2 minutes from now.
+            so you can do this in 2 minutes from now.<br><br>
+            <a href="data-playbook.html" style="display: inline-block; background: var(--terracotta); color: white; padding: 10px 20px; font-size: 16px; font-weight: 600; text-decoration: none; border-radius: 4px; margin-top: 8px; box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.1);">
+                → see the full playbook
+            </a>
+        </div>
+
+        <div style="background: linear-gradient(135deg, var(--olive) 0%, #7a8a4a 100%); color: white; padding: 40px 32px; border-radius: 8px; margin-top: 40px; max-width: 600px; margin-left: auto; margin-right: auto; box-shadow: 0 8px 24px rgba(0,0,0,0.2); transform: rotate(-1deg);">
+            <p style="font-size: 22px; font-weight: 600; margin-bottom: 16px; color: white;">📘 want the full playbook?</p>
+            <p style="font-size: 18px; margin-bottom: 24px; color: white; opacity: 0.95;">
+                step-by-step guide to building dashboards<br>
+                with AI that actually works
+            </p>
+            <a href="data-playbook.html" style="display: inline-block; background: white; color: var(--olive); padding: 14px 32px; font-size: 18px; font-weight: 600; text-decoration: none; border-radius: 4px; box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.1); transition: all 0.3s ease;">
+                read the data playbook →
+            </a>
         </div>
     </div>
 
@@ -521,21 +545,107 @@
     </div>
 
     <script>
+        // ============================================
+        // EVENT TRACKING SYSTEM
+        // ============================================
+        
+        function trackEvent(eventName, eventParams = {}) {
+            if (typeof gtag !== 'undefined') {
+                gtag('event', eventName, eventParams);
+                console.log('📊 Event tracked:', eventName, eventParams);
+            }
+        }
+
         let currentSection = 0;
         const sections = document.querySelectorAll('.section');
+        const viewedSections = new Set([0]);
+
+        // Time tracking
+        let startTime = Date.now();
+        let activeTime = 0;
+        let isActive = true;
+        let lastActiveTime = Date.now();
+
+        function updateActiveTime() {
+            if (isActive) {
+                activeTime += Date.now() - lastActiveTime;
+            }
+            lastActiveTime = Date.now();
+        }
+
+        ['mousedown', 'mousemove', 'keypress', 'scroll', 'touchstart'].forEach(event => {
+            document.addEventListener(event, () => {
+                if (!isActive) {
+                    isActive = true;
+                    lastActiveTime = Date.now();
+                }
+            }, { passive: true });
+        });
+
+        setInterval(() => {
+            if (Date.now() - lastActiveTime > 30000) {
+                isActive = false;
+            }
+            updateActiveTime();
+        }, 5000);
+
+        window.addEventListener('beforeunload', () => {
+            updateActiveTime();
+            const totalTime = Math.round((Date.now() - startTime) / 1000);
+            const activeTimeSec = Math.round(activeTime / 1000);
+            
+            trackEvent('page_engagement', {
+                total_time_seconds: totalTime,
+                active_time_seconds: activeTimeSec,
+                engagement_rate: totalTime > 0 ? Math.round((activeTimeSec / totalTime) * 100) : 0,
+                sections_viewed: viewedSections.size
+            });
+        });
+
+        // Scroll depth tracking
+        const scrollMilestones = { 25: false, 50: false, 75: false, 100: false };
+
+        function trackScrollDepth() {
+            const scrollPercent = Math.round(
+                (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100
+            );
+            
+            Object.keys(scrollMilestones).forEach(milestone => {
+                if (scrollPercent >= milestone && !scrollMilestones[milestone]) {
+                    scrollMilestones[milestone] = true;
+                    trackEvent('scroll_depth', {
+                        percent: milestone,
+                        page_location: window.location.pathname
+                    });
+                }
+            });
+        }
 
         document.addEventListener('keydown', (e) => {
             if (e.key === 'ArrowDown' || e.key === 'PageDown') {
                 e.preventDefault();
                 if (currentSection < sections.length - 1) {
                     currentSection++;
+                    viewedSections.add(currentSection);
                     sections[currentSection].scrollIntoView({ behavior: 'smooth' });
+                    
+                    trackEvent('section_navigation', {
+                        section_number: currentSection + 1,
+                        navigation_method: 'keyboard_next',
+                        total_sections: sections.length
+                    });
                 }
             } else if (e.key === 'ArrowUp' || e.key === 'PageUp') {
                 e.preventDefault();
                 if (currentSection > 0) {
                     currentSection--;
                     sections[currentSection].scrollIntoView({ behavior: 'smooth' });
+                    
+                    trackEvent('section_navigation', {
+                        section_number: currentSection + 1,
+                        navigation_method: 'keyboard_prev',
+                        total_sections: sections.length
+                    });
                 }
             }
         });
@@ -546,9 +656,18 @@
                 const sectionTop = section.offsetTop;
                 const sectionBottom = sectionTop + section.offsetHeight;
                 if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+                    if (currentSection !== index) {
+                        viewedSections.add(index);
+                        trackEvent('section_view', {
+                            section_number: index + 1,
+                            total_sections: sections.length
+                        });
+                    }
                     currentSection = index;
                 }
             });
+            
+            trackScrollDepth();
         });
 
         function isMobile() {
@@ -556,6 +675,12 @@
         }
 
         function shareTwitter() {
+            trackEvent('share_click', {
+                platform: 'twitter',
+                content_type: 'tutorials_index',
+                content_name: 'vibe-coding-tutorials'
+            });
+            
             const text = 'Vibe coding tutorials - build dashboards in one flow. Data analysis to shipped code, all in your IDE. Zero tab switching.';
             const url = 'https://galdulev.github.io/vibe-coding-tutorials/';
             
@@ -570,6 +695,12 @@
         }
 
         function shareLinkedIn() {
+            trackEvent('share_click', {
+                platform: 'linkedin',
+                content_type: 'tutorials_index',
+                content_name: 'vibe-coding-tutorials'
+            });
+            
             const url = 'https://galdulev.github.io/vibe-coding-tutorials/';
             
             if (isMobile()) {
@@ -583,6 +714,12 @@
         }
 
         function shareWhatsApp() {
+            trackEvent('share_click', {
+                platform: 'whatsapp',
+                content_type: 'tutorials_index',
+                content_name: 'vibe-coding-tutorials'
+            });
+            
             const text = 'Check out these vibe coding tutorials - data to dashboards in one flow';
             const url = 'https://galdulev.github.io/vibe-coding-tutorials/';
             const message = `${text} ${url}`;
@@ -595,6 +732,12 @@
         }
 
         function copyLink() {
+            trackEvent('share_click', {
+                platform: 'copy_link',
+                content_type: 'tutorials_index',
+                content_name: 'vibe-coding-tutorials'
+            });
+            
             navigator.clipboard.writeText('https://galdulev.github.io/vibe-coding-tutorials/').then(() => {
                 const toast = document.getElementById('toast');
                 toast.classList.add('show');
@@ -604,6 +747,61 @@
                 }, 3000);
             });
         }
+
+        // Video interaction tracking
+        document.querySelectorAll('iframe').forEach((iframe, index) => {
+            const container = iframe.closest('.video-container');
+            if (container) {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            trackEvent('video_view', {
+                                video_number: index + 1,
+                                video_platform: iframe.src.includes('youtube') ? 'youtube' : 'linkedin'
+                            });
+                            observer.unobserve(container);
+                        }
+                    });
+                }, { threshold: 0.5 });
+                
+                observer.observe(container);
+            }
+        });
+
+        // CTA tracking
+        document.querySelectorAll('a[href*="data-playbook"]').forEach(link => {
+            link.addEventListener('click', () => {
+                trackEvent('cta_click', {
+                    cta_type: 'data_playbook',
+                    cta_location: 'section_' + (currentSection + 1)
+                });
+            });
+        });
+
+        // External links tracking
+        document.querySelectorAll('a[href^="http"]').forEach(link => {
+            link.addEventListener('click', () => {
+                const url = link.href;
+                if (!url.includes('twitter.com/intent') && !url.includes('linkedin.com/sharing') && !url.includes('wa.me')) {
+                    trackEvent('external_link_click', {
+                        link_url: url,
+                        link_domain: new URL(url).hostname,
+                        link_text: link.textContent.trim()
+                    });
+                }
+            });
+        });
+
+        // Page load
+        window.addEventListener('load', () => {
+            trackEvent('page_load_complete', {
+                page_title: document.title,
+                page_location: window.location.pathname,
+                load_time: Math.round(performance.now())
+            });
+        });
+
+        console.log('✅ Event tracking initialized for index.html');
     </script>
 </body>
 </html>
