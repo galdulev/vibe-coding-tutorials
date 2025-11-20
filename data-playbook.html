@@ -297,55 +297,25 @@
             overflow-x: auto;
         }
 
-        /* Tags - Soft Neumorphic Design */
+        /* Tags - Pixel Perfect Match */
         .tag {
             display: inline-block;
-            background: #F5F1E8;
+            background: rgba(255, 255, 255, 0.95);
             color: #2D2D2D;
-            padding: 18px 36px;
-            border-radius: 24px;
-            font-size: 17px;
+            padding: 16px 40px;
+            border-radius: 50px;
+            font-size: 16px;
             font-weight: 500;
-            margin: 8px;
-            letter-spacing: -0.01em;
-            box-shadow:
-                8px 8px 16px rgba(0, 0, 0, 0.08),
-                -4px -4px 8px rgba(255, 255, 255, 0.5);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-        }
-
-        .tag::before {
-            content: '';
-            position: absolute;
-            left: 12px;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 4px;
-            height: 60%;
-            background: #E07856;
-            border-radius: 2px;
-            opacity: 0;
-            transition: opacity 0.3s ease;
+            margin: 10px;
+            letter-spacing: -0.005em;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .tag:hover {
-            transform: translateY(-3px);
-            box-shadow:
-                12px 12px 24px rgba(0, 0, 0, 0.12),
-                -6px -6px 12px rgba(255, 255, 255, 0.6);
-        }
-
-        .tag:hover::before {
-            opacity: 1;
-        }
-
-        .tag:nth-child(2)::before {
-            background: #8B9556;
-        }
-
-        .tag:nth-child(3)::before {
-            background: #C85A3E;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+            background: white;
         }
 
         /* Steps */
