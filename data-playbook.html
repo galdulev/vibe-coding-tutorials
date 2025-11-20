@@ -3,20 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>vibe coding playbook: the data edition (full guide)</title>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:wght@400;500;700&family=Courier+Prime&display=swap" rel="stylesheet">
     
-    <!-- Google Analytics 4 -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-N5LQHQFPL3"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-N5LQHQFPL3');
-    </script>
+    <!-- Primary Meta Tags -->
+    <title>Data Playbook: 30 Min Setup → AI That Actually Works | Gal Dulev</title>
+    <meta name="title" content="Data Playbook: 30 Min Setup → AI That Actually Works | Gal Dulev">
+    <meta name="description" content="Build data dashboards in one afternoon instead of two weeks. Stop fighting with AI. Start shipping. 4 phases from chaos to deployed dashboard. No BS, just step-by-step tutorials for PMs and analysts who want results.">
+    <meta name="keywords" content="data dashboard tutorial, AI data analysis, cursor AI, product analytics, vibe coding data, dashboard in one day, AI for product managers, data analysis tutorial, quick dashboard setup">
+    <meta name="author" content="Gal Dulev">
     
-    <meta property="og:title" content="vibe coding playbook: the data edition (full guide)">
-    <meta property="og:description" content="the complete playbook. from context setup to shipped dashboards. no BS, just step-by-step tutorials.">
+    <!-- Open Graph / Facebook / LinkedIn -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://galdulev.github.io/vibe-coding-tutorials/data-playbook.html">
+    <meta property="og:title" content="Data Playbook: 30 Min Setup → AI That Actually Works">
+    <meta property="og:description" content="Build data dashboards in one afternoon instead of two weeks. 30 min setup = AI that actually works. 4 phases to dashboard nirvana. Stop fighting with AI, start shipping.">
+    <meta property="og:image" content="https://galdulev.github.io/vibe-coding-tutorials/images/social/data-playbook-preview.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Vibe Coding Data Playbook - Build dashboards in one afternoon">
+    <meta property="og:site_name" content="Vibe Coding Tutorials">
+    <meta property="og:locale" content="en_US">
+    <meta property="article:author" content="Gal Dulev">
+    <meta property="article:published_time" content="2024-11-01T00:00:00Z">
+    <meta property="article:modified_time" content="2024-11-20T00:00:00Z">
+    <meta property="article:section" content="Tutorials">
+    <meta property="article:tag" content="AI">
+    <meta property="article:tag" content="Data Analytics">
+    <meta property="article:tag" content="Product Management">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://galdulev.github.io/vibe-coding-tutorials/data-playbook.html">
+    <meta name="twitter:title" content="Data Playbook: 30 Min Setup → AI That Actually Works">
+    <meta name="twitter:description" content="Build data dashboards in one afternoon. 30 min setup = AI that actually works. 4 phases to dashboard nirvana. Stop fighting with AI, start shipping.">
+    <meta name="twitter:image" content="https://galdulev.github.io/vibe-coding-tutorials/images/social/data-playbook-preview.png">
+    <meta property="twitter:image:width" content="1200">
+    <meta property="twitter:image:height" content="630">
+    <meta name="twitter:image:alt" content="Vibe Coding Data Playbook - Build dashboards in one afternoon">
+    <meta name="twitter:creator" content="@galdulev">
+    <meta name="twitter:site" content="@galdulev">
+    
+    <!-- Additional SEO -->
+    <link rel="canonical" href="https://galdulev.github.io/vibe-coding-tutorials/data-playbook.html">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="googlebot" content="index, follow">
+    
+    <!-- Favicons -->
+    <link rel="icon" type="image/x-icon" href="/vibe-coding-tutorials/images/favicons/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="/vibe-coding-tutorials/images/favicons/favicon-32x32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/vibe-coding-tutorials/images/favicons/apple-touch-icon.png">
+    <link rel="manifest" href="/vibe-coding-tutorials/site.webmanifest">
+    
+    <!-- Theme Color -->
+    <meta name="theme-color" content="#E07856">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    
     <style>
         * {
             margin: 0;
@@ -38,7 +80,8 @@
             font-family: 'DM Sans', sans-serif;
             background: var(--cream);
             color: var(--dark);
-            line-height: 1.7;
+            line-height: 1.6;
+            overflow-x: hidden;
         }
 
         /* Author Credit */
@@ -63,270 +106,330 @@
             text-decoration: none;
             font-weight: 600;
             border-bottom: 2px solid white;
+            transition: all 0.3s ease;
         }
 
-        /* Container */
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 40px 20px;
+        .author-banner a:hover {
+            border-bottom-color: var(--cream);
+            opacity: 0.9;
         }
 
-        /* Hero */
-        .hero {
-            text-align: center;
-            padding: 80px 20px;
-            background: linear-gradient(135deg, var(--beige) 0%, var(--cream) 100%);
-            margin: -40px -20px 60px;
+        .slide {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 80px 40px;
+            position: relative;
         }
 
-        .hero h1 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 56px;
-            font-weight: 700;
-            line-height: 1.1;
-            margin-bottom: 20px;
-            color: var(--terracotta);
-            text-transform: lowercase;
-        }
-
-        .hero .subtitle {
-            font-size: 24px;
-            color: var(--gray);
-            margin-bottom: 32px;
-        }
-
-        .tag {
-            display: inline-block;
-            background: var(--terracotta);
-            color: white;
-            padding: 6px 16px;
-            border-radius: 20px;
+        .slide-number {
+            position: absolute;
+            top: 30px;
+            right: 40px;
             font-size: 14px;
-            font-weight: 600;
-            margin: 4px;
+            color: var(--gray);
+            font-weight: 500;
         }
 
         /* Typography */
+        h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 72px;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            text-transform: lowercase;
+            text-align: center;
+        }
+
         h2 {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: 40px;
+            font-size: 48px;
             font-weight: 600;
-            margin: 60px 0 24px;
-            color: var(--dark);
+            line-height: 1.2;
+            margin-bottom: 32px;
             text-transform: lowercase;
         }
 
         h3 {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: 28px;
+            font-size: 32px;
             font-weight: 600;
-            margin: 40px 0 16px;
-            color: var(--terracotta);
+            margin-bottom: 20px;
             text-transform: lowercase;
         }
 
-        h4 {
-            font-size: 20px;
-            font-weight: 600;
-            margin: 24px 0 12px;
-            color: var(--dark);
-        }
-
         p {
-            font-size: 18px;
-            line-height: 1.7;
-            margin-bottom: 16px;
-        }
-
-        /* Code blocks */
-        pre, code {
-            font-family: 'Courier Prime', monospace;
-            background: var(--dark);
-            color: var(--cream);
-            padding: 20px;
-            border-radius: 8px;
-            overflow-x: auto;
-            margin: 20px 0;
-            font-size: 14px;
+            font-size: 20px;
             line-height: 1.6;
-            border-left: 4px solid var(--terracotta);
+            max-width: 700px;
+            margin: 0 auto 24px;
         }
 
-        code {
-            padding: 3px 6px;
-            display: inline;
-            border-radius: 3px;
-            border-left: none;
+        .big-text {
+            font-size: 28px;
+            font-weight: 500;
+            line-height: 1.5;
         }
 
-        /* Lists */
-        ul, ol {
-            margin: 16px 0 16px 32px;
+        .highlight {
+            background: linear-gradient(180deg, transparent 50%, #FFE066 50%);
+            padding: 2px 6px;
         }
 
-        li {
-            margin-bottom: 12px;
-            line-height: 1.7;
+        /* Cards */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 32px;
+            max-width: 1200px;
+            margin: 40px auto;
+            width: 100%;
         }
 
-        /* Note boxes */
+        .card {
+            background: white;
+            padding: 32px;
+            border-radius: 4px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+            transform: rotate(-1deg);
+            transition: all 0.3s ease;
+        }
+
+        .card:nth-child(even) {
+            transform: rotate(1deg);
+        }
+
+        .card:hover {
+            transform: rotate(0deg) translateY(-8px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+        }
+
+        .card h3 {
+            color: var(--terracotta);
+            margin-bottom: 16px;
+            font-size: 24px;
+        }
+
+        .card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .card li {
+            padding: 8px 0;
+            padding-left: 28px;
+            position: relative;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .card li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--olive);
+            font-weight: 700;
+        }
+
+        /* Polaroid */
+        .polaroid {
+            background: white;
+            padding: 20px 20px 60px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+            transform: rotate(-2deg);
+            margin: 40px auto;
+            max-width: 600px;
+        }
+
+        .polaroid-content {
+            background: var(--beige);
+            padding: 32px;
+            font-size: 18px;
+            line-height: 1.8;
+            text-align: left;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .polaroid-caption {
+            margin-top: 20px;
+            font-size: 16px;
+            color: var(--gray);
+            font-style: italic;
+            text-align: center;
+        }
+
+        /* Note */
         .note {
             background: linear-gradient(180deg, #FFFEF9 0%, #FFF8E7 100%);
             border: 2px solid var(--terracotta);
-            padding: 24px;
-            margin: 32px 0;
-            border-radius: 4px;
+            padding: 32px;
+            border-radius: 0;
+            box-shadow: 4px 4px 0 rgba(224, 120, 86, 0.2);
+            max-width: 600px;
+            margin: 32px auto;
+            transform: rotate(1deg);
             position: relative;
         }
 
         .note::before {
-            content: '';
+            content: '📌';
+            position: absolute;
+            top: -15px;
+            right: 40px;
+            font-size: 32px;
+        }
+
+        /* Code */
+        .code {
+            background: var(--dark);
+            color: var(--cream);
+            padding: 24px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            line-height: 1.6;
+            margin: 24px auto;
+            border-left: 4px solid var(--terracotta);
+            text-align: left;
+            max-width: 700px;
+            overflow-x: auto;
+        }
+
+        /* Tags - Elegant Apple-style */
+        .tag {
+            display: inline-block;
+            background: var(--terracotta);
+            color: white;
+            padding: 14px 32px;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: 500;
+            margin: 8px;
+            box-shadow: 0 4px 16px rgba(224, 120, 86, 0.2);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            letter-spacing: -0.01em;
+        }
+
+        .tag:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(224, 120, 86, 0.3);
+        }
+
+        .tag.olive {
+            background: var(--olive);
+            box-shadow: 0 4px 16px rgba(139, 149, 86, 0.2);
+        }
+
+        .tag.olive:hover {
+            box-shadow: 0 8px 24px rgba(139, 149, 86, 0.3);
+        }
+
+        .tag.orange {
+            background: var(--orange);
+            box-shadow: 0 4px 16px rgba(200, 90, 62, 0.2);
+        }
+
+        .tag.orange:hover {
+            box-shadow: 0 8px 24px rgba(200, 90, 62, 0.3);
+        }
+
+        /* Steps */
+        .steps {
+            max-width: 700px;
+            margin: 40px auto;
+            text-align: left;
+        }
+
+        .step {
+            background: white;
+            padding: 24px;
+            margin-bottom: 16px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+        }
+
+        .step-number {
+            background: var(--terracotta);
+            color: white;
             width: 40px;
             height: 40px;
-            position: absolute;
-            top: 15px;
-            left: -20px;
-            background: url('data:image/svg+xml,<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L9.5 8.5L3 9.5L7.5 14L6.5 21L12 17.5L17.5 21L16.5 14L21 9.5L14.5 8.5L12 2Z" fill="%23FFD700" stroke="%23E07856" stroke-width="1.5"/></svg>') center/contain no-repeat;
-            animation: sparkle 2s ease-in-out infinite;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            flex-shrink: 0;
         }
 
-        @keyframes sparkle {
-            0%, 100% { transform: rotate(-10deg) scale(1); opacity: 1; }
-            50% { transform: rotate(10deg) scale(1.1); opacity: 0.8; }
-        }
-
-        /* Warning boxes */
-        .warning {
-            background: #FFE4CC;
-            border-left: 4px solid var(--orange);
-            padding: 20px;
-            margin: 24px 0;
-        }
-
-        /* Table */
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 24px 0;
-            background: white;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        th {
-            background: var(--beige);
-            padding: 16px;
-            text-align: left;
-            font-weight: 600;
-            border-bottom: 2px solid var(--cream);
-        }
-
-        td {
-            padding: 14px 16px;
-            border-bottom: 1px solid var(--cream);
-        }
-
-        tr:last-child td {
-            border-bottom: none;
-        }
-
-        /* Checklist */
-        .checklist {
-            list-style: none;
-            margin-left: 0;
-        }
-
-        .checklist li {
-            padding-left: 32px;
-            position: relative;
-        }
-
-        .checklist li::before {
-            content: '□';
-            position: absolute;
-            left: 0;
+        .step-content h4 {
             font-size: 20px;
-            color: var(--olive);
+            margin-bottom: 8px;
+            font-weight: 600;
         }
 
-        /* Navigation TOC */
-        .toc {
-            background: white;
-            padding: 32px;
-            border-radius: 8px;
-            margin: 40px 0;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+        .step-content p {
+            font-size: 16px;
+            color: var(--gray);
+            margin: 0;
         }
 
-        .toc h3 {
-            margin-top: 0;
-        }
-
-        .toc ul {
-            list-style: none;
-            margin-left: 0;
-        }
-
-        .toc a {
-            color: var(--dark);
+        /* CTA */
+        .cta {
+            display: inline-block;
+            background: var(--olive);
+            color: white;
+            padding: 16px 40px;
+            font-size: 18px;
+            font-weight: 600;
             text-decoration: none;
-            font-weight: 500;
-            padding: 8px 0;
-            display: block;
-            border-bottom: 1px solid var(--cream);
-            transition: all 0.2s;
+            border-radius: 4px;
+            margin-top: 32px;
+            transition: all 0.3s ease;
+            box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.1);
         }
 
-        .toc a:hover {
-            color: var(--terracotta);
-            padding-left: 12px;
+        .cta:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.15);
         }
 
-        /* Share box */
-        .share-box {
-            background: linear-gradient(135deg, var(--olive) 0%, #7a8a4a 100%);
-            color: white;
-            padding: 40px;
-            border-radius: 8px;
-            text-align: center;
-            margin: 60px 0;
-        }
-
-        .share-box h3 {
-            color: white;
-            margin-top: 0;
-        }
-
+        /* Share Buttons */
         .share-buttons {
             display: flex;
             gap: 16px;
             justify-content: center;
-            margin-top: 24px;
+            margin-top: 32px;
             flex-wrap: wrap;
         }
 
         .share-btn {
             padding: 12px 24px;
-            border: none;
             border-radius: 4px;
             font-size: 16px;
             font-weight: 600;
-            cursor: pointer;
             text-decoration: none;
             display: inline-block;
             transition: all 0.3s;
+            color: white;
+            cursor: pointer;
+            border: none;
         }
 
         .share-btn.twitter {
             background: #1DA1F2;
-            color: white;
         }
 
         .share-btn.linkedin {
             background: #0077B5;
-            color: white;
+        }
+
+        .share-btn.whatsapp {
+            background: #25D366;
         }
 
         .share-btn:hover {
@@ -334,1111 +437,464 @@
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
         }
 
-        /* Back to top */
-        .back-to-top {
+        /* Toast */
+        .toast {
             position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background: var(--terracotta);
+            bottom: 40px;
+            right: 40px;
+            background: linear-gradient(135deg, var(--olive) 0%, #7a8a4a 100%);
             color: white;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            font-size: 24px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-            transition: all 0.3s;
+            padding: 20px 32px;
+            border-radius: 8px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+            transform: translateY(200px) rotate(-2deg);
             opacity: 0;
-            pointer-events: none;
+            transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            z-index: 1000;
+            font-size: 18px;
+            font-weight: 600;
         }
 
-        .back-to-top.visible {
+        .toast.show {
+            transform: translateY(0) rotate(-2deg);
             opacity: 1;
-            pointer-events: all;
         }
 
-        .back-to-top:hover {
-            transform: translateY(-4px);
+        .toast::before {
+            content: '✨';
+            margin-right: 8px;
+            font-size: 20px;
         }
 
         /* Responsive */
-        /* Animated Icon Doodles */
-        .icon-doodle {
-            display: inline-block;
-            vertical-align: middle;
-        }
-
-        @keyframes steam {
-            0%, 100% { transform: translateY(0); opacity: 1; }
-            50% { transform: translateY(-3px); opacity: 0.7; }
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-        }
-
-        @keyframes wiggle {
-            0%, 100% { transform: rotate(-3deg); }
-            50% { transform: rotate(3deg); }
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-5px); }
-        }
-
-        @keyframes spin {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        .goal-icon {
-            animation: pulse 2s ease-in-out infinite;
-        }
-
-        .search-icon {
-            animation: wiggle 3s ease-in-out infinite;
-        }
-
-        .chart-icon {
-            animation: bounce 2s ease-in-out infinite;
-        }
-
-        .optimize-icon {
-            animation: spin 4s linear infinite;
-        }
-
         @media (max-width: 768px) {
-            .hero h1 { font-size: 36px; }
-            .hero .subtitle { font-size: 18px; }
-            h2 { font-size: 32px; }
+            h1 { font-size: 48px; }
+            h2 { font-size: 36px; }
             h3 { font-size: 24px; }
-            .container { padding: 20px 16px; }
-            .share-buttons { flex-direction: column; }
+            .slide { padding: 60px 20px; }
+            .author-banner { padding: 12px 20px; }
+            .share-buttons {
+                flex-direction: column;
+                gap: 12px;
+            }
+            .share-btn {
+                width: 100%;
+                max-width: 300px;
+            }
+            .toast {
+                right: 20px;
+                bottom: 20px;
+                left: 20px;
+                font-size: 16px;
+                padding: 16px 24px;
+                text-align: center;
+            }
         }
     </style>
 </head>
 <body>
+    <div id="toast" class="toast">link copied!</div>
+    
     <!-- Author Credit -->
     <div class="author-banner">
         <p>📘 made with ☕ by <a href="https://www.linkedin.com/in/galdulev/" target="_blank">gal dulev</a>, product manager</p>
     </div>
 
-    <!-- Hero -->
-    <div class="hero">
-        <h1>vibe coding playbook:<br>the data edition</h1>
-        <p class="subtitle">the complete guide</p>
+    <!-- Slide 1: Hero -->
+    <div class="slide" style="background: linear-gradient(135deg, var(--beige) 0%, var(--cream) 100%);">
+        <div class="slide-number">1/11</div>
+        <h1 style="color: var(--terracotta);">vibe coding playbook:<br>the data edition</h1>
         <div class="tag">30 min setup</div>
         <div class="tag">AI that works</div>
         <div class="tag">actually fun</div>
-    </div>
-
-    <div class="container">
-        <!-- Table of Contents -->
-        <div class="toc">
-            <h3>📚 table of contents</h3>
-            <ul>
-                <li><a href="#preflight">Pre-Flight: Context Preparation</a></li>
-                <li><a href="#phase1">Phase 1: Exploratory Analysis</a></li>
-                <li><a href="#phase2">Phase 2: Building Analytics</a></li>
-                <li><a href="#phase3">Phase 3: Dashboard Creation</a></li>
-                <li><a href="#phase4">Phase 4: Refinement & Testing</a></li>
-                <li><a href="#bestpractices">Best Practices</a></li>
-                <li><a href="#pitfalls">Common Pitfalls & Solutions</a></li>
-                <li><a href="#templates">Prompt Templates</a></li>
-                <li><a href="#example">Example Workflow: End-to-End</a></li>
-                <li><a href="#checklist">Success Checklist</a></li>
-            </ul>
-        </div>
-
-        <!-- Pre-Flight -->
-        <h2 id="preflight">pre-flight: context preparation</h2>
-        
-        <p><strong><span class="icon-doodle goal-icon" style="width:24px; height:24px;">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width:100%; height:100%;">
-                <circle cx="12" cy="12" r="10" fill="none" stroke="#E07856" stroke-width="2" stroke-dasharray="2,2"/>
-                <circle cx="12" cy="12" r="6" fill="none" stroke="#C85A3E" stroke-width="2"/>
-                <circle cx="12" cy="12" r="2" fill="#E07856"/>
-            </svg>
-        </span> Goal:</strong> Set up AI with everything it needs to succeed</p>
-
-        <h3>step 1: create your context file</h3>
-        
-        <p><strong>File:</strong> <code>.cursorrules</code> or <code>CONTEXT_FOR_AI.md</code> in project root</p>
-
-        <pre># Project Context for AI
-
-## Database Schema
-[Include table definitions with annotations]
-
-## Business Context
-[Field meanings, KPIs, business rules]
-
-## Data Quality Notes
-[Known issues, refresh schedules, gotchas]
-
-## Common Queries
-[Examples of typical analysis patterns]
-
-## User Personas & Use Cases
-[Who uses this, what they need]</pre>
-
-        <p><strong>Time Investment:</strong> 2-4 hours initially | Saves 10+ hours in iteration</p>
-
-        <h3>step 2: gather sample data</h3>
-        
-        <p>Create small CSV files or SQL dumps with:</p>
-        <ul>
-            <li>Representative data (5-100 rows)</li>
-            <li>Edge cases (nulls, outliers, special values)</li>
-            <li>Different time periods</li>
-        </ul>
-
-        <h3>step 3: define your analysis goal</h3>
-        
-        <p><strong>Template:</strong></p>
-        <pre>GOAL: [What decision or insight are we enabling?]
-AUDIENCE: [Who will use this?]
-KEY METRICS: [Top 3-5 metrics that matter]
-TIME FRAME: [Historical period, real-time, forecast?]
-OUTPUT: [Report, dashboard, API, scheduled email?]</pre>
-
-        <!-- Phase 1 -->
-        <h2 id="phase1">phase 1: exploratory analysis</h2>
-        
-        <p><strong><span class="icon-doodle goal-icon" style="width:24px; height:24px;">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width:100%; height:100%;">
-                <circle cx="12" cy="12" r="10" fill="none" stroke="#E07856" stroke-width="2" stroke-dasharray="2,2"/>
-                <circle cx="12" cy="12" r="6" fill="none" stroke="#C85A3E" stroke-width="2"/>
-                <circle cx="12" cy="12" r="2" fill="#E07856"/>
-            </svg>
-        </span> Goal:</strong> Understand your data and validate assumptions</p>
-
-        <h3>step 1.1: initial data exploration</h3>
-        
-        <p><strong>Prompt Template:</strong></p>
-        <pre>I need to analyze [DATASET/TABLE]. Please help me:
-
-1. Show me the data structure (columns, types, sample values)
-2. Check for data quality issues (nulls, duplicates, outliers)
-3. Generate summary statistics for key fields
-4. Identify relationships between tables
-
-Context:
-- [Brief business context]
-- [Any known data issues]
-- [What I'm trying to learn]</pre>
-
-        <p><strong>Expected Output:</strong></p>
-        <ul>
-            <li>Python script with pandas or SQL queries</li>
-            <li>Summary statistics</li>
-            <li>Data quality report</li>
-            <li>Recommendations for cleaning</li>
-        </ul>
-
-        <h3>step 1.2: ask specific analysis questions</h3>
-        
-        <p><strong>Prompt Pattern:</strong></p>
-        <pre>Using [DATASET], answer: "[BUSINESS QUESTION]"
-
-Please:
-1. Write the query/analysis code
-2. Explain your approach
-3. Show results with visualization
-4. Flag any caveats or limitations
-
-Example data: [paste 3-5 rows]</pre>
-
-        <h3>step 1.3: iterate and refine</h3>
-        
-        <pre>[If results look wrong]
-"The results show [UNEXPECTED PATTERN]. This doesn't match business expectations. 
-Can you:
-1. Verify the join conditions
-2. Check for data filtering issues
-3. Show me the intermediate steps"
-
-[If you need different angle]
-"Good start. Now let's also analyze [ADDITIONAL DIMENSION]. 
-Can you modify the query to also show [NEW METRIC]?"</pre>
-
-        <!-- Phase 2 -->
-        <h2 id="phase2">phase 2: building analytics</h2>
-        
-        <p><strong><span class="icon-doodle goal-icon" style="width:24px; height:24px;">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width:100%; height:100%;">
-                <circle cx="12" cy="12" r="10" fill="none" stroke="#E07856" stroke-width="2" stroke-dasharray="2,2"/>
-                <circle cx="12" cy="12" r="6" fill="none" stroke="#C85A3E" stroke-width="2"/>
-                <circle cx="12" cy="12" r="2" fill="#E07856"/>
-            </svg>
-        </span> Goal:</strong> Create reusable analysis code and metrics</p>
-
-        <h3>step 2.1: define metrics clearly</h3>
-        
-        <p><strong>Prompt Template:</strong></p>
-        <pre>I need to create a metric calculation for: [METRIC NAME]
-
-Business Definition: [How business defines it]
-Formula: [Math formula if available]
-Data Sources: [Tables/fields involved]
-Filters: [What to include/exclude]
-Grouping: [Time period, region, category?]
-Edge Cases: [Special handling needed]
-
-Please create a Python function or SQL query that:
-1. Implements this metric correctly
-2. Handles edge cases
-3. Is reusable and parameterized
-4. Includes validation checks</pre>
-
-        <h3>step 2.2: build analysis pipeline</h3>
-        
-        <p><strong>Prompt Template:</strong></p>
-        <pre>Create an analysis pipeline that:
-
-INPUT: [Data source, time range, filters]
-STEPS:
-  1. [Load/extract data]
-  2. [Clean/transform]
-  3. [Calculate metrics]
-  4. [Aggregate/summarize]
-  5. [Export results]
-OUTPUT: [Format, destination]
-
-Requirements:
-- Modular code (separate functions for each step)
-- Error handling
-- Logging
-- Can be scheduled/automated</pre>
-
-        <h3>step 2.3: validate results</h3>
-        
-        <p><strong>Prompt:</strong></p>
-        <pre>Help me validate this analysis:
-
-1. Show sample calculations step-by-step for 2-3 records
-2. Compare results to manual calculation
-3. Check for common errors:
-   - Off-by-one errors in date ranges
-   - Double-counting in joins
-   - Missing data handling
-   - Timezone issues
-4. Suggest test cases I should verify</pre>
-
-        <!-- Phase 3 -->
-        <h2 id="phase3">phase 3: dashboard creation</h2>
-        
-        <p><strong><span class="icon-doodle goal-icon" style="width:24px; height:24px;">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width:100%; height:100%;">
-                <circle cx="12" cy="12" r="10" fill="none" stroke="#E07856" stroke-width="2" stroke-dasharray="2,2"/>
-                <circle cx="12" cy="12" r="6" fill="none" stroke="#C85A3E" stroke-width="2"/>
-                <circle cx="12" cy="12" r="2" fill="#E07856"/>
-            </svg>
-        </span> Goal:</strong> Build interactive, user-friendly dashboards</p>
-
-        <h3>step 3.1: choose your stack</h3>
-        
-        <p><strong>Prompt:</strong></p>
-        <pre>I need to create a dashboard for [AUDIENCE] showing [METRICS].
-
-Requirements:
-- [Interactive filters? Yes/No]
-- [Real-time updates? Yes/No]
-- [Mobile-friendly? Yes/No]
-- [Deployment: Local/Web/Embedded]
-
-Recommend a tech stack (e.g., Plotly Dash, Streamlit, Tableau, etc.) and explain why.</pre>
-
-        <h3>step 3.2: design layout first</h3>
-        
-        <p><strong>Prompt Template:</strong></p>
-        <pre>Create a dashboard layout specification for: [DASHBOARD PURPOSE]
-
-Users need to:
-1. [Primary action/question]
-2. [Secondary actions]
-3. [Drill-down needs]
-
-Include:
-- Page layout (sections, grid)
-- Component types (charts, tables, filters)
-- Visual hierarchy (what's most prominent)
-- Interaction flow (how users navigate)
-
-Output format: Markdown wireframe or ASCII diagram</pre>
-
-        <h3>step 3.3: build dashboard iteratively</h3>
-        
-        <p><strong>Initial Prompt:</strong></p>
-        <pre>Build a [FRAMEWORK] dashboard with:
-
-1. Data loading: [How to fetch data]
-2. KPI cards showing: [Metric 1, Metric 2, Metric 3]
-3. One main chart: [Chart type showing what]
-4. Basic filtering: [Filter by what]
-
-Use dummy data for now. Focus on layout and interactivity.</pre>
-
-        <p><strong>Then Iterate:</strong></p>
-        <pre>"Add a [NEW CHART TYPE] showing [WHAT]"
-"Make the [CHART] interactive - clicking should filter other charts"
-"Add export to CSV functionality"
-"Improve the styling - use [COLOR SCHEME]"
-"Add loading states and error handling"</pre>
-
-        <h3>step 3.4: connect real data</h3>
-        
-        <p><strong>Prompt:</strong></p>
-        <pre>Replace dummy data with real data from [SOURCE].
-
-Requirements:
-1. Efficient data loading (cache if appropriate)
-2. Handle data refresh [frequency]
-3. Show loading indicators
-4. Handle errors gracefully (show message to user)
-5. Add last-updated timestamp
-
-Here's my current dashboard code:
-[PASTE CODE]
-
-And here's how to connect to data:
-[CONNECTION DETAILS]</pre>
-
-        <!-- Phase 4 -->
-        <h2 id="phase4">phase 4: refinement & testing</h2>
-        
-        <p><strong><span class="icon-doodle goal-icon" style="width:24px; height:24px;">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width:100%; height:100%;">
-                <circle cx="12" cy="12" r="10" fill="none" stroke="#E07856" stroke-width="2" stroke-dasharray="2,2"/>
-                <circle cx="12" cy="12" r="6" fill="none" stroke="#C85A3E" stroke-width="2"/>
-                <circle cx="12" cy="12" r="2" fill="#E07856"/>
-            </svg>
-        </span> Goal:</strong> Polish and validate before deployment</p>
-
-        <h3>step 4.1: performance optimization</h3>
-        
-        <p><strong>Prompt:</strong></p>
-        <pre>Review this dashboard code for performance issues:
-[PASTE CODE]
-
-Please:
-1. Identify bottlenecks (slow queries, repeated calculations)
-2. Suggest optimizations (caching, indexing, aggregation)
-3. Estimate impact of each optimization
-4. Implement top 3 improvements</pre>
-
-        <h3>step 4.2: user testing script</h3>
-        
-        <p><strong>Prompt:</strong></p>
-        <pre>Create a user testing checklist for this dashboard:
-[DESCRIBE DASHBOARD]
-
-Include:
-1. Test scenarios (what users should try)
-2. Expected behaviors
-3. Edge cases to verify
-4. Common mistakes to check for
-5. Performance benchmarks (load times)</pre>
-
-        <h3>step 4.3: documentation</h3>
-        
-        <p><strong>Prompt:</strong></p>
-        <pre>Generate user documentation for this dashboard:
-
-Sections needed:
-1. Overview (what it does, who it's for)
-2. How to use (step-by-step)
-3. Metrics definitions (what each number means)
-4. Filters and controls
-5. Troubleshooting (common issues)
-6. Data refresh schedule
-
-Make it clear for non-technical users.</pre>
-
-        <!-- Best Practices -->
-        <h2 id="bestpractices">best practices</h2>
-
-        <h3><span class="icon-doodle" style="width:28px; height:28px; margin-right:8px;">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width:100%; height:100%; animation: bounce 1.5s ease-in-out infinite;">
-                <circle cx="12" cy="12" r="10" fill="#8B9556" opacity="0.2"/>
-                <path d="M7 12l3 3 7-7" fill="none" stroke="#8B9556" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-        </span> DO's</h3>
-
-        <ol>
-            <li><strong>Start Small, Iterate</strong>
-                <ul>
-                    <li>Begin with simple queries/charts</li>
-                    <li>Add complexity gradually</li>
-                    <li>Test at each step</li>
-                </ul>
-            </li>
-            <li><strong>Be Specific in Prompts</strong>
-                <pre>BAD: "Create a dashboard"
-
-GOOD: "Create a Streamlit dashboard showing 3 KPI cards and a line chart of 
-       monthly trends, with a date range filter"</pre>
-            </li>
-            <li><strong>Provide Context</strong>
-                <ul>
-                    <li>Share sample data</li>
-                    <li>Explain business logic</li>
-                    <li>Mention edge cases</li>
-                </ul>
-            </li>
-            <li><strong>Validate Results</strong>
-                <ul>
-                    <li>Always spot-check calculations</li>
-                    <li>Compare to known benchmarks</li>
-                    <li>Test with edge case data</li>
-                </ul>
-            </li>
-            <li><strong>Build Reusable Components</strong>
-                <ul>
-                    <li>Ask for modular functions</li>
-                    <li>Request parameterized queries</li>
-                    <li>Create config files for settings</li>
-                </ul>
-            </li>
-        </ol>
-
-        <h3><span class="icon-doodle" style="width:28px; height:28px; margin-right:8px;">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width:100%; height:100%; animation: wiggle 2s ease-in-out infinite;">
-                <circle cx="12" cy="12" r="10" fill="#E07856" opacity="0.2"/>
-                <path d="M8 8l8 8M16 8l-8 8" stroke="#E07856" stroke-width="2.5" stroke-linecap="round"/>
-            </svg>
-        </span> DON'Ts</h3>
-
-        <ol>
-            <li><strong>Don't Assume AI Knows Your Data</strong>
-                <ul>
-                    <li>Even with context files, be explicit</li>
-                    <li>Provide examples in prompts</li>
-                </ul>
-            </li>
-            <li><strong>Don't Skip Validation</strong>
-                <ul>
-                    <li>AI can make plausible-looking mistakes</li>
-                    <li>Always verify critical metrics</li>
-                </ul>
-            </li>
-            <li><strong>Don't Overcomplicate Prompts</strong>
-                <ul>
-                    <li>One major task per prompt</li>
-                    <li>Break complex requests into steps</li>
-                </ul>
-            </li>
-            <li><strong>Don't Ignore Errors</strong>
-                <ul>
-                    <li>If output looks wrong, investigate</li>
-                    <li>Ask AI to explain its logic</li>
-                </ul>
-            </li>
-            <li><strong>Don't Forget Edge Cases</strong>
-                <ul>
-                    <li>Test with nulls, zeros, extremes</li>
-                    <li>Consider timezone issues</li>
-                </ul>
-            </li>
-        </ol>
-
-        <!-- Common Pitfalls -->
-        <h2 id="pitfalls">common pitfalls & solutions</h2>
-
-        <h3>pitfall 1: wrong aggregations</h3>
-        
-        <p><strong>Symptom:</strong> Numbers don't match manual calculations</p>
-        <p><strong>Solution:</strong></p>
-        <pre>Prompt: "Show me the step-by-step calculation for customer_id='C123', 
-breaking down each aggregation and join. Then verify the logic."</pre>
-
-        <h3>pitfall 2: time zone confusion</h3>
-        
-        <p><strong>Symptom:</strong> Date-based metrics are off by a day</p>
-        <p><strong>Solution:</strong></p>
-        <pre>Prompt: "All timestamps in my database are UTC. When calculating daily 
-metrics, convert to [TIMEZONE] first, then aggregate by date. 
-Show me how you're handling timezones in the code."</pre>
-
-        <h3>pitfall 3: cartesian explosion in joins</h3>
-        
-        <p><strong>Symptom:</strong> Counts are way too high</p>
-        <p><strong>Solution:</strong></p>
-        <pre>Prompt: "The counts look inflated. Please:
-1. Show the join logic explicitly
-2. Check for many-to-many relationships
-3. Add DISTINCT where appropriate
-4. Show row counts at each join step"</pre>
-
-        <h3>pitfall 4: hardcoded values</h3>
-        
-        <p><strong>Symptom:</strong> Dashboard breaks when data changes</p>
-        <p><strong>Solution:</strong></p>
-        <pre>Prompt: "Refactor this code to use configuration:
-- Move all hardcoded filters to config.yaml
-- Parameterize date ranges
-- Make chart colors configurable
-- Extract SQL queries to separate files"</pre>
-
-        <h3>pitfall 5: poor error handling</h3>
-        
-        <p><strong>Symptom:</strong> Dashboard crashes on bad data</p>
-        <p><strong>Solution:</strong></p>
-        <pre>Prompt: "Add comprehensive error handling:
-1. Wrap data loading in try-except
-2. Validate data shape/types before processing
-3. Show user-friendly error messages
-4. Log errors for debugging
-5. Provide fallback behavior (show message vs crash)"</pre>
-
-        <!-- Prompt Templates -->
-        <h2 id="templates">prompt templates</h2>
-
-        <h3><span class="icon-doodle search-icon" style="width:28px; height:28px; margin-right:8px;">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width:100%; height:100%;">
-                <circle cx="10" cy="10" r="6" fill="none" stroke="#8B9556" stroke-width="2"/>
-                <line x1="14" y1="14" x2="20" y2="20" stroke="#8B9556" stroke-width="2.5" stroke-linecap="round"/>
-                <circle cx="10" cy="10" r="3" fill="#8B9556" opacity="0.3"/>
-            </svg>
-        </span> exploratory analysis</h3>
-        
-        <pre>Analyze [DATASET] to answer: "[QUESTION]"
-
-Context: [Brief description]
-Data location: [Path/connection string]
-Sample data: [Paste 3-5 rows]
-
-Please:
-1. Load and validate data
-2. Perform [SPECIFIC ANALYSIS]
-3. Visualize results
-4. Highlight key findings
-5. Note any data quality issues</pre>
-
-        <h3><span class="icon-doodle chart-icon" style="width:28px; height:28px; margin-right:8px;">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width:100%; height:100%;">
-                <rect x="4" y="14" width="4" height="6" fill="#E07856" opacity="0.7"/>
-                <rect x="10" y="10" width="4" height="10" fill="#C85A3E" opacity="0.8"/>
-                <rect x="16" y="6" width="4" height="14" fill="#E07856"/>
-            </svg>
-        </span> metric creation</h3>
-        
-        <pre>Create a [LANGUAGE] function to calculate: [METRIC NAME]
-
-Definition: [How it's defined]
-Formula: [Mathematical formula]
-Inputs: [Required parameters]
-Outputs: [Return value format]
-
-Requirements:
-- Handle [EDGE CASE 1]
-- Handle [EDGE CASE 2]
-- Include docstring with examples
-- Add input validation</pre>
-
-        <h3><span class="icon-doodle" style="width:28px; height:28px; margin-right:8px;">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width:100%; height:100%; animation: pulse 2s ease-in-out infinite;">
-                <path d="M4 20L8 12L12 16L16 8L20 14" fill="none" stroke="#8B9556" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-                <circle cx="8" cy="12" r="2" fill="#8B9556"/>
-                <circle cx="12" cy="16" r="2" fill="#8B9556"/>
-                <circle cx="16" cy="8" r="2" fill="#8B9556"/>
-            </svg>
-        </span> chart creation</h3>
-        
-        <pre>Create a [CHART TYPE] showing [WHAT] over [DIMENSION] using [LIBRARY].
-
-Data source: [How to get data]
-X-axis: [Variable and label]
-Y-axis: [Variable and label]
-Grouping: [If applicable]
-Styling: [Colors, theme, specific requirements]
-
-Make it interactive with:
-- [INTERACTION 1]
-- [INTERACTION 2]</pre>
-
-        <h3><span class="icon-doodle" style="width:28px; height:28px; margin-right:8px;">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width:100%; height:100%; animation: wiggle 2.5s ease-in-out infinite;">
-                <rect x="3" y="3" width="18" height="18" fill="none" stroke="#C85A3E" stroke-width="2" rx="2"/>
-                <rect x="5" y="5" width="6" height="4" fill="#E07856" opacity="0.6"/>
-                <rect x="13" y="5" width="6" height="4" fill="#E07856" opacity="0.6"/>
-                <rect x="5" y="11" width="14" height="7" fill="#C85A3E" opacity="0.4"/>
-            </svg>
-        </span> dashboard building</h3>
-        
-        <pre>Build a [FRAMEWORK] dashboard for [PURPOSE].
-
-Pages/Sections:
-1. [Section 1]: [What it shows]
-2. [Section 2]: [What it shows]
-
-Components needed:
-- [COMPONENT 1]: [Description]
-- [COMPONENT 2]: [Description]
-
-Interactions:
-- [HOW FILTERS WORK]
-- [HOW DRILL-DOWN WORKS]
-
-Start with layout and dummy data first.</pre>
-
-        <h3><span class="icon-doodle" style="width:28px; height:28px; margin-right:8px;">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width:100%; height:100%; animation: wiggle 1.5s ease-in-out infinite;">
-                <ellipse cx="12" cy="14" rx="6" ry="8" fill="#E07856" opacity="0.7"/>
-                <circle cx="12" cy="8" r="4" fill="#E07856"/>
-                <line x1="9" y1="8" x2="6" y2="6" stroke="#E07856" stroke-width="2" stroke-linecap="round"/>
-                <line x1="15" y1="8" x2="18" y2="6" stroke="#E07856" stroke-width="2" stroke-linecap="round"/>
-                <circle cx="10" cy="7" r="1" fill="white"/>
-                <circle cx="14" cy="7" r="1" fill="white"/>
-            </svg>
-        </span> debugging</h3>
-        
-        <pre>This [CODE/QUERY] is producing [UNEXPECTED RESULT].
-
-Expected: [What should happen]
-Actual: [What's happening]
-Sample input: [Provide example]
-
-Please:
-1. Identify the issue
-2. Explain why it's happening
-3. Provide fixed code
-4. Show before/after comparison</pre>
-
-        <h3><span class="icon-doodle optimize-icon" style="width:28px; height:28px; margin-right:8px;">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width:100%; height:100%;">
-                <path d="M13 2L3 14h8l-1 8 10-12h-8l1-8z" fill="#FFD700" stroke="#E07856" stroke-width="1.5" stroke-linejoin="round"/>
-            </svg>
-        </span> optimization</h3>
-        
-        <pre>Optimize this code for [METRIC: speed/memory/readability]:
-[PASTE CODE]
-
-Current performance: [If known]
-Target: [Goal]
-
-Please:
-1. Profile to find bottlenecks
-2. Suggest 3-5 optimizations
-3. Implement the most impactful ones
-4. Measure improvement</pre>
-
-        <!-- Example Workflow -->
-        <h2 id="example">example workflow: end-to-end</h2>
-
-        <h3>scenario: create a sales performance dashboard</h3>
-
-        <p><strong>Step 1: Initial Prompt</strong></p>
-        <pre>I need to create a sales performance dashboard for regional managers.
-
-Data: PostgreSQL database with tables 'sales', 'products', 'regions'
-Goal: Show monthly sales trends, top products, regional comparison
-Audience: Regional sales managers (non-technical)
-Framework: Streamlit (already installed)
-
-First, help me:
-1. Understand the data structure
-2. Define key metrics
-3. Design the layout</pre>
-
-        <p><strong>Step 2: Define Metrics</strong></p>
-        <pre>Based on discussion, create Python functions for:
-
-1. total_sales(start_date, end_date, region=None)
-   - Returns: Total revenue, number of transactions, avg transaction value
-   
-2. sales_trend(start_date, end_date, grouping='month')
-   - Returns: DataFrame with dates and sales values
-   
-3. top_products(start_date, end_date, top_n=10)
-   - Returns: DataFrame with product names and sales, sorted</pre>
-
-        <p><strong>Step 3: Build Dashboard Shell</strong></p>
-        <pre>Create Streamlit dashboard with:
-
-1. Sidebar: Date range picker, region selector
-2. Main area:
-   - Row 1: 3 KPI cards (total sales, transactions, avg value)
-   - Row 2: Line chart (sales trend)
-   - Row 3: Two columns
-     - Left: Bar chart (top 10 products)
-     - Right: Table (regional breakdown)
-
-Use st.columns for layout. Use dummy data for now.</pre>
-
-        <p><strong>Step 4: Connect Real Data</strong></p>
-        <pre>Connect to database using these credentials: [REDACTED]
-
-Replace dummy data in the dashboard with real queries.
-Add caching for performance using @st.cache_data.</pre>
-
-        <p><strong>Step 5: Polish</strong></p>
-        <pre>Improvements needed:
-1. Add loading spinners
-2. Format numbers (currency, percentages)
-3. Add title and description
-4. Make charts interactive (click to filter)
-5. Add export to Excel button
-6. Improve color scheme (use company colors: #FF6B6B, #4ECDC4)</pre>
-
-        <p><strong>Step 6: Deploy</strong></p>
-        <pre>Help me deploy this dashboard:
-1. Create requirements.txt
-2. Write deployment instructions
-3. Create README.md
-4. Add environment variable handling for DB credentials</pre>
-
-        <!-- Quick Reference -->
-        <h2>quick reference card</h2>
-
-        <table>
-            <thead>
-                <tr>
-                    <th>Task</th>
-                    <th>Tool/Approach</th>
-                    <th>Prompt Starter</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Understand data</td>
-                    <td>Pandas + describe()</td>
-                    <td>"Analyze this dataset and show..."</td>
-                </tr>
-                <tr>
-                    <td>SQL Query</td>
-                    <td>Direct SQL</td>
-                    <td>"Write a query that returns..."</td>
-                </tr>
-                <tr>
-                    <td>Chart</td>
-                    <td>Plotly/Matplotlib</td>
-                    <td>"Create a [chart type] showing..."</td>
-                </tr>
-                <tr>
-                    <td>Dashboard</td>
-                    <td>Streamlit/Dash</td>
-                    <td>"Build a dashboard with..."</td>
-                </tr>
-                <tr>
-                    <td>Debug</td>
-                    <td>Ask for explanation</td>
-                    <td>"This code produces X but should produce Y..."</td>
-                </tr>
-                <tr>
-                    <td>Optimize</td>
-                    <td>Profiling</td>
-                    <td>"Profile this code and optimize..."</td>
-                </tr>
-                <tr>
-                    <td>Test</td>
-                    <td>Generate test cases</td>
-                    <td>"Create test scenarios for..."</td>
-                </tr>
-                <tr>
-                    <td>Document</td>
-                    <td>Docstrings + README</td>
-                    <td>"Document this code/dashboard..."</td>
-                </tr>
-            </tbody>
-        </table>
-
-        <!-- Success Checklist -->
-        <h2 id="checklist">success checklist</h2>
-
-        <p>Before considering your dashboard complete:</p>
-
-        <ul class="checklist">
-            <li>All metrics calculated correctly (spot-checked)</li>
-            <li>Edge cases handled (nulls, zeros, extremes)</li>
-            <li>Performance acceptable (&lt;3s load time)</li>
-            <li>Responsive on different screen sizes</li>
-            <li>Error messages clear and actionable</li>
-            <li>Data refresh working properly</li>
-            <li>Filters and interactions work as expected</li>
-            <li>Documentation complete (user guide + technical)</li>
-            <li>Code reviewed and refactored</li>
-            <li>Tested by actual users</li>
-            <li>Deployment instructions clear</li>
-        </ul>
-
-        <!-- Watch Tutorials -->
-        <div class="note" style="text-align: center;">
-            <h3 style="margin-top: 0; color: var(--terracotta);">watch it in action</h3>
-            <p style="margin-bottom: 24px;">see how vibe coding works with real examples</p>
-            <a href="index.html" style="display: inline-block; background: var(--olive); color: white; padding: 12px 32px; border-radius: 4px; text-decoration: none; font-weight: 600; box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.1);">watch vibe coding tutorials →</a>
-        </div>
-
-        <!-- Share Box -->
-        <div class="share-box">
-            <h3>share this playbook</h3>
-            <p>Know a PM or analyst drowning in data? Send them this playbook:</p>
-            <div class="share-buttons">
-                <a href="https://twitter.com/intent/tweet?text=Finally%2C%20a%20way%20to%20build%20dashboards%20in%20one%20afternoon.%20Product%20managers%20%26%20analysts%3A%20stop%20fighting%20with%20AI.%20This%20playbook%20actually%20works.&url=https://galdulev.github.io/vibe-coding-tutorials/data-playbook-full.html" target="_blank" class="share-btn twitter">
-                    share on twitter
-                </a>
-                <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://galdulev.github.io/vibe-coding-tutorials/data-playbook-full.html" target="_blank" class="share-btn linkedin">
-                    share on linkedin
-                </a>
-                <a href="https://www.linkedin.com/in/galdulev/" target="_blank" class="share-btn" style="background: var(--terracotta);">
-                    more tutorials & playbooks
-                </a>
-            </div>
-        </div>
-
-        <p style="text-align: center; color: var(--gray); margin-top: 60px; padding-bottom: 40px;">
-            made with ☕ and way too much AI experimentation by <a href="https://www.linkedin.com/in/galdulev/" style="color: var(--terracotta); font-weight: 600;">gal dulev</a>, product manager
+        <p style="margin-top: 40px; font-size: 18px; color: var(--gray); font-style: italic;">
+            *finally, a guide that treats you like a human*
         </p>
     </div>
 
-    <!-- Back to Top Button -->
-    <a href="#" class="back-to-top" id="backToTop">
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width:24px; height:24px;">
-            <path d="M12 4l-8 8h5v8h6v-8h5l-8-8z" fill="white"/>
-        </svg>
-    </a>
+    <!-- Slide 2: The Problem -->
+    <div class="slide">
+        <div class="slide-number">2/11</div>
+        <h2>the problem</h2>
+        <div class="code">
+you: "hey AI, analyze my data"
+
+AI: *confused robot noises* 🤖❓
+
+you: *hours of back-and-forth*
+you: *still wrong answers*
+you: *existential crisis*
+        </div>
+        <p class="big-text">
+            sound familiar?<br>
+            <span class="highlight">you're not alone</span>
+        </p>
+    </div>
+
+    <!-- Slide 3: The Real Issue -->
+    <div class="slide" style="background: white;">
+        <div class="slide-number">3/11</div>
+        <h2>why it sucks</h2>
+        <div class="card-grid">
+            <div class="card">
+                <h3>🤷 AI guesses</h3>
+                <ul>
+                    <li>what do these field names mean?</li>
+                    <li>is this a date or a string?</li>
+                    <li>how do tables connect?</li>
+                    <li>what's the business logic?</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>😤 you suffer</h3>
+                <ul>
+                    <li>wrong calculations</li>
+                    <li>broken queries</li>
+                    <li>endless iterations</li>
+                    <li>wasted hours</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>💸 money burns</h3>
+                <ul>
+                    <li>slow development</li>
+                    <li>buggy dashboards</li>
+                    <li>missed deadlines</li>
+                    <li>sad stakeholders</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 4: The Fix -->
+    <div class="slide">
+        <div class="slide-number">4/11</div>
+        <h2>the fix is stupid simple</h2>
+        <div class="polaroid">
+            <div class="polaroid-content">
+                <strong style="font-size: 24px; color: var(--terracotta);">give AI the right context</strong><br><br>
+                
+                just like you'd brief a new teammate:<br>
+                📊 "here's our data structure"<br>
+                🔑 "here's what fields mean"<br>
+                📏 "here's how we calculate things"<br>
+                ⚠️ "here's the gotchas"<br><br>
+                
+                <em>that's literally it</em>
+            </div>
+            <div class="polaroid-caption">no rocket science required</div>
+        </div>
+    </div>
+
+    <!-- Slide 5: The System -->
+    <div class="slide">
+        <div class="slide-number">5/11</div>
+        <h2>the playbook</h2>
+        <p class="big-text" style="margin-bottom: 40px;">4 phases to dashboard nirvana</p>
+        <div class="steps">
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h4>prep your context</h4>
+                    <p>schemas, samples, glossary (30 min)</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h4>explore & validate</h4>
+                    <p>understand data, check assumptions (1 hour)</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h4>build the thing</h4>
+                    <p>metrics, pipelines, visualizations (2 hours)</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <h4>polish & ship</h4>
+                    <p>test, optimize, deploy (1 hour)</p>
+                </div>
+            </div>
+        </div>
+        <p style="text-align: center; font-size: 22px; margin-top: 32px;">
+            <strong>total: one afternoon</strong> (vs. days of chaos)
+        </p>
+    </div>
+
+    <!-- Slide 6: Phase 1 Deep Dive -->
+    <div class="slide" style="background: white;">
+        <div class="slide-number">6/11</div>
+        <h2>phase 1: context prep</h2>
+        <p style="margin-bottom: 40px;">the 30 minutes that saves your life</p>
+        <div class="card-grid">
+            <div class="card">
+                <h3>📐 schemas</h3>
+                <ul>
+                    <li>table names & columns</li>
+                    <li>data types (be specific!)</li>
+                    <li>relationships between tables</li>
+                    <li>sample values</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>📖 glossary</h3>
+                <ul>
+                    <li>what abbreviations mean</li>
+                    <li>enum/code values</li>
+                    <li>business terminology</li>
+                    <li>field meanings</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>💡 business rules</h3>
+                <ul>
+                    <li>how metrics are calculated</li>
+                    <li>data validation rules</li>
+                    <li>known gotchas</li>
+                    <li>edge cases</li>
+                </ul>
+            </div>
+        </div>
+        <div class="note" style="margin-top: 40px;">
+            <strong>pro tip:</strong> use the prompt templates in the full playbook.<br>
+            AI can help you <em>generate</em> the context file!
+        </div>
+    </div>
+
+    <!-- Slide 7: Prompt Magic -->
+    <div class="slide">
+        <div class="slide-number">7/11</div>
+        <h2>talk to AI like a teammate</h2>
+        <div class="code">
+BAD:
+"analyze my data"
+
+GOOD:
+"using the schema I provided,
+calculate monthly retention rate:
+- users active in Q4 2023
+- who returned in Q1 2024
+- show cohort breakdown
+- handle missing data gracefully"
+        </div>
+        <p class="big-text" style="margin-top: 40px;">
+            <span class="highlight">be specific</span> = get results<br>
+            be vague = get garbage
+        </p>
+    </div>
+
+    <!-- Slide 8: Common Pitfalls -->
+    <div class="slide" style="background: linear-gradient(135deg, #FFE4CC 0%, var(--cream) 100%);">
+        <div class="slide-number">8/11</div>
+        <h2>don't be that person</h2>
+        <div class="steps">
+            <div class="step">
+                <div class="step-number">💀</div>
+                <div class="step-content">
+                    <h4>skipping validation</h4>
+                    <p>"looks good!" → narrator: it was not good</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">💀</div>
+                <div class="step-content">
+                    <h4>hardcoding values</h4>
+                    <p>6 months later: "why is this broken?"</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">💀</div>
+                <div class="step-content">
+                    <h4>ignoring timezones</h4>
+                    <p>classic way to be off by a day</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">💀</div>
+                <div class="step-content">
+                    <h4>no error handling</h4>
+                    <p>dashboard crashes, career flashes before eyes</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 9: Get Started -->
+    <div class="slide" style="background: white;">
+        <div class="slide-number">9/11</div>
+        <h2>your move</h2>
+        <p class="big-text" style="margin-bottom: 40px;">
+            stop fighting with AI<br>
+            start shipping dashboards
+        </p>
+        <div class="steps">
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h4>get the full playbook</h4>
+                    <p>detailed prompts, templates, real examples</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h4>set up your context file</h4>
+                    <p>30 minutes now = days saved later</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h4>build your first dashboard</h4>
+                    <p>watch AI become 10x more useful</p>
+                </div>
+            </div>
+        </div>
+        <div style="margin-top: 40px;">
+            <a href="cursor-playbook-full.html" class="cta">read the full playbook →</a>
+        </div>
+        <p style="margin-top: 24px; font-size: 18px; color: var(--gray); font-style: italic;">
+            or <a href="index.html" style="color: var(--terracotta); text-decoration: none; font-weight: 600;">watch vibe coding tutorials</a>
+        </p>
+    </div>
+
+    <!-- Slide 10: Share -->
+    <div class="slide" style="background: linear-gradient(135deg, var(--terracotta) 0%, var(--orange) 100%); color: white;">
+        <div class="slide-number" style="color: white;">10/11</div>
+        <h2 style="color: white;">spread the word</h2>
+        
+        <div style="background: white; padding: 40px; border-radius: 12px; margin-top: 40px; max-width: 600px; box-shadow: 0 8px 24px rgba(0,0,0,0.2); transform: rotate(-1deg);">
+            <p style="font-size: 20px; color: var(--dark); margin-bottom: 32px; font-weight: 500;">
+                know a PM or analyst drowning in data?<br>
+                send them this ↓
+            </p>
+            <div class="share-buttons">
+                <a href="#" onclick="shareTwitter(); return false;" class="share-btn twitter">
+                    🐦 twitter
+                </a>
+                <a href="#" onclick="shareLinkedIn(); return false;" class="share-btn linkedin">
+                    💼 linkedin
+                </a>
+                <a href="#" onclick="shareWhatsApp(); return false;" class="share-btn whatsapp">
+                    💬 whatsapp
+                </a>
+                <button onclick="copyLink()" class="share-btn" style="background: var(--terracotta);">
+                    🔗 copy link
+                </button>
+            </div>
+        </div>
+        
+        <p style="margin-top: 60px; font-size: 18px; opacity: 0.9;">
+            made with ☕ by <a href="https://www.linkedin.com/in/galdulev/" target="_blank" style="color: white; font-weight: 600; text-decoration: none;">gal dulev</a>, product manager
+        </p>
+    </div>
 
     <script>
-        // ============================================
-        // EVENT TRACKING SYSTEM
-        // ============================================
-        
-        // Helper function to safely send events to GA4
-        function trackEvent(eventName, eventParams = {}) {
-            if (typeof gtag !== 'undefined') {
-                gtag('event', eventName, eventParams);
-                console.log('📊 Event tracked:', eventName, eventParams);
-            }
-        }
+        // Smooth scrolling
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
 
-        // ============================================
-        // 1. SCROLL DEPTH TRACKING
-        // ============================================
-        
-        const scrollMilestones = { 25: false, 50: false, 75: false, 100: false };
-        
-        function trackScrollDepth() {
-            const scrollPercent = Math.round(
-                (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100
-            );
-            
-            Object.keys(scrollMilestones).forEach(milestone => {
-                if (scrollPercent >= milestone && !scrollMilestones[milestone]) {
-                    scrollMilestones[milestone] = true;
-                    trackEvent('scroll_depth', {
-                        percent: milestone,
-                        page_location: window.location.pathname
-                    });
-                }
-            });
-        }
-
-        // ============================================
-        // 2. SECTION VISIBILITY TRACKING
-        // ============================================
-        
-        const sectionObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const sectionId = entry.target.id;
-                    if (sectionId) {
-                        trackEvent('section_view', {
-                            section_id: sectionId,
-                            section_name: entry.target.querySelector('h2')?.textContent || sectionId
-                        });
-                    }
-                }
-            });
-        }, { threshold: 0.5 });
-
-        // Observe all major sections
-        document.querySelectorAll('h2[id]').forEach(section => {
-            sectionObserver.observe(section);
-        });
-
-        // ============================================
-        // 3. TIME TRACKING
-        // ============================================
-        
-        let startTime = Date.now();
-        let activeTime = 0;
-        let isActive = true;
-        let lastActiveTime = Date.now();
-
-        // Track active vs idle time
-        function updateActiveTime() {
-            if (isActive) {
-                activeTime += Date.now() - lastActiveTime;
-            }
-            lastActiveTime = Date.now();
-        }
-
-        // User is active
-        ['mousedown', 'mousemove', 'keypress', 'scroll', 'touchstart'].forEach(event => {
-            document.addEventListener(event, () => {
-                if (!isActive) {
-                    isActive = true;
-                    lastActiveTime = Date.now();
-                }
-            }, { passive: true });
-        });
-
-        // Check for inactivity every 5 seconds
-        setInterval(() => {
-            if (Date.now() - lastActiveTime > 30000) { // 30 seconds idle
-                isActive = false;
-            }
-            updateActiveTime();
-        }, 5000);
-
-        // Send time data before page unload
-        window.addEventListener('beforeunload', () => {
-            updateActiveTime();
-            const totalTime = Math.round((Date.now() - startTime) / 1000);
-            const activeTimeSec = Math.round(activeTime / 1000);
-            
-            trackEvent('page_engagement', {
-                total_time_seconds: totalTime,
-                active_time_seconds: activeTimeSec,
-                engagement_rate: totalTime > 0 ? Math.round((activeTimeSec / totalTime) * 100) : 0
-            });
-        });
-
-        // ============================================
-        // 4. SHARE BUTTON TRACKING
-        // ============================================
-        
-        document.querySelectorAll('.share-btn').forEach(button => {
-            button.addEventListener('click', (e) => {
-                const platform = button.classList.contains('twitter') ? 'twitter' :
-                               button.classList.contains('linkedin') ? 'linkedin' : 'other';
-                
-                trackEvent('share_click', {
-                    platform: platform,
-                    content_type: 'playbook',
-                    content_name: 'data-playbook-full'
-                });
-            });
-        });
-
-        // ============================================
-        // 5. TOC NAVIGATION TRACKING
-        // ============================================
-        
-        document.querySelectorAll('.toc a').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowDown' || e.key === 'ArrowRight' || e.key === ' ') {
                 e.preventDefault();
-                const targetId = this.getAttribute('href').substring(1);
-                const targetElement = document.querySelector(this.getAttribute('href'));
-                
-                trackEvent('toc_navigation', {
-                    section_id: targetId,
-                    section_name: this.textContent.trim()
-                });
-                
-                targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            });
-        });
-
-        // ============================================
-        // 6. BACK TO TOP TRACKING
-        // ============================================
-        
-        const backToTop = document.getElementById('backToTop');
-        
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 500) {
-                backToTop.classList.add('visible');
-            } else {
-                backToTop.classList.remove('visible');
+                if (currentSlide < slides.length - 1) {
+                    currentSlide++;
+                    slides[currentSlide].scrollIntoView({ behavior: 'smooth' });
+                }
+            } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
+                e.preventDefault();
+                if (currentSlide > 0) {
+                    currentSlide--;
+                    slides[currentSlide].scrollIntoView({ behavior: 'smooth' });
+                }
             }
-            
-            // Track scroll depth
-            trackScrollDepth();
         });
 
-        backToTop.addEventListener('click', (e) => {
-            e.preventDefault();
-            
-            trackEvent('back_to_top_click', {
-                from_position: Math.round(window.scrollY)
-            });
-            
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
 
-        // ============================================
-        // 7. EXTERNAL LINK TRACKING
-        // ============================================
-        
-        document.querySelectorAll('a[href^="http"]').forEach(link => {
-            link.addEventListener('click', (e) => {
-                const url = link.href;
-                const isLinkedIn = url.includes('linkedin.com');
-                const isTwitter = url.includes('twitter.com');
+        // Mobile detection and share functions
+        function isMobile() {
+            return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        }
+
+        function shareTwitter() {
+            const text = 'Vibe coding playbook - the complete data edition. Build dashboards in one afternoon.';
+            const url = 'https://galdulev.github.io/vibe-coding-tutorials/data-playbook.html';
+            
+            if (isMobile()) {
+                window.location.href = `twitter://post?message=${encodeURIComponent(text + ' ' + url)}`;
+                setTimeout(() => {
+                    window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`, '_blank');
+                }, 500);
+            } else {
+                window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`, '_blank');
+            }
+        }
+
+        function shareLinkedIn() {
+            const url = 'https://galdulev.github.io/vibe-coding-tutorials/data-playbook.html';
+            
+            if (isMobile()) {
+                window.location.href = `linkedin://shareArticle?url=${encodeURIComponent(url)}`;
+                setTimeout(() => {
+                    window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`, '_blank');
+                }, 500);
+            } else {
+                window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`, '_blank');
+            }
+        }
+
+        function shareWhatsApp() {
+            const text = 'Check out this vibe coding playbook - build dashboards in one afternoon';
+            const url = 'https://galdulev.github.io/vibe-coding-tutorials/data-playbook.html';
+            const message = `${text} ${url}`;
+            
+            if (isMobile()) {
+                window.location.href = `whatsapp://send?text=${encodeURIComponent(message)}`;
+            } else {
+                window.open(`https://wa.me/?text=${encodeURIComponent(message)}`, '_blank');
+            }
+        }
+
+        function copyLink() {
+            navigator.clipboard.writeText('https://galdulev.github.io/vibe-coding-tutorials/data-playbook.html').then(() => {
+                const toast = document.getElementById('toast');
+                toast.classList.add('show');
                 
-                // Don't double-track share buttons
-                if (!link.classList.contains('share-btn')) {
-                    trackEvent('external_link_click', {
-                        link_url: url,
-                        link_domain: new URL(url).hostname,
-                        link_type: isLinkedIn ? 'linkedin_profile' :
-                                  isTwitter ? 'twitter' : 'other',
-                        link_text: link.textContent.trim()
-                    });
+                setTimeout(() => {
+                    toast.classList.remove('show');
+                }, 3000);
+            });
+        }
+        // Track scroll
+        window.addEventListener('scroll', () => {
+            const scrollPosition = window.scrollY + window.innerHeight / 2;
+            slides.forEach((slide, index) => {
+                const slideTop = slide.offsetTop;
+                const slideBottom = slideTop + slide.offsetHeight;
+                if (scrollPosition >= slideTop && scrollPosition < slideBottom) {
+                    currentSlide = index;
                 }
             });
         });
 
-        // ============================================
-        // 8. PAGE LOAD TRACKING
-        // ============================================
-        
-        window.addEventListener('load', () => {
-            trackEvent('page_load_complete', {
-                page_title: document.title,
-                page_location: window.location.pathname,
-                load_time: Math.round(performance.now())
+        // Copy to clipboard
+        document.querySelectorAll('.code').forEach(code => {
+            code.style.cursor = 'pointer';
+            code.title = 'Click to copy';
+            code.addEventListener('click', () => {
+                navigator.clipboard.writeText(code.textContent);
+                const original = code.style.borderLeft;
+                code.style.borderLeft = '4px solid #51CF66';
+                setTimeout(() => {
+                    code.style.borderLeft = original;
+                }, 500);
             });
         });
-
-        // ============================================
-        // 9. TUTORIAL BUTTON TRACKING
-        // ============================================
-        
-        document.querySelectorAll('a[href*="index.html"]').forEach(button => {
-            button.addEventListener('click', () => {
-                trackEvent('cta_click', {
-                    cta_type: 'watch_tutorials',
-                    cta_location: 'inline_note'
-                });
-            });
-        });
-
-        // ============================================
-        // 10. CHECKLIST INTERACTION TRACKING
-        // ============================================
-        
-        document.querySelectorAll('.checklist li').forEach((item, index) => {
-            item.addEventListener('click', () => {
-                trackEvent('checklist_interaction', {
-                    item_number: index + 1,
-                    item_text: item.textContent.trim().substring(0, 50)
-                });
-            });
-        });
-
-        // ============================================
-        // CONSOLE LOG FOR DEBUGGING
-        // ============================================
-        
-        console.log('✅ Event tracking initialized for data-playbook-full.html');
-        console.log('📊 Tracking: Scroll depth, Section views, Time on page, Clicks, Navigation');
     </script>
 </body>
 </html>
