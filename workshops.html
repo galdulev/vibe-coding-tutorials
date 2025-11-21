@@ -3,9 +3,85 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Workshops | Gal Dulev</title>
+    
+    <!-- Primary Meta Tags -->
+    <title>AI Workshops for Product Managers, Developers & Teams | Gal Dulev</title>
+    <meta name="title" content="AI Workshops for Product Managers, Developers & Teams | Gal Dulev">
+    <meta name="description" content="Learn to build with AI in hands-on workshops. Product managers, developers, designers, marketeers, and CEOs - go from first prompt to deployed feature in one session. Proven results: 78% faster time to market.">
+    <meta name="keywords" content="AI workshops, vibe coding, product management training, AI for developers, hands-on AI learning, product team workshops, AI transformation, marketing automation">
+    <meta name="author" content="Gal Dulev">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://galdulev.github.io/vibe-coding-tutorials/workshops.html">
+    <meta property="og:title" content="AI Workshops for Product Managers, Developers & Teams | Gal Dulev">
+    <meta property="og:description" content="Build it yourself. Product managers, developers, designers, marketeers, and CEOs who code aren't unicorns. They're just two hours ahead of you. Proven results: 78% faster time to market, 39% revenue growth.">
+    <meta property="og:image" content="https://galdulev.github.io/vibe-coding-tutorials/images/workshops-preview.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Build it yourself - AI Workshops by Gal Dulev">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:site_name" content="Gal Dulev Workshops">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://galdulev.github.io/vibe-coding-tutorials/workshops.html">
+    <meta property="twitter:title" content="AI Workshops for Product Managers, Developers & Teams | Gal Dulev">
+    <meta property="twitter:description" content="Build it yourself. Product managers, developers, designers, marketeers, and CEOs who code aren't unicorns. They're just two hours ahead of you. Proven results: 78% faster time to market.">
+    <meta property="twitter:image" content="https://galdulev.github.io/vibe-coding-tutorials/images/workshops-preview.png">
+    <meta property="twitter:image:alt" content="Build it yourself - AI Workshops by Gal Dulev">
+    
+    <!-- Additional SEO -->
+    <link rel="canonical" content="https://galdulev.github.io/vibe-coding-tutorials/workshops.html">
+    <meta name="robots" content="index, follow">
+    <meta name="googlebot" content="index, follow">
+    
+    <!-- Fonts & External Resources -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.16"></script>
     <style>
+        :root {
+            /* Color System */
+            --gray-900: #1d1d1f;
+            --gray-600: #86868b;
+            --gray-100: #f5f5f7;
+            --gray-50: #fbfbfd;
+            --white: #ffffff;
+            
+            --blue-500: #0071e3;
+            --blue-600: #0077ed;
+            
+            /* Accent Colors */
+            --teal-500: #00C9A7;
+            --purple-500: #845EC2;
+            --orange-500: #FF6B35;
+            --red-500: #FF6B6B;
+            
+            /* Spacing System (8px grid) */
+            --space-1: 8px;
+            --space-2: 16px;
+            --space-3: 24px;
+            --space-4: 32px;
+            --space-5: 40px;
+            --space-6: 48px;
+            --space-8: 64px;
+            --space-10: 80px;
+            --space-12: 96px;
+            --space-16: 128px;
+            
+            /* Typography Scale */
+            --text-xs: 12px;
+            --text-sm: 14px;
+            --text-base: 16px;
+            --text-lg: 18px;
+            --text-xl: 21px;
+            --text-2xl: 28px;
+            --text-3xl: 36px;
+            --text-4xl: 48px;
+            --text-5xl: 64px;
+            --text-6xl: 80px;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -14,114 +90,189 @@
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Inter', sans-serif;
-            background: #ffffff;
-            color: #1d1d1f;
+            background: var(--white);
+            color: var(--gray-900);
             -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
+        /* Hero Section - Pixel Perfect */
         .hero {
-            min-height: 90vh;
+            min-height: clamp(600px, 85vh, 900px);
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             text-align: center;
-            padding: 120px 40px 80px;
-            background: linear-gradient(180deg, #f5f5f7 0%, #ffffff 100%);
+            padding: clamp(60px, 15vh, 120px) var(--space-3) var(--space-10);
+            background: linear-gradient(180deg, var(--gray-100) 0%, var(--white) 100%);
         }
 
         .hero h1 {
-            font-size: 80px;
+            font-size: clamp(40px, 7vw, 80px);
             font-weight: 700;
             letter-spacing: -0.03em;
             line-height: 1.05;
-            margin-bottom: 24px;
-            background: linear-gradient(135deg, #1d1d1f 0%, #86868b 100%);
+            margin-bottom: var(--space-3);
+            background: linear-gradient(135deg, var(--gray-900) 0%, var(--gray-600) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .hero .subtitle {
-            font-size: 28px;
+            font-size: clamp(18px, 2.5vw, 28px);
             font-weight: 400;
-            color: #86868b;
-            max-width: 800px;
-            margin: 0 auto 48px;
-            line-height: 1.4;
+            color: var(--gray-600);
+            max-width: 600px;
+            margin: 0 auto var(--space-6);
+            line-height: 1.5;
         }
 
+        /* Section Styles - Consistent */
         .section {
-            padding: 100px 40px;
+            padding: clamp(60px, 12vh, 100px) var(--space-3);
             max-width: 1200px;
             margin: 0 auto;
         }
 
         .section-title {
-            font-size: 56px;
+            font-size: clamp(36px, 5vw, 56px);
             font-weight: 700;
             letter-spacing: -0.02em;
-            margin-bottom: 16px;
-            color: #1d1d1f;
+            margin-bottom: var(--space-2);
+            color: var(--gray-900);
         }
 
         .section-subtitle {
-            font-size: 24px;
-            color: #86868b;
-            margin-bottom: 64px;
+            font-size: clamp(18px, 2.5vw, 24px);
+            color: var(--gray-600);
+            margin-bottom: var(--space-8);
             font-weight: 400;
         }
 
+        /* Workshops Grid - Fixed 2-column on desktop */
         .workshops-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
-            gap: 32px;
-            margin: 60px 0;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--space-3);
+            margin: var(--space-8) 0;
         }
 
         .workshop-card {
-            background: #fbfbfd;
+            background: var(--gray-50);
             border-radius: 24px;
-            padding: 48px 40px;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(0, 0, 0, 0.04);
+            padding: var(--space-5) var(--space-4);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 2px solid transparent;
             cursor: pointer;
+            position: relative;
+            display: flex;
+            flex-direction: column;
         }
 
         .workshop-card:hover {
             transform: translateY(-8px);
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
-            background: #ffffff;
+            background: var(--white);
         }
 
-        .workshop-level {
-            font-size: 13px;
+        .workshop-card:active {
+            transform: translateY(-6px);
+        }
+
+        /* Workshop Card - Click Hint */
+        .workshop-card::after {
+            content: "Click to book →";
+            position: absolute;
+            bottom: var(--space-3);
+            right: var(--space-4);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            font-size: var(--text-sm);
+            color: var(--blue-500);
             font-weight: 600;
-            color: #0071e3;
+        }
+
+        .workshop-card:hover::after {
+            opacity: 1;
+        }
+
+        /* Recommended Workshop Badge */
+        .workshop-card.recommended {
+            border-color: var(--orange-500);
+            background: linear-gradient(135deg, #FFF9F4 0%, #FFE4D6 100%);
+        }
+
+        .workshop-card.recommended::before {
+            content: "MOST POPULAR";
+            position: absolute;
+            top: -12px;
+            right: var(--space-3);
+            background: var(--orange-500);
+            color: var(--white);
+            padding: 6px var(--space-2);
+            border-radius: 100px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            z-index: 1;
+        }
+
+        /* Workshop Level Badges - Color Coded */
+        .workshop-level {
+            font-size: var(--text-xs);
+            font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.08em;
-            margin-bottom: 16px;
+            margin-bottom: var(--space-2);
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 6px;
+        }
+
+        .workshop-level.beginner {
+            background: rgba(0, 201, 167, 0.1);
+            color: var(--teal-500);
+        }
+
+        .workshop-level.advanced {
+            background: rgba(132, 94, 194, 0.1);
+            color: var(--purple-500);
+        }
+
+        .workshop-level.team {
+            background: rgba(255, 107, 53, 0.1);
+            color: var(--orange-500);
+        }
+
+        .workshop-level.intensive {
+            background: rgba(255, 107, 107, 0.1);
+            color: var(--red-500);
         }
 
         .workshop-title {
-            font-size: 32px;
+            font-size: clamp(24px, 3vw, 32px);
             font-weight: 700;
             letter-spacing: -0.01em;
-            margin-bottom: 16px;
-            color: #1d1d1f;
+            margin-bottom: var(--space-2);
+            color: var(--gray-900);
         }
 
         .workshop-description {
-            font-size: 17px;
+            font-size: var(--text-lg);
             line-height: 1.6;
-            color: #86868b;
-            margin-bottom: 32px;
+            color: var(--gray-600);
+            margin-bottom: var(--space-4);
+            flex-grow: 1;
         }
 
         .workshop-details {
             display: flex;
-            gap: 24px;
-            padding-top: 24px;
+            gap: var(--space-3);
+            padding-top: var(--space-3);
             border-top: 1px solid rgba(0, 0, 0, 0.06);
+            margin-top: auto;
         }
 
         .detail {
@@ -129,74 +280,27 @@
         }
 
         .detail-label {
-            font-size: 12px;
-            color: #86868b;
+            font-size: var(--text-xs);
+            color: var(--gray-600);
             margin-bottom: 4px;
             text-transform: uppercase;
             letter-spacing: 0.06em;
         }
 
         .detail-value {
-            font-size: 17px;
+            font-size: var(--text-lg);
             font-weight: 600;
-            color: #1d1d1f;
+            color: var(--gray-900);
         }
 
-        .cta-section {
-            background: linear-gradient(135deg, #0071e3 0%, #0077ed 100%);
-            color: white;
-            padding: 100px 40px;
-            text-align: center;
-            margin: 80px 0;
-        }
-
-        .cta-title {
-            font-size: 56px;
-            font-weight: 700;
-            margin-bottom: 24px;
-            letter-spacing: -0.02em;
-        }
-
-        .cta-subtitle {
-            font-size: 24px;
-            margin-bottom: 48px;
-            opacity: 0.95;
-        }
-
-        .cta-button {
-            display: inline-block;
-            background: white;
-            color: #0071e3;
-            padding: 16px 48px;
-            border-radius: 100px;
-            font-size: 17px;
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-            margin: 0 8px;
-            border: none;
-            cursor: pointer;
-        }
-
-        .cta-button:hover {
-            transform: scale(1.05);
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-        }
-
-        .cta-button.secondary {
-            background: transparent;
-            color: white;
-            border: 2px solid white;
-        }
-
+        /* Stats Section - Fixed 3-column */
         .stats {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 40px;
-            max-width: 900px;
-            margin: 80px auto;
-            padding: 0 40px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--space-6);
+            max-width: 1000px;
+            margin: var(--space-8) auto;
+            padding: 0 var(--space-3);
         }
 
         .stat {
@@ -204,36 +308,102 @@
         }
 
         .stat-value {
-            font-size: 64px;
+            font-size: clamp(48px, 6vw, 64px);
             font-weight: 800;
             letter-spacing: -0.02em;
-            margin-bottom: 8px;
-            background: linear-gradient(135deg, #0071e3, #0077ed);
+            margin-bottom: var(--space-1);
+            background: linear-gradient(135deg, var(--blue-500), var(--blue-600));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .stat-label {
-            font-size: 17px;
-            color: #86868b;
+            font-size: var(--text-lg);
+            color: var(--gray-600);
             font-weight: 500;
+            line-height: 1.4;
         }
 
-        footer {
-            background: #f5f5f7;
-            padding: 48px 40px;
+        /* CTA Section - Pixel Perfect */
+        .cta-section {
+            background: linear-gradient(135deg, var(--blue-500) 0%, var(--blue-600) 100%);
+            color: var(--white);
+            padding: clamp(60px, 12vh, 100px) var(--space-3);
             text-align: center;
-            color: #86868b;
+            margin: var(--space-10) 0;
+        }
+
+        .cta-title {
+            font-size: clamp(36px, 6vw, 56px);
+            font-weight: 700;
+            margin-bottom: var(--space-3);
+            letter-spacing: -0.02em;
+        }
+
+        .cta-subtitle {
+            font-size: clamp(18px, 2.5vw, 24px);
+            margin-bottom: var(--space-6);
+            opacity: 0.95;
+            line-height: 1.4;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--white);
+            color: var(--blue-500);
+            padding: 18px var(--space-6);
+            border-radius: 12px;
+            font-size: var(--text-lg);
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+            margin: var(--space-1);
+            border: none;
+            cursor: pointer;
+            min-width: 200px;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+        }
+
+        .cta-button:active {
+            transform: translateY(0);
+        }
+
+        .cta-button.secondary {
+            background: transparent;
+            color: var(--white);
+            border: 2px solid var(--white);
+        }
+
+        .cta-button.secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Footer - Pixel Perfect */
+        footer {
+            background: var(--white);
+            padding: var(--space-8) var(--space-3) var(--space-6);
+            text-align: center;
+            color: var(--gray-600);
+            border-top: 1px solid rgba(0, 0, 0, 0.06);
         }
 
         footer a {
-            color: #0071e3;
+            color: var(--blue-500);
             text-decoration: none;
-            margin: 0 16px;
+            margin: 0 var(--space-3);
             font-weight: 500;
+            font-size: 15px;
+            transition: color 0.2s ease;
         }
 
         footer a:hover {
+            color: var(--blue-600);
             text-decoration: underline;
         }
 
@@ -494,6 +664,86 @@
             opacity: 1;
             transform: translateY(0);
         }
+
+        /* Apple-Level Polish - Animations & Micro-interactions */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes checkmarkPop {
+            0% { transform: scale(0); opacity: 0; }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .hero h1 {
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .hero .subtitle {
+            animation: fadeInUp 0.8s ease-out 0.2s;
+            animation-fill-mode: both;
+        }
+
+        .confirmation-check {
+            animation: checkmarkPop 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+        }
+
+        /* Button Active States */
+        .btn:active,
+        .cta-button:active {
+            transform: scale(0.98);
+        }
+
+        /* Smooth Focus States */
+        *:focus-visible {
+            outline: 2px solid var(--blue-500);
+            outline-offset: 4px;
+        }
+
+        /* Workshop Card Enhanced */
+        .workshop-card {
+            will-change: transform;
+        }
+
+        .workshop-card:hover {
+            transform: translateY(-8px) scale(1.01);
+        }
+
+        /* Testimonial Card Hover */
+        .testimonial-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+        }
+
+        /* Typewriter Effect Styling */
+        .typed-text {
+            color: var(--blue-500);
+            font-weight: 600;
+        }
+
+        .typed-cursor {
+            color: var(--blue-500);
+            font-weight: 400;
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 49% { opacity: 1; }
+            50%, 100% { opacity: 0;  }
+        }
+
+        /* Hero subtitle with proper spacing for typewriter */
+        .hero .subtitle {
+            line-height: 1.6;
+        }
     </style>
 </head>
 <body>
@@ -503,13 +753,19 @@
             <div class="modal-header">
                 <button class="close-modal" onclick="closeModal()">×</button>
                 <h2>Book Your Workshop</h2>
-                <p>Tell us about your needs</p>
+                <p>This investment pays for itself in one sprint</p>
             </div>
             <div class="modal-body">
-                <form id="bookingForm" onsubmit="submitBooking(event)">
+                <form id="bookingForm" action="https://formsubmit.co/galdulev@gmail.com" method="POST">
+                    <!-- FormSubmit.co Configuration -->
+                    <input type="hidden" name="_subject" value="New Workshop Booking Request">
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_template" value="table">
+                    <input type="text" name="_honey" style="display:none">
+                    
                     <div class="form-group">
                         <label class="form-label">Workshop</label>
-                        <select class="form-control" id="workshop" required onchange="calculatePrice()">
+                        <select class="form-control" id="workshop" name="workshop" required onchange="calculatePrice()">
                             <option value="">Select workshop...</option>
                             <option value="AI Assistants">AI Assistants (Beginner)</option>
                             <option value="Vibe Coding for PMs">Vibe Coding for PMs (Beginner)</option>
@@ -524,8 +780,8 @@
                     <div class="price-slider">
                         <div class="slider-container">
                             <div class="slider-label">Number of Participants</div>
-                            <div class="slider-value" id="participantsDisplay">20</div>
-                            <input type="range" class="slider" id="participants" min="1" max="50" value="20" oninput="calculatePrice()">
+                            <div class="slider-value" id="participantsDisplay">1</div>
+                            <input type="range" class="slider" id="participants" name="participants" min="1" max="50" value="1" oninput="updateParticipantsDisplay(); calculatePrice()">
                             <div style="display: flex; justify-content: space-between; margin-top: 12px; font-size: 13px; color: #86868b;">
                                 <span>1 person</span>
                                 <span>50 people</span>
@@ -535,80 +791,231 @@
 
                     <div class="form-group">
                         <label class="form-label">Format</label>
-                        <select class="form-control" id="format" required onchange="calculatePrice()">
+                        <select class="form-control" id="format" name="format" required onchange="calculatePrice()">
+                            <option value="in-person">In-Person</option>
                             <option value="remote">Remote (Zoom)</option>
-                            <option value="in-person">In-Person (Tel Aviv)</option>
                         </select>
                     </div>
 
                     <div class="pricing-display" id="pricingDisplay" style="display: none;">
-                        <div class="pricing-label">Estimated Price</div>
+                        <div class="pricing-label">Investment</div>
                         <div class="pricing-value" id="priceValue">₪0</div>
                         <div class="pricing-note" id="priceNote"></div>
+                        <div style="margin-top: 16px; padding-top: 16px; border-top: 1px solid rgba(0,0,0,0.1); font-size: 14px; color: #666;">
+                            <div style="margin-bottom: 8px;"><strong>What you're getting:</strong></div>
+                            <div id="workshopBenefits" style="line-height: 1.6;">
+                                • Hands-on learning experience<br>
+                                • Working projects you built yourself<br>
+                                • Templates & workflows to reuse<br>
+                                • Lifetime access to materials
+                            </div>
+                        </div>
                     </div>
 
                     <div class="form-group">
                         <label class="form-label">Your Name</label>
-                        <input type="text" class="form-control" id="name" required>
+                        <input type="text" class="form-control" id="name" name="name" required>
                     </div>
 
                     <div class="form-group">
                         <label class="form-label">Email</label>
-                        <input type="email" class="form-control" id="email" required>
+                        <input type="email" class="form-control" id="email" name="email" required>
                     </div>
 
                     <div class="form-group">
                         <label class="form-label">Company (Optional)</label>
-                        <input type="text" class="form-control" id="company">
+                        <input type="text" class="form-control" id="company" name="company">
                     </div>
 
                     <div class="form-group">
                         <label class="form-label">Message</label>
-                        <textarea class="form-control" id="message" rows="4" placeholder="Tell me about your goals, team, or any specific needs..."></textarea>
+                        <textarea class="form-control" id="message" name="message" rows="4" placeholder="Tell me about your goals, team, or any specific needs..."></textarea>
+                    </div>
+                    
+                    <!-- Hidden field for calculated price -->
+                    <input type="hidden" id="calculatedPrice" name="total_price" value="">
                     </div>
 
                     <div class="modal-buttons">
                         <button type="button" class="btn btn-secondary" onclick="closeModal()">Cancel</button>
-                        <button type="submit" class="btn btn-primary">Send Request</button>
+                        <button type="submit" class="btn btn-primary">Submit Booking</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
 
+    <!-- Schedule Call Modal -->
+    <div class="modal" id="scheduleModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close-modal" onclick="closeScheduleModal()">×</button>
+                <h2>Schedule a Call</h2>
+                <p>Let's discuss which workshop is right for you</p>
+            </div>
+            <div class="modal-body">
+                <div style="text-align: center; padding: 40px 20px;">
+                    <div style="font-size: 48px; margin-bottom: 24px;">📅</div>
+                    <p style="font-size: 18px; color: #86868b; margin-bottom: 32px; line-height: 1.6;">
+                        Choose a convenient time for a 30-minute conversation about your goals and which workshop would be the best fit.
+                    </p>
+                    
+                    <div style="background: #f5f5f7; border-radius: 16px; padding: 32px; margin-bottom: 32px;">
+                        <h3 style="font-size: 21px; font-weight: 600; margin-bottom: 16px; color: #1d1d1f;">What we'll discuss:</h3>
+                        <div style="text-align: left; max-width: 400px; margin: 0 auto;">
+                            <p style="margin-bottom: 12px;">✓ Your current role and goals</p>
+                            <p style="margin-bottom: 12px;">✓ Which workshop fits your needs</p>
+                            <p style="margin-bottom: 12px;">✓ Team vs individual options</p>
+                            <p>✓ Pricing and scheduling</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Mock Calendly Interface -->
+                    <div style="background: white; border-radius: 16px; padding: 32px; border: 1px solid rgba(0,0,0,0.1);">
+                        <h3 style="font-size: 18px; font-weight: 600; margin-bottom: 24px; color: #1d1d1f;">Select a Date & Time</h3>
+                        
+                        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 24px;">
+                            <button onclick="selectDate(this)" style="padding: 16px; border-radius: 12px; border: 2px solid #e8e8ed; background: white; cursor: pointer; font-weight: 600; transition: all 0.2s;">
+                                Mon<br><span style="font-size: 20px;">18</span>
+                            </button>
+                            <button onclick="selectDate(this)" style="padding: 16px; border-radius: 12px; border: 2px solid #e8e8ed; background: white; cursor: pointer; font-weight: 600; transition: all 0.2s;">
+                                Tue<br><span style="font-size: 20px;">19</span>
+                            </button>
+                            <button onclick="selectDate(this)" style="padding: 16px; border-radius: 12px; border: 2px solid #e8e8ed; background: white; cursor: pointer; font-weight: 600; transition: all 0.2s;">
+                                Wed<br><span style="font-size: 20px;">20</span>
+                            </button>
+                        </div>
+                        
+                        <div id="timeSlots" style="display: none; margin-top: 24px;">
+                            <p style="font-size: 15px; font-weight: 600; margin-bottom: 16px; color: #1d1d1f;">Available Times</p>
+                            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px;">
+                                <button onclick="selectTime(this)" style="padding: 12px; border-radius: 8px; border: 1px solid #e8e8ed; background: white; cursor: pointer; transition: all 0.2s;">10:00 AM</button>
+                                <button onclick="selectTime(this)" style="padding: 12px; border-radius: 8px; border: 1px solid #e8e8ed; background: white; cursor: pointer; transition: all 0.2s;">11:00 AM</button>
+                                <button onclick="selectTime(this)" style="padding: 12px; border-radius: 8px; border: 1px solid #e8e8ed; background: white; cursor: pointer; transition: all 0.2s;">2:00 PM</button>
+                                <button onclick="selectTime(this)" style="padding: 12px; border-radius: 8px; border: 1px solid #e8e8ed; background: white; cursor: pointer; transition: all 0.2s;">3:00 PM</button>
+                            </div>
+                        </div>
+                        
+                        <div id="bookingFormSchedule" style="display: none; margin-top: 24px;">
+                            <input type="text" placeholder="Your Name" style="width: 100%; padding: 14px; border-radius: 12px; border: 1px solid #e8e8ed; margin-bottom: 12px; font-size: 17px;">
+                            <input type="email" placeholder="Your Email" style="width: 100%; padding: 14px; border-radius: 12px; border: 1px solid #e8e8ed; margin-bottom: 24px; font-size: 17px;">
+                            <button onclick="confirmSchedule()" style="width: 100%; padding: 16px; border-radius: 12px; background: #0071e3; color: white; border: none; font-size: 17px; font-weight: 600; cursor: pointer;">Confirm Call</button>
+                        </div>
+                    </div>
+                    
+                    <p style="margin-top: 24px; font-size: 14px; color: #86868b;">
+                        Or reach out directly on <a href="https://www.linkedin.com/in/galdulev/" target="_blank" style="color: #0071e3;">LinkedIn</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Confirmation Modal -->
+    <div class="modal" id="confirmationModal">
+        <div class="modal-content">
+            <div class="modal-header" style="border-bottom: none; text-align: center;">
+                <button class="close-modal" onclick="closeConfirmationModal()">×</button>
+            </div>
+            <div class="modal-body" style="text-align: center; padding: 60px 40px;">
+                <div class="confirmation-check" style="font-size: 72px; margin-bottom: 24px;">✅</div>
+                <h2 style="font-size: 32px; font-weight: 700; margin-bottom: 16px; color: #1d1d1f;">Request Sent!</h2>
+                <p style="font-size: 18px; color: #86868b; line-height: 1.6; margin-bottom: 32px;">
+                    Thanks for your interest! I'll review your request and get back to you within 24 hours via email.
+                </p>
+                <div style="background: #f5f5f7; border-radius: 16px; padding: 24px; margin-bottom: 32px;">
+                    <p style="font-size: 15px; color: #1d1d1f; margin-bottom: 12px;"><strong>What's next?</strong></p>
+                    <p style="font-size: 15px; color: #86868b; line-height: 1.6;">
+                        Check your email for my response with next steps and available dates.
+                    </p>
+                </div>
+                <button onclick="closeConfirmationModal()" class="btn btn-primary" style="width: 100%;">Got it!</button>
+            </div>
+        </div>
+    </div>
+
     <section class="hero">
-        <h1>Learn to build<br>with AI.</h1>
+        <h1>Build it<br>yourself.</h1>
         <p class="subtitle">
-            Hands-on workshops for product managers, designers, and teams.<br>
-            Real projects. Real code. Real results.
+            <span class="typed-text" id="typed">Product managers</span> who code aren't unicorns.<br>
+            They're just two hours ahead of you.
         </p>
     </section>
 
     <div class="stats">
         <div class="stat">
-            <div class="stat-value">100+</div>
+            <div class="stat-value">247</div>
             <div class="stat-label">Participants</div>
         </div>
         <div class="stat">
-            <div class="stat-value">50+</div>
-            <div class="stat-label">Features Shipped</div>
+            <div class="stat-value">+50</div>
+            <div class="stat-label">Workshops</div>
         </div>
         <div class="stat">
             <div class="stat-value">∞</div>
-            <div class="stat-label">Context Switches Avoided</div>
+            <div class="stat-label">Times they said "I can't believe I built that"</div>
         </div>
     </div>
+
+    <section class="section">
+        <h2 class="section-title" style="text-align: center;">What Others Are Saying</h2>
+        <p class="section-subtitle" style="text-align: center;">Real feedback from real participants</p>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 32px; margin-top: 60px;">
+            <div style="background: #fbfbfd; border-radius: 24px; padding: 40px; border: 1px solid rgba(0, 0, 0, 0.04);">
+                <div style="color: #FFD700; font-size: 24px; margin-bottom: 16px;">⭐⭐⭐⭐⭐</div>
+                <p style="font-size: 17px; line-height: 1.6; color: #1d1d1f; margin-bottom: 24px;">
+                    "Wow Gal, I am feeling grateful for the fact I had the chance to attend today's session as well. Awesome session, awesome attitude, awesome everything! Thank you so much."
+                </p>
+                <div style="display: flex; align-items: center; gap: 16px;">
+                    <img src="https://framerusercontent.com/images/ZFFxuonzaeWhudmQvOBUvpDwxDo.jpeg?scale-down-to=512&width=800&height=800" alt="Hadas Goldfarb" style="width: 56px; height: 56px; border-radius: 50%; object-fit: cover;">
+                    <div>
+                        <div style="font-weight: 600; color: #1d1d1f;">Hadas Goldfarb</div>
+                        <div style="font-size: 15px; color: #86868b;">Senior Manager, Platform Engineering</div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="background: #fbfbfd; border-radius: 24px; padding: 40px; border: 1px solid rgba(0, 0, 0, 0.04);">
+                <div style="color: #FFD700; font-size: 24px; margin-bottom: 16px;">⭐⭐⭐⭐⭐</div>
+                <p style="font-size: 17px; line-height: 1.6; color: #1d1d1f; margin-bottom: 24px;">
+                    "The session today was amazing - insightful, refreshing, and empowering. You made the topic feel easy, accessible, and full of creative potential. I loved how you showcased the real possibilities of AI tools and how anyone can start building with them, no coding required. It truly felt like a limitation-breaking experience!"
+                </p>
+                <div style="display: flex; align-items: center; gap: 16px;">
+                    <img src="https://framerusercontent.com/images/VNOze9fzGPphZiZ5sDdMGViE2X0.png?width=701&height=736" alt="Yulia Boyko" style="width: 56px; height: 56px; border-radius: 50%; object-fit: cover;">
+                    <div>
+                        <div style="font-weight: 600; color: #1d1d1f;">Yulia Boyko</div>
+                        <div style="font-size: 15px; color: #86868b;">Senior Technical Operations Manager</div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="background: #fbfbfd; border-radius: 24px; padding: 40px; border: 1px solid rgba(0, 0, 0, 0.04);">
+                <div style="color: #FFD700; font-size: 24px; margin-bottom: 16px;">⭐⭐⭐⭐⭐</div>
+                <p style="font-size: 17px; line-height: 1.6; color: #1d1d1f; margin-bottom: 24px;">
+                    "@gal.dulev You push limits and raise the bar. Truly inspiring. #be-innovators"
+                </p>
+                <div style="display: flex; align-items: center; gap: 16px;">
+                    <img src="https://framerusercontent.com/images/0bSQUZ6PbolswNRXPJiY9BiM4wM.png?scale-down-to=512&width=716&height=673" alt="Meirav Avraham" style="width: 56px; height: 56px; border-radius: 50%; object-fit: cover;">
+                    <div>
+                        <div style="font-weight: 600; color: #1d1d1f;">Meirav Avraham</div>
+                        <div style="font-size: 15px; color: #86868b;">Data Visualization Engineer</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <section class="section">
         <h2 class="section-title">Choose your workshop.</h2>
         <p class="section-subtitle">From first prompt to shipped code.</p>
 
         <div class="workshops-grid">
-            <div class="workshop-card">
-                <div class="workshop-level">BEGINNER</div>
+            <div class="workshop-card" onclick="openModalWithWorkshop('AI Assistants')">
+                <div class="workshop-level beginner">BEGINNER</div>
                 <h3 class="workshop-title">AI Assistants</h3>
                 <p class="workshop-description">
-                    Master AI workflows in your IDE. Stop fighting with ChatGPT. Build custom assistants that actually work.
+                    Stop copy-pasting to ChatGPT 50 times a day. Build AI workflows that understand your context, remember your preferences, and actually help you ship faster.
                 </p>
                 <div class="workshop-details">
                     <div class="detail">
@@ -616,17 +1023,23 @@
                         <div class="detail-value">2 Hours</div>
                     </div>
                     <div class="detail">
-                        <div class="detail-label">Experience</div>
-                        <div class="detail-value">None needed</div>
+                        <div class="detail-label">Leave With</div>
+                        <div class="detail-value">Custom AI Setup</div>
                     </div>
                 </div>
             </div>
 
-            <div class="workshop-card">
-                <div class="workshop-level">BEGINNER</div>
-                <h3 class="workshop-title">Vibe Coding for PMs</h3>
+            <div class="workshop-card recommended" onclick="openModalWithWorkshop('Vibe Coding for PMs')">
+                <div class="workshop-level beginner">BEGINNER</div>
+                <h3 class="workshop-title">The PM Accelerator</h3>
                 <p class="workshop-description">
-                    Build data dashboards. Create feature prototypes. Ship analytics pipelines. All in one day.
+                    Your CEO asks for a user retention dashboard. You have two choices:<br><br>
+                    
+                    <strong>Choice A:</strong> Write a Jira ticket. Wait 2 sprints. Get the wrong dashboard. Wait 2 more sprints.<br><br>
+                    
+                    <strong>Choice B:</strong> Build it yourself. This afternoon. Deploy it before standup tomorrow.<br><br>
+                    
+                    Choose B. We'll show you how.
                 </p>
                 <div class="workshop-details">
                     <div class="detail">
@@ -634,32 +1047,32 @@
                         <div class="detail-value">2 Hours</div>
                     </div>
                     <div class="detail">
-                        <div class="detail-label">Coding</div>
-                        <div class="detail-value">Not required</div>
+                        <div class="detail-label">Leave With</div>
+                        <div class="detail-value">Deployed Dashboard</div>
                     </div>
                 </div>
             </div>
 
-            <div class="workshop-card">
-                <div class="workshop-level">ADVANCED</div>
+            <div class="workshop-card" onclick="openModalWithWorkshop('Vibe Coding Pro')">
+                <div class="workshop-level advanced">ADVANCED</div>
                 <h3 class="workshop-title">Vibe Coding: Pro</h3>
                 <p class="workshop-description">
-                    Production dashboards. CI/CD pipelines. Real-time data. The complete product development flow.
+                    Ship production-grade dashboards with real-time data. Deploy automated reports. Build features that integrate with your actual product. The full PM tech stack.
                 </p>
                 <div class="workshop-details">
                     <div class="detail">
                         <div class="detail-label">Duration</div>
-                        <div class="detail-value">2 Hours</div>
+                        <div class="detail-value">2 Days</div>
                     </div>
                     <div class="detail">
-                        <div class="detail-label">Level</div>
-                        <div class="detail-value">Intermediate+</div>
+                        <div class="detail-label">Leave With</div>
+                        <div class="detail-value">Production Feature</div>
                     </div>
                 </div>
             </div>
 
-            <div class="workshop-card">
-                <div class="workshop-level">TEAM WORKSHOP</div>
+            <div class="workshop-card" onclick="openModalWithWorkshop('Product Teams')">
+                <div class="workshop-level team">TEAM WORKSHOP</div>
                 <h3 class="workshop-title">Product Teams</h3>
                 <p class="workshop-description">
                     PM, design, and dev coding together. One workspace. One flow. Ship a real feature as a team.
@@ -676,26 +1089,26 @@
                 </div>
             </div>
 
-            <div class="workshop-card">
-                <div class="workshop-level">BEGINNER</div>
+            <div class="workshop-card" onclick="openModalWithWorkshop('Design + Code')">
+                <div class="workshop-level beginner">BEGINNER</div>
                 <h3 class="workshop-title">Design + Code</h3>
                 <p class="workshop-description">
-                    Turn designs into working prototypes. Interactive components. Real data visualizations. Ship it.
+                    Stop sending static mockups. Turn your designs into interactive prototypes with real data. Ship working components your team can actually use.
                 </p>
                 <div class="workshop-details">
                     <div class="detail">
                         <div class="detail-label">Duration</div>
-                        <div class="detail-value">2 Hours</div>
+                        <div class="detail-value">One Day</div>
                     </div>
                     <div class="detail">
-                        <div class="detail-label">Tools</div>
-                        <div class="detail-value">IDE + Figma</div>
+                        <div class="detail-label">Leave With</div>
+                        <div class="detail-value">Working Prototype</div>
                     </div>
                 </div>
             </div>
 
-            <div class="workshop-card">
-                <div class="workshop-level">ADVANCED</div>
+            <div class="workshop-card" onclick="openModalWithWorkshop('Design Systems')">
+                <div class="workshop-level advanced">ADVANCED</div>
                 <h3 class="workshop-title">Design Systems</h3>
                 <p class="workshop-description">
                     Full-stack design capabilities. Production systems. APIs. Animations. Data-driven designs.
@@ -703,68 +1116,30 @@
                 <div class="workshop-details">
                     <div class="detail">
                         <div class="detail-label">Duration</div>
-                        <div class="detail-value">2 Hours</div>
+                        <div class="detail-value">One Day</div>
                     </div>
                     <div class="detail">
-                        <div class="detail-label">Level</div>
-                        <div class="detail-value">Intermediate+</div>
+                        <div class="detail-label">Leave With</div>
+                        <div class="detail-value">Production System</div>
                     </div>
                 </div>
             </div>
 
-            <div class="workshop-card">
-                <div class="workshop-level">INTENSIVE</div>
+            <div class="workshop-card" onclick="openModalWithWorkshop('AI Design Sprint')">
+                <div class="workshop-level intensive">INTENSIVE</div>
                 <h3 class="workshop-title">AI Design Sprint</h3>
                 <p class="workshop-description">
-                    Five days. One big problem. Your team. AI superpowers. Ship validated solution by Friday.
+                    Compress months of work into one week. Monday: define the problem. Friday: ship the solution. Your team learns AI-first product development by doing it.
                 </p>
                 <div class="workshop-details">
                     <div class="detail">
                         <div class="detail-label">Duration</div>
-                        <div class="detail-value">2 Hours</div>
+                        <div class="detail-value">5 Days</div>
                     </div>
                     <div class="detail">
-                        <div class="detail-label">Format</div>
-                        <div class="detail-value">Immersive</div>
+                        <div class="detail-label">Leave With</div>
+                        <div class="detail-value">Validated Solution</div>
                     </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="section" style="background: #f5f5f7; margin: 0; padding: 100px 40px; max-width: 100%;">
-        <div style="max-width: 1200px; margin: 0 auto;">
-            <h2 class="section-title">What you'll walk away with.</h2>
-            <p class="section-subtitle">Not just knowledge. Actual working code.</p>
-
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 48px; margin-top: 60px;">
-                <div>
-                    <div style="font-size: 48px; margin-bottom: 16px;">💻</div>
-                    <h3 style="font-size: 21px; font-weight: 600; margin-bottom: 12px; color: #1d1d1f;">Working Code</h3>
-                    <p style="color: #86868b; font-size: 17px; line-height: 1.5;">
-                        Real projects you built yourself. Running in production. Not tutorials.
-                    </p>
-                </div>
-                <div>
-                    <div style="font-size: 48px; margin-bottom: 16px;">🎯</div>
-                    <h3 style="font-size: 21px; font-weight: 600; margin-bottom: 12px; color: #1d1d1f;">Repeatable Process</h3>
-                    <p style="color: #86868b; font-size: 17px; line-height: 1.5;">
-                        Templates, prompts, and workflows you can use tomorrow.
-                    </p>
-                </div>
-                <div>
-                    <div style="font-size: 48px; margin-bottom: 16px;">🚀</div>
-                    <h3 style="font-size: 21px; font-weight: 600; margin-bottom: 12px; color: #1d1d1f;">Speed</h3>
-                    <p style="color: #86868b; font-size: 17px; line-height: 1.5;">
-                        Go from idea to deployed feature in one afternoon.
-                    </p>
-                </div>
-                <div>
-                    <div style="font-size: 48px; margin-bottom: 16px;">👥</div>
-                    <h3 style="font-size: 21px; font-weight: 600; margin-bottom: 12px; color: #1d1d1f;">Community</h3>
-                    <p style="color: #86868b; font-size: 17px; line-height: 1.5;">
-                        Slack channel for questions. Keep learning together.
-                    </p>
                 </div>
             </div>
         </div>
@@ -774,31 +1149,66 @@
         <h2 class="cta-title">Ready to build?</h2>
         <p class="cta-subtitle">Pick your workshop. Show up. Ship something real.</p>
         <button onclick="openModal()" class="cta-button">Book a Workshop</button>
-        <a href="https://www.linkedin.com/in/galdulev/" target="_blank" class="cta-button secondary">Get in Touch</a>
+        <button onclick="openScheduleModal()" class="cta-button secondary">Schedule a Call</button>
     </section>
 
-    <section class="section">
-        <div style="max-width: 800px; margin: 0 auto; text-align: center;">
-            <div style="width: 120px; height: 120px; border-radius: 50%; background: linear-gradient(135deg, #0071e3, #0077ed); margin: 0 auto 32px;"></div>
-            <h3 style="font-size: 32px; font-weight: 600; margin-bottom: 16px; color: #1d1d1f;">Gal Dulev</h3>
-            <p style="font-size: 21px; color: #86868b; margin-bottom: 24px;">
-                Product Manager @ ZoomInfo
-            </p>
-            <p style="font-size: 17px; color: #86868b; line-height: 1.6;">
-                Building with AI in production. Teaching product teams to ship features faster.
-                No slides, no theory—just hands-on coding with real problems.
-            </p>
+    <section class="section" style="background: #f5f5f7; margin: 80px 0 0 0; padding: 100px 40px; max-width: 100%;">
+        <div style="max-width: 1200px; margin: 0 auto;">
+            <h2 class="section-title" style="text-align: center; margin-bottom: 60px;">About the Instructor</h2>
+            
+            <div style="text-align: center;">
+                <div style="max-width: 900px; margin: 0 auto 40px;">
+                    <img src="https://framerusercontent.com/images/S7bAvUDgsrgOstoYELEjxRsgPI.jpeg?scale-down-to=512&width=1280&height=534" alt="Gal Dulev" style="width: 100%; border-radius: 24px; object-fit: cover;">
+                </div>
+                
+                <div style="max-width: 800px; margin: 0 auto;">
+                    <h3 style="font-size: 40px; font-weight: 700; margin-bottom: 16px; color: #1d1d1f;">Gal Dulev</h3>
+                    <p style="font-size: 18px; color: #1d1d1f; line-height: 1.7; margin-bottom: 32px; margin-top: 32px;">
+                        Leading AI Transformation that impacts the business, both at NASDAQ-listed companies and startups. Bringing hands-on AI insights to CEOs, marketeers, developers, designers, HR teams, and product managers.
+                    </p>
+                    
+                    <div style="margin: 80px auto 0; max-width: 650px;">
+                        <p style="font-size: 13px; font-weight: 500; color: #86868b; text-align: center; margin-bottom: 64px; letter-spacing: 0.06em; text-transform: uppercase;">Proven Results</p>
+                        
+                        <div style="display: grid; grid-template-columns: 1fr; gap: 56px;">
+                            <div style="padding: 0 8px;">
+                                <div style="font-size: 72px; font-weight: 600; color: #FF2D55; line-height: 1; margin-bottom: 12px; letter-spacing: -0.04em;">78%</div>
+                                <div style="font-size: 17px; font-weight: 400; color: #1d1d1f; line-height: 1.4;">
+                                    Faster Time to Market<br>
+                                    <span style="color: #86868b;">with Vibe coding redesign</span>
+                                </div>
+                            </div>
+                            
+                            <div style="padding: 0 8px;">
+                                <div style="font-size: 72px; font-weight: 600; color: #845EC2; line-height: 1; margin-bottom: 12px; letter-spacing: -0.04em;">+39%</div>
+                                <div style="font-size: 17px; font-weight: 400; color: #1d1d1f; line-height: 1.4;">
+                                    QoQ Growth in Revenue<br>
+                                    <span style="color: #86868b;">with AI n8n product</span>
+                                </div>
+                            </div>
+                            
+                            <div style="padding: 0 8px;">
+                                <div style="font-size: 72px; font-weight: 600; color: #32ADE6; line-height: 1; margin-bottom: 12px; letter-spacing: -0.04em;">+27%</div>
+                                <div style="font-size: 17px; font-weight: 400; color: #1d1d1f; line-height: 1.4;">
+                                    Sign Up to Paid<br>
+                                    <span style="color: #86868b;">with GTM AI bot</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
     <footer>
         <p style="margin-bottom: 16px;">
             <a href="index.html">Tutorials</a>
-            <a href="cursor-playbook-viral.html">Playbook</a>
+            <a href="data-playbook.html">Playbook</a>
             <a href="https://www.linkedin.com/in/galdulev/" target="_blank">LinkedIn</a>
         </p>
         <p style="font-size: 15px;">
-            © 2025 Gal Dulev • Made with ☕ and curiosity
+            © 2025 Gal Dulev
         </p>
     </footer>
 
@@ -826,6 +1236,34 @@
             document.body.style.overflow = 'hidden';
         }
 
+        function openModalWithWorkshop(workshopName) {
+            document.getElementById('workshop').value = workshopName;
+            calculatePrice();
+            updateWorkshopBenefits(workshopName);
+            openModal();
+        }
+
+        function updateWorkshopBenefits(workshop) {
+            const benefitsEl = document.getElementById('workshopBenefits');
+            
+            if (workshop === 'AI Assistants') {
+                benefitsEl.innerHTML = `
+                    • Hands-on learning experience<br>
+                    • Custom AI assistant setup<br>
+                    • Prompt engineering techniques<br>
+                    • Templates & workflows to reuse<br>
+                    • Lifetime access to materials
+                `;
+            } else {
+                benefitsEl.innerHTML = `
+                    • Hands-on learning experience<br>
+                    • Working projects you built yourself<br>
+                    • Templates & workflows to reuse<br>
+                    • Lifetime access to materials
+                `;
+            }
+        }
+
         function closeModal() {
             document.getElementById('bookingModal').classList.remove('active');
             document.body.style.overflow = 'auto';
@@ -839,29 +1277,51 @@
             const format = document.getElementById('format').value;
 
             if (!workshop) return;
+            
+            // Update benefits based on workshop
+            updateWorkshopBenefits(workshop);
 
-            let basePrice = 15000;
+            // Base prices by workshop duration (premium individual learning model)
+            let basePrice;
+            
+            // Map workshops to their durations and pricing
+            const twoDayWorkshops = ['Vibe Coding Pro'];
+            const fullDayWorkshops = ['Design + Code', 'Design Systems'];
+            const twoHourWorkshops = ['AI Assistants', 'Vibe Coding for PMs', 'Product Teams'];
             
             if (workshop === 'AI Design Sprint') {
-                basePrice = 15000;
-            }
-
-            let total = basePrice;
-            if (participants >= 3) {
-                total = basePrice + (participants - 1) * 5000;
+                basePrice = 14000;  // 5-day intensive
+            } else if (twoDayWorkshops.includes(workshop)) {
+                basePrice = 6000;  // 2-day workshop
+            } else if (fullDayWorkshops.includes(workshop)) {
+                basePrice = 3000;  // Full day (6-8 hours)
             } else {
-                total = basePrice * participants;
+                basePrice = 1000;  // 2-hour workshops
             }
-
-            if (format === 'in-person') {
-                total += 5000;
+            
+            // Calculate per-person price with volume discounts
+            let pricePerPerson = basePrice;
+            
+            // Volume discounts (smooth tiers - always increasing total)
+            if (participants >= 10) {
+                pricePerPerson = Math.round(basePrice * 0.75);  // 25% discount for 10+ people
+            } else if (participants >= 5) {
+                pricePerPerson = Math.round(basePrice * 0.85);  // 15% discount for 5-9 people
             }
+            // else: full price for 1-4 people
+            
+            let total = participants * pricePerPerson;
 
             document.getElementById('pricingDisplay').style.display = 'block';
             document.getElementById('priceValue').textContent = '₪' + total.toLocaleString();
             
-            let note = participants >= 3 ? 'Team pricing applied' : 'Per person pricing';
-            if (format === 'in-person') note += ' • Includes in-person setup';
+            // Clear pricing explanation
+            let note = `₪${pricePerPerson.toLocaleString()} per person`;
+            if (participants >= 5) {
+                const discount = participants >= 10 ? '25%' : '15%';
+                note += ` (${discount} team discount)`;
+            }
+            if (format === 'in-person') note += ' • In-person workshop';
             document.getElementById('priceNote').textContent = note;
         }
 
@@ -880,13 +1340,152 @@
             
             window.open(`https://www.linkedin.com/messaging/compose/?body=${encodeURIComponent(linkedInMessage)}`, '_blank');
 
-            alert('Opening LinkedIn to send your request!');
             closeModal();
+            // Show confirmation modal after a brief delay
+            setTimeout(() => {
+                document.getElementById('confirmationModal').classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }, 300);
         }
 
+        function updateParticipantsDisplay() {
+            const participants = document.getElementById('participants').value;
+            document.getElementById('participantsDisplay').textContent = participants;
+        }
+
+        function openScheduleModal() {
+            document.getElementById('scheduleModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeScheduleModal() {
+            document.getElementById('scheduleModal').classList.remove('active');
+            document.body.style.overflow = 'auto';
+            // Reset the form
+            document.getElementById('timeSlots').style.display = 'none';
+            document.getElementById('bookingFormSchedule').style.display = 'none';
+        }
+
+        function closeConfirmationModal() {
+            document.getElementById('confirmationModal').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        function selectDate(button) {
+            // Remove selection from all date buttons
+            const modal = document.getElementById('scheduleModal');
+            modal.querySelectorAll('button').forEach(btn => {
+                if (btn.onclick && btn.onclick.toString().includes('selectDate')) {
+                    btn.style.borderColor = '#e8e8ed';
+                    btn.style.background = 'white';
+                }
+            });
+            // Highlight selected
+            button.style.borderColor = '#0071e3';
+            button.style.background = 'rgba(0, 113, 227, 0.05)';
+            // Show time slots
+            document.getElementById('timeSlots').style.display = 'block';
+        }
+
+        function selectTime(button) {
+            // Remove selection from all time buttons
+            document.querySelectorAll('#timeSlots button').forEach(btn => {
+                btn.style.borderColor = '#e8e8ed';
+                btn.style.background = 'white';
+            });
+            // Highlight selected
+            button.style.borderColor = '#0071e3';
+            button.style.background = 'rgba(0, 113, 227, 0.05)';
+            // Show booking form
+            document.getElementById('bookingFormSchedule').style.display = 'block';
+        }
+
+        function confirmSchedule() {
+            closeScheduleModal();
+            setTimeout(() => {
+                document.getElementById('confirmationModal').classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }, 300);
+        }
+
+        // Capture calculated price before form submission
+        document.getElementById('bookingForm').addEventListener('submit', function(e) {
+            // Update hidden price field before submission
+            const priceValue = document.getElementById('priceValue').textContent;
+            document.getElementById('calculatedPrice').value = priceValue;
+        });
+
         document.addEventListener('click', (e) => {
-            const modal = document.getElementById('bookingModal');
-            if (e.target === modal) closeModal();
+            const bookingModal = document.getElementById('bookingModal');
+            const scheduleModal = document.getElementById('scheduleModal');
+            const confirmModal = document.getElementById('confirmationModal');
+            
+            if (e.target === bookingModal) closeModal();
+            if (e.target === scheduleModal) closeScheduleModal();
+            if (e.target === confirmModal) closeConfirmationModal();
+        });
+
+        // Vanilla JS Typewriter Effect (no dependencies)
+        document.addEventListener('DOMContentLoaded', function() {
+            const element = document.getElementById('typed');
+            const roles = [
+                'Product managers',
+                'Developers',
+                'Designers',
+                'CEOs',
+                'Marketeers',
+                'People'
+            ];
+            
+            let roleIndex = 0;
+            let charIndex = 0;
+            let isDeleting = false;
+            let isPaused = false;
+            
+            function type() {
+                const currentRole = roles[roleIndex];
+                
+                if (isPaused) {
+                    setTimeout(type, 2000);
+                    isPaused = false;
+                    return;
+                }
+                
+                if (isDeleting) {
+                    element.textContent = currentRole.substring(0, charIndex - 1);
+                    charIndex--;
+                } else {
+                    element.textContent = currentRole.substring(0, charIndex + 1);
+                    charIndex++;
+                }
+                
+                let typeSpeed = isDeleting ? 40 : 60;
+                
+                if (!isDeleting && charIndex === currentRole.length) {
+                    isPaused = true;
+                    isDeleting = true;
+                    typeSpeed = 2000;
+                } else if (isDeleting && charIndex === 0) {
+                    isDeleting = false;
+                    roleIndex = (roleIndex + 1) % roles.length;
+                }
+                
+                setTimeout(type, typeSpeed);
+            }
+            
+            // Add cursor element
+            const cursor = document.createElement('span');
+            cursor.className = 'typed-cursor';
+            cursor.textContent = '|';
+            element.parentNode.insertBefore(cursor, element.nextSibling);
+            
+            // Start animation after delay
+            setTimeout(type, 500);
+            
+            // Respect reduced motion preference
+            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                cursor.style.animation = 'none';
+            }
         });
     </script>
 </body>
